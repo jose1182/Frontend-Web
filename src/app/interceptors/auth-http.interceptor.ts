@@ -7,30 +7,31 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthJwtService } from '../services/auth-jwt.service';
+import { AccountService } from '../services/account.service';
+import { AccountModel } from '../model/account.model';
 
 @Injectable()
 export class AuthHttpInterceptor implements HttpInterceptor {
 
-  token!: String | undefined
-
   constructor( public authJWTService: AuthJwtService) {
-
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-
     let loginValue = this.authJWTService.loginValue();
     let token = loginValue?.id_token;
 
-    if(loginValue && token){
+
+    console.log('token en inyterceptor: ',token)
+    if(token){
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${ token }`
-        }
-      })
-    }else {
-      console.log('The request dont require autherization')
+          //Authorization: `Basic ${this.token}` // Añado token
+          Authorization: 'Bearer ' + token
+          }
+      });
+    }else{
+      console.log('La petición no requiere autorización');
     }
 
     return next.handle(request);

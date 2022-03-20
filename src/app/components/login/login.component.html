@@ -1,1 +1,49 @@
-<p>login works!</p>
+<div class="col-md-6 offset-md-3 mt-5">
+  <form [formGroup] ="this.loginForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input type="text"
+             formControlName="username"
+             class="form-control is-invalid"
+             id="exampleInputEmail1"
+             aria-describedby="emailHelp"
+             [ngClass]="{
+              'is-invalid': this.sent && this.loginForm.controls.username.errors
+             }"
+             placeholder="Introduce nombre de usuario">
+      <small id="emailHelp" class="form-text text-muted">Nunca compartas las contraseñas con nadie.</small>
+      <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.username.errors?.required">¡Tienes que
+        rellenar este campo!
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Contraseña</label>
+      <input type="password"
+             class="form-control"
+             id="exampleInputPassword1"
+             formControlName="password"
+             [ngClass]="{
+              'is-invalid': this.sent && this.loginForm.controls.password.errors
+             }"
+             placeholder="Contraseña">
+      <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.password.errors?.required">¡Tienes que
+        rellenar este
+        campo!
+      </div>
+    </div>
+
+    <div class="form-group">
+          <input type="checkbox"
+                 class="form-check-input mx-1"
+                  id="condiciones"
+                  formControlName="remenberMe">
+          <label for="aceptarCondiciones" class="form-check-label">He leído y acepto los Términos</label>
+    </div>
+
+    <button [disabled]="isLoading" type="submit" class="btn btn-primary">
+      <span class="spinner-border spinner-border-sm mr-1" *ngIf="isLoading"></span>
+      Iniciar sesión
+    </button>
+    <div *ngIf="errorMsg" class="alert alert-danger mt-3 mb-0">{{errorMsg}}</div>
+  </form>
+</div>
