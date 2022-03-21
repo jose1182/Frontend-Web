@@ -7,9 +7,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthJwtService } from '../services/auth-jwt.service';
-import { AccountService } from '../services/account.service';
-import { AccountModel } from '../model/account.model';
-
 @Injectable()
 export class AuthHttpInterceptor implements HttpInterceptor {
 
@@ -21,8 +18,6 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     let loginValue = this.authJWTService.loginValue();
     let token = loginValue?.id_token;
 
-
-    console.log('token en inyterceptor: ',token)
     if(token){
       request = request.clone({
         setHeaders: {

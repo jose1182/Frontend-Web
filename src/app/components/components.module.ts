@@ -5,6 +5,8 @@ import { RegistroComponent } from './registro/registro.component';
 import { RecuperarPasswordComponent } from './recuperar-password/recuperar-password.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { RecuperarPasswordLinkComponent } from './recuperar-password-link/recuperar-password-link.component';
 
 
 
@@ -13,12 +15,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegistroComponent,
     RecuperarPasswordComponent,
-    HomeComponent
+    HomeComponent,
+    RecuperarPasswordLinkComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class ComponentsModule { }
