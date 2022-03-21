@@ -4,8 +4,15 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthguardGuard } from './guards/authguard.guard';
 
 const routes: Routes = [
+  
+  {
+    path:'',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: LoginComponent
