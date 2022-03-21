@@ -1,1 +1,48 @@
-<p>registro works!</p>
+<div class="row">
+    <div class="col-md-12">
+      <h3 class="mb-5"> Registro</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form (ngSubmit)="onSubmit()" role="form" [formGroup]="formGroup">
+        <div class="mb-3">
+          <label for="firstName">Nombre</label>
+          <input type="text" class="form-control" name="firstName" #firstName formControlName="firstName" id="firstName"
+            autofocus required>
+        </div>
+        <div class="mb-3">
+            <label for="secondName">Apellidos</label>
+            <input type="text" class="form-control" name="secondName" #secondName formControlName="secondName" id="secondName"
+              >
+          </div>
+          <div class="mb-3">
+            <label for="province">Provincia </label>
+            <div class="mb-3">
+            <select name="province" formControlName="province" class="form-select" id="inputState">
+                <option value="0 " selected>Elige una opción</option>
+                <option *ngFor="let field of this.provincesList">{{ field }}</option>
+            </select>
+            </div>
+        </div>
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" formControlName="email" id="email" required>
+        </div>
+        <div class="mb-3">
+
+          <label for="password">Contraseña</label>
+          <input name='password1' type="password" formControlName="password1" class="form-control" id="password"
+            required>
+        </div>
+
+        <div class="mb-3">
+
+          <label for="password2">Confirmar contraseña</label>
+          <input name='password2' type="password" formControlName="password2" class="form-control" id="password2"
+            required>
+        </div>
+        <button type="submit" [disabled]="!formGroup.valid" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+  </div>
