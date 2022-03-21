@@ -1,8 +1,16 @@
 <p>home works!</p>
 <div [ngSwitch]="accountModel !== null">
   <div class="alert alert-success" *ngSwitchCase="true">
-    <span id="home-logged-message" *ngIf="accountModel">You are logged in as user "{{ accountModel.login }}".</span>
-    <span id="home-logged-message" *ngIf="accountModel">authorities "{{ accountModel.authorities }}".</span>
-    <span id="home-logged-message" *ngIf="accountModel">email "{{ accountModel.email }}".</span>
+    <ul>
+      <li>
+        <span id="home-logged-message" *ngIf="accountModel">You are logged in as user "{{ accountModel.login }}".</span>
+      </li>
+      <li>
+        <span id="home-logged-message" *ngIf="accountModel">authorities "{{ accountModel.authorities }}".</span>
+      </li>
+      <li>
+        <span id="home-logged-message" *ngIf="accountModel">email "{{ accountModel.email }}".</span>
+      </li>
+    </ul>
   </div>
 
