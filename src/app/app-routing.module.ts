@@ -1,9 +1,10 @@
-import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
 import { HomeComponent } from './components/home/home.component';
+import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 
 const routes: Routes = [
   {
