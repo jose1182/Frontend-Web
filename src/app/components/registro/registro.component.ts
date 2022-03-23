@@ -13,29 +13,25 @@ import { RegistroService } from 'src/app/services/registro.service';
 export class RegistroComponent implements OnInit {
 
   formGroup: FormGroup;
-  public password1: string;
-  public password2: string;
+  public password: string;
+  public password_confirmed: string;
   //validaciones
   public validatePassword = false;
-  public provincesList;
 
   constructor(private fb: FormBuilder, private router: Router, private registroService: RegistroService) {
     
     //contraseña1 y contraseña2
-    this.password1 = '';
-    this.password2 = '';
+    this.password = '';
+    this.password_confirmed = '';
+
     //validaciones
     this.validatePassword = false;
-    this.provincesList = this.registroService.getProvinces();
 
     this.formGroup = this.fb.group({
-      firstName: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      username: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.email, Validators.required])],
-      password1: ['', Validators.required],
-      password2: ['', Validators.required],
-      secondName:['',Validators.pattern('[a-zA-Z ]*')],
-      province: ['', Validators.required]
-
+      password: ['', Validators.required],
+      password_confirmed: ['', Validators.required]
     })
 
    }
@@ -48,33 +44,28 @@ export class RegistroComponent implements OnInit {
 
       console.log("mensaje ok");
       let value: RegistroModel = new RegistroModel()
-          value.firstName = this.formGroup.value.firstName
+          value.username = this.formGroup.value.username
           value.email = this.formGroup.value.email
           value.password = this.formGroup.value.password1
-          value.secondName = this.formGroup.value.secondName
-         this.registroService.getRegisteredUser(this.formGroup)
-             this.router.navigate(['/login'])
-   
-            } else {
-
+      this.registroService.getRegisteredUser(this.formGroup)
+      this.router.navigate(['/login'])
+    } else {
       console.log("Algo falla Paquito");
-   }
+    }
   }
+
+
    //para validar que las contraseñas coinciden  
    public passwordConfirm(): boolean {
-
-    this.password1 = this.formGroup.value.password1;
-    this.password2 = this.formGroup.value.password2;
-console.log(this.password1)
-    if  (this.password1 == this.password2) {
+    this.password = this.formGroup.value.password;
+    this.password_confirmed = this.formGroup.value.password_confirmed;
+    console.log(this.password)
+    if  (this.password == this.password_confirmed) {
       this.validatePassword = false;
       return true;
-
     } else {
       this.validatePassword = true;
       return false;
     }
-
   }
-  
 }

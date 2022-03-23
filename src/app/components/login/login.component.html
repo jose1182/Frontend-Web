@@ -1,44 +1,64 @@
-<section class="vh-100">
-    <div class="container-fluid py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
-          <div class="card" id="shadow">
-            <div class="row">
-
-                  <div class="form-box col-md-6 col-lg-6 d-flex align-items-center">
-                    <div class="card-body p-4 p-lg-5 text-black">
-                      <form>
-                        <div class="upper-box">
-                            <h1 id="title" class="text h1 fw-bold mb-0">NetJob</h1>
-                            <h5 id="subtitle" class="text fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Find your Service Worker</h5>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                          <input type="username" class="form-control form-control-lg" placeholder="Username"/>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                          <input type="password" class="form-control form-control-lg" placeholder="Password"/>
-                        </div>
-
-                        <p class="text"> <a routerLink="/recuperar-password" class="text">Forgot Password</a> </p>
-                        <p class="text mb-5 pb-lg-2" style="font-size: 1.2rem;">Don't have an account? <a class="text"routerLink="/registro">Register here</a> </p>
-
-                        <div class="pt-1 mb-4">
-                          <button class="button btn btn-dark btn-lg btn-circle btn-block" type="button">Login</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-
-                  <div class="imagen col-md-6 col-lg-6 d-md-block d-sm-none">
-                    <img src="./../../../assets/img_main.png" class="img-fluid d-block"/>
-                  </div>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center align-items-center" >
+    <div class="main-container col-lg-10" id="shadow" style="height: 500px">
+      <div class="row">
+            
+        <div class="form-box col-sm-12 col-md-6 col-lg-6  align-items-center">
+          <form [formGroup] ="this.loginForm" (ngSubmit)="submitForm()">
+            <div class="upper-box">
+              <h1 id="title" class="text">NetJob</h1>
+              <h5 id="subtitle" class="text">Find your Service Worker</h5>
             </div>
-          </div>
+                     
+            <div class="form-outline form-group">
+              <input type="text" 
+                class="form-control form-control-lg is-invalid" 
+                placeholder="Username"
+                formControlName="username"
+                [ngClass]="{'is-invalid': this.sent && this.loginForm.controls.username.errors}"/>
+              <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.username.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
+              </div>
+            </div>
+  
+
+            <div class="form-outline form-group">
+              <input type="password" 
+                class="form-control form-control-lg" 
+                placeholder="Password"
+                formControlName="password"
+                 [ngClass]="{'is-invalid': this.sent && this.loginForm.controls.password.errors}"/>
+              <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.password.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
+              </div>
+            </div>
+    
+
+            <div class="container form-group form-outline align-items-center" style="margin: 0; text-align: center;">
+                  <input type="checkbox"
+                class="form-check-input "
+                id="condiciones"
+                formControlName="remenberMe" style="width: 30px; padding: 0; margin: 0;">
+                  <label for="aceptarCondiciones" class="form-check-label" style="color: white; font-size: 1.3rem; padding-left: 60px; padding-top: 20px; font-family: 'Roboto'; font-weight: 300;" >He leído y acepto los Términos</label>
+            </div>
+
+            <p class="text" (click)="goToRecuperacion();"> <a class="text">Forgot password?</a> </p>
+            <p class="text" style="font-size: 1.3rem;" (click)="goToRegistro();">Don't have an account? <a class="text">Register here</a> </p>
+
+            <div class="form-outline">
+              <button  [disabled]="isLoading" class="button btn btn-dark btn-lg btn-circle btn-block" type="submit">
+              <span class="spinner-border spinner-border-sm mr-1" *ngIf="isLoading"></span>
+                Login
+              </button>
+              <div *ngIf="errorMsg" class="alert alert-danger mt-3 mb-0" style="font-size: 1.7rem;">{{errorMsg}}</div>
+            </div>
+          </form>
         </div>
+
+        <div class="imagen-box col-sm-12 col-md-6 col-lg-6" >
+          <img src="./../../../assets/img_main.png" class="img-fluid d-block"/>
+        </div>
+
       </div>
     </div>
-</section>
-
-
+  </div>
+</div>
+  
