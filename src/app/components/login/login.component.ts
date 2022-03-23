@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginModel } from '../../model/login.model';
 import { LoginService } from '../../services/login.service';
 
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   isLoading : boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private loginService: LoginService
+              private loginService: LoginService,
+              private router: Router
 
     ) {
     this.loginForm = this.formBuilder.group({
@@ -59,4 +61,13 @@ export class LoginComponent implements OnInit {
         }
       )
   }
+
+  goToRegistro():void{
+    this.router.navigate(['/registro']);
+  }
+
+  goToRecuperacion():void{
+    this.router.navigate(['/recuperar-password']);
+  }
+
 }

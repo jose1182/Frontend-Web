@@ -1,4 +1,96 @@
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center align-items-center" >
+    <div class="main-container col-lg-10" id="shadow" style="height: 500px">
+      <div class="row">
+            
+        <div class="form-box col-sm-12 col-md-6 col-lg-6  align-items-center">
+          <form [formGroup] ="this.formGroup" (ngSubmit)="onSubmit();">
+            <div class="upper-box">
+              <h1 id="title" class="text">NetJob</h1>
+              <h5 id="subtitle" class="text">Find your Service Worker</h5>
+            </div>
+                     
+            <div class="form-outline form-group">
+              <input type="text" 
+                class="form-control form-control-lg" 
+                placeholder="Username"
+                formControlName="username"
+                />
+           <!--<div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.username.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
+              </div>-->
+            </div>
 
+            <div class="form-outline form-group">
+              <input type="email" 
+                class="form-control form-control-lg" 
+                placeholder="Email"
+                formControlName="email"
+                />
+            <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.email.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
+              </div> -->
+            </div>
+  
+
+            <div class="form-outline form-group">
+              <input type="password" 
+                class="form-control form-control-lg" 
+                placeholder="Password"
+                formControlName="password"
+                 />
+            <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.password.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
+              </div>-->
+            </div>
+
+            <div class="form-outline form-group">
+              <input type="password_confirmed" 
+                class="form-control form-control-lg" 
+                placeholder="Confirm Password"
+                formControlName="password_confirmed"
+                 />
+            <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.password_confirmed.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo! 
+              </div>-->
+            </div>
+    
+
+            <div class="form-outline">
+              <button   class="button btn btn-dark btn-lg btn-circle btn-block" type="submit">
+             <!-- <span class="spinner-border spinner-border-sm mr-1" *ngIf="isLoading"></span> -->
+                Registrarme
+              </button>
+           <!--   <div *ngIf="errorMsg" class="alert alert-danger mt-3 mb-0" style="font-size: 1.7rem;">{{errorMsg}}</div> -->
+            </div>
+          </form>
+        </div>
+
+        <div class="imagen-box col-sm-12 col-md-6 col-lg-6" >
+          <img src="./../../../assets/img_main.png" class="img-fluid d-block"/>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <section class="vh-100">
     <div class="container-fluid py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -47,5 +139,5 @@
       </div>
     </div>
 </section>
-    
+ -->   
   
