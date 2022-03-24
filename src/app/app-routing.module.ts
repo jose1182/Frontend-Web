@@ -4,10 +4,11 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RecuperarPasswordLinkComponent } from './components/recuperar-password-link/recuperar-password-link.component';
 
 
 const routes: Routes = [
-  
+
   {
     path: '',
     redirectTo: 'home',
@@ -26,8 +27,12 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'recuperar-password',
+    path: 'reset-password',
     component: RecuperarPasswordComponent
+  },
+  {
+    path: 'account/reset/:finish',
+    component: RecuperarPasswordLinkComponent
   }
 ];
 

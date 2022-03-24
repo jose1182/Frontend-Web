@@ -29,6 +29,7 @@ export class RecuperarPasswordLinkComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if(params['key']) {
         this.key = params['key']
+        console.log('KEY: ', this.key)
       }
       this.initialized = true;
     });
