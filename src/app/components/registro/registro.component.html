@@ -36,16 +36,18 @@
                 class="form-control form-control-lg" 
                 placeholder="Password"
                 formControlName="password"
+                minlength="6"
                  />
             <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.password.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
               </div>-->
             </div>
 
             <div class="form-outline form-group">
-              <input type="password_confirmed" 
-                class="form-control form-control-lg" 
+              <input type="password"
+                class="form-control form-control-lg"
                 placeholder="Confirm Password"
                 formControlName="password_confirmed"
+                minlength="6"
                  />
             <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.password_confirmed.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo! 
               </div>-->

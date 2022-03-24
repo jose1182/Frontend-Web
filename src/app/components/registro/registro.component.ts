@@ -11,6 +11,9 @@ import { RegistroService } from 'src/app/services/registro.service';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  public registerErrorText!: string;
+  isLoading: boolean = false;
+
 
   formGroup: FormGroup;
   public password: string;
@@ -40,18 +43,34 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit():void {
-    if (this.passwordConfirm()){
+    if (this.formGroup.valid && this.passwordConfirm()){
 
       console.log("mensaje ok");
       let value: RegistroModel = new RegistroModel()
-          value.username = this.formGroup.value.username
+          value.login = this.formGroup.value.username
           value.email = this.formGroup.value.email
-          value.password = this.formGroup.value.password1
-      this.registroService.getRegisteredUser(this.formGroup)
+          value.password = this.formGroup.value.password
+      //this.registroService.getRegisteredUser(this.formGroup)
+      this.registroService
+      .registerUser(value)
+      .subscribe(
+        response => {
+          this.isLoading = false;
+          this.registerErrorText = '';
+          console.log('Register OK');
+        }, error =>{
+          this.isLoading = false
+          this.registerErrorText = `⚠️ ¡No se ha podido registrar! (${error.error?.detail})`;
+        },
+        () => {
+          this.isLoading = false
+        }
+      )
       this.router.navigate(['/login'])
     } else {
       console.log("Algo falla Paquito");
     }
+
   }
 
 
