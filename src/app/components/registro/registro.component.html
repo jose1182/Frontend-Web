@@ -2,17 +2,17 @@
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-10" id="shadow" style="height: 500px">
       <div class="row">
-            
+
         <div class="form-box col-sm-12 col-md-6 col-lg-6  align-items-center">
           <form [formGroup] ="this.formGroup" (ngSubmit)="onSubmit();">
             <div class="upper-box">
               <h1 id="title" class="text">NetJob</h1>
               <h5 id="subtitle" class="text">Find your Service Worker</h5>
             </div>
-                     
+
             <div class="form-outline form-group">
-              <input type="text" 
-                class="form-control form-control-lg" 
+              <input type="text"
+                class="form-control form-control-lg"
                 placeholder="Username"
                 formControlName="username"
                 />
@@ -21,19 +21,19 @@
             </div>
 
             <div class="form-outline form-group">
-              <input type="email" 
-                class="form-control form-control-lg" 
+              <input type="email"
+                class="form-control form-control-lg"
                 placeholder="Email"
                 formControlName="email"
                 />
             <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.email.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
               </div> -->
             </div>
-  
+
 
             <div class="form-outline form-group">
-              <input type="password" 
-                class="form-control form-control-lg" 
+              <input type="password"
+                class="form-control form-control-lg"
                 placeholder="Password"
                 formControlName="password"
                 minlength="6"
@@ -49,10 +49,10 @@
                 formControlName="password_confirmed"
                 minlength="6"
                  />
-            <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.password_confirmed.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo! 
+            <!--  <div class="invalid-feedback" *ngIf="sent && this.formGroup.controls.password_confirmed.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
               </div>-->
             </div>
-    
+
 
             <div class="form-outline">
               <button   class="button btn btn-dark btn-lg btn-circle btn-block" type="submit">
@@ -93,4 +93,4 @@
 
 
 
-  
+

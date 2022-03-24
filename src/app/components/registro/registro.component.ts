@@ -44,10 +44,6 @@ export class RegistroComponent implements OnInit {
 
   onSubmit():void {
 
-    if(this.formGroup.valid){
-      console.log("I am in")
-    }
-
     if (this.formGroup.valid && this.passwordConfirm()){
 
       console.log("mensaje ok");
