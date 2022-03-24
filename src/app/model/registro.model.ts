@@ -1,9 +1,13 @@
 //formulario de contacto
 export class RegistroModel {
-    login!: string;
-    email!: string;
-    password!: string;
+   public login!: String;
+   public email!: String;
+   public password!: String;
 
-    constructor() { }
+    constructor(login: String, email: String,  password: String) {
+      this.login = login;
+      this.email = email;
+      this.password = password
+     }
 
 }

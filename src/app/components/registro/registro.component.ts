@@ -1,6 +1,7 @@
 import { RegistroModel } from './../../model/registro.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegistroService } from 'src/app/services/registro.service';
 
@@ -11,30 +12,24 @@ import { RegistroService } from 'src/app/services/registro.service';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  public registerErrorText!: string;
-  isLoading: boolean = false;
 
+  doNotMatch = false;
+  error = false;
+  errorEmailExists = false;
+  errorUserExists = false;
+  success = false;
 
-  formGroup: FormGroup;
-  public password: string;
-  public password_confirmed: string;
-  //validaciones
-  public validatePassword = false;
+  public registerForm: FormGroup;
+  public password!: string;
+  public password_confirmed!: string;
 
   constructor(private fb: FormBuilder, private router: Router, private registroService: RegistroService) {
 
-    //contraseña1 y contraseña2
-    this.password = '';
-    this.password_confirmed = '';
-
-    //validaciones
-    this.validatePassword = false;
-
-    this.formGroup = this.fb.group({
-      username: ['', Validators.compose([Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      email: ['', Validators.compose([Validators.email, Validators.required])],
-      password: ['', Validators.required],
-      password_confirmed: ['', Validators.required]
+    this.registerForm = this.fb.group({
+      login: ['', [Validators.required,Validators.minLength(1), Validators.maxLength(50), Validators.pattern('')]],
+      email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+      password: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+      password_confirmed: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]]
     })
 
    }
@@ -42,50 +37,37 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+      // función getter para un fácil acceso a los campos del formulario
+  get f() { return this.registerForm.controls; }
+
   onSubmit():void {
 
-    if (this.formGroup.valid && this.passwordConfirm()){
+    this.doNotMatch = false;
+    this.error = false;
+    this.errorEmailExists = false;
+    this.errorUserExists = false;
 
-      console.log("mensaje ok");
-      let value: RegistroModel = new RegistroModel()
-          value.login = this.formGroup.value.username
-          value.email = this.formGroup.value.email
-          value.password = this.formGroup.value.password
-      //this.registroService.getRegisteredUser(this.formGroup)
+    if(!this.registerForm.valid){return}
+
+    if(!this.passwordConfirm()){
+      this.doNotMatch = false;
+    } else {
+      let value: RegistroModel = new RegistroModel(this.f.login.value, this.f.email.value, this.f.password.value);
       this.registroService
       .registerUser(value)
-      .subscribe(
-        response => {
-          this.isLoading = false;
-          this.registerErrorText = '';
-          console.log('Register OK');
-        }, error =>{
-          this.isLoading = false
-          this.registerErrorText = `⚠️ ¡No se ha podido registrar! (${error.error?.detail})`;
-        },
-        () => {
-          this.isLoading = false
-        }
-      )
-      this.router.navigate(['/login'])
-    } else {
-      console.log("Algo falla Paquito");
+      .subscribe({ next: ()=> (this.success), error: response => console.log(response)})
+        this.router.navigate(['/login'])
     }
+
+
+
 
   }
 
-
    //para validar que las contraseñas coinciden
    public passwordConfirm(): boolean {
-    this.password = this.formGroup.value.password;
-    this.password_confirmed = this.formGroup.value.password_confirmed;
-    console.log(this.password)
-    if  (this.password == this.password_confirmed) {
-      this.validatePassword = false;
-      return true;
-    } else {
-      this.validatePassword = true;
-      return false;
-    }
+    this.password = this.registerForm.value.password;
+    this.password_confirmed = this.registerForm.value.password_confirmed;
+    return this.password === this.password_confirmed;
   }
 }
