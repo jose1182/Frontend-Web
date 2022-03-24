@@ -22,7 +22,7 @@ export class RegistroComponent implements OnInit {
   public validatePassword = false;
 
   constructor(private fb: FormBuilder, private router: Router, private registroService: RegistroService) {
-    
+
     //contraseña1 y contraseña2
     this.password = '';
     this.password_confirmed = '';
@@ -38,11 +38,16 @@ export class RegistroComponent implements OnInit {
     })
 
    }
-  
+
   ngOnInit(): void {
   }
 
   onSubmit():void {
+
+    if(this.formGroup.valid){
+      console.log("I am in")
+    }
+
     if (this.formGroup.valid && this.passwordConfirm()){
 
       console.log("mensaje ok");
@@ -74,7 +79,7 @@ export class RegistroComponent implements OnInit {
   }
 
 
-   //para validar que las contraseñas coinciden  
+   //para validar que las contraseñas coinciden
    public passwordConfirm(): boolean {
     this.password = this.formGroup.value.password;
     this.password_confirmed = this.formGroup.value.password_confirmed;
