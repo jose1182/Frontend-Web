@@ -1,11 +1,10 @@
 
 <div class="overlay">
-    <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #422678">
-        
+    <nav class="navbar navbar-light navbar-expand-lg navbar-fixed-top" style="background-color: #422678">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
               <li>
@@ -34,262 +33,16 @@
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" aria-label="Search">
             <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
+            <button class="login-button btn my-2 my-sm-0" type="button" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</button>
         </form>
-      </nav>  
+    </nav>  
 
+    <div class="container-flex  rounded" style="  overflow: hidden;" >
+        <div class="categoria-title">Categorias</div>
 
-
-
-
-      
-
-
-
-
-
-  <!-- Aqui-->
-  <section class="pt-5 pb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <h3 class="mb-3">Carousel cards title </h3>
-            </div>
-            <div class="col-6 text-right">
-                <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="col-12">
-                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row">
-
-                                
-
-
-                                <div class="col-md-4 mb-3">
-                                    <div class="card" style="border-style: solid 3px; border-color: #422678;">
-                                        <img class="img-fluid" alt="100%x280" src="./../../../assets/profile.jfif" style="height: 250px;">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Special title treatment</h4>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Special title treatment</h4>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Special title treatment</h4>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row">
-
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Special title treatment</h4>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Special title treatment</h4>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card">
-                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Special title treatment</h4>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-      <div class="container-flex  rounded">
-        <div class="categoria-title h4 text-center py-3">Destacados</div>
-        <div class="row align-items-center justify-content-center">
-
-
-
-
-            <div class="destacados-box category col-xl-2 col-md-4 col-sm-10">
-                <div class="box">
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle mx-2 d-flex align-items-center justify-content-center" ><img class="rounded-circle profile" alt="100x100" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
-                            data-holder-rendered="true"></div>
-
-                            <div class="d-flex flex-column"> <b class="profecion">Cuidadora de niños</b> <a href="#"> </a> </div>
-                            <div class="d-flex flex-column"> <b class="name">Ana Maria Gonzales</b> <a href="#"></a> </div>
-                            <div class="d-flex flex-column"> <b class="descripcion">Blablablablablablablabla</b> <a href="#"></a> </div>
-                        </div>
-                   
-               
-                </div>
-            </div>
-    <div class="destacados-box category col-xl-2 col-md-4 col-sm-10">
-        <div class="box">
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange"> <img src="./../../../assets/tecnology.png" alt=""> </div>
-                <div class="d-flex flex-column"> <b>Technology</b> <a href="#">
-                    </a> </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="destacados-box category col-xl-2 col-md-4 col-sm-10">
-        <div class="box">
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-purple"> <img src="./../../../assets/educ.png" alt=""> </div>
-                <div class="d-flex flex-column"> <b>Education</b> <a href="#">
-                    </a> </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="destacados-box category col-xl-2 col-md-4 col-sm-10">
-        <div class="box">
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-cyan"> <img src="./../../../assets/restau.png" alt=""> </div>
-                <div class="d-flex flex-column"> <b>Restauracion</b> <a href="#">
-                    </a> </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="destacados-box category col-xl-2 col-md-4 col-sm-10">
-        <div class="box">
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange"> <img src="./../../../assets/construcion.png" alt=""> </div>
-                <div class="d-flex flex-column"> <b>Construction</b> <a href="#">
-                    </a> </div>
-            </div>
-        </div>
-    </div>
-     
-</div>
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-     
-
-
-
-
-
-
-
-      
-
-      
-        <div class="container-flex  rounded">
-        <div class="categoria-title h4 text-center py-3">Categorias</div>
-        <div class="row align-items-center justify-content-center">
-
-            <div class="categoria-box category col-xl-3 col-md-6 col-sm-10">
-                <div class="box">
+        <div class="row align-items-center justify-content-center" >
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  >
+                <div class="box" >
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center"> <img class="image-icon" src="./../../../assets/health.png" alt=""> </div>
                         <div class="d-flex flex-column"> <b>HealthCare</b> <a href="#">
@@ -297,11 +50,11 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            <div class="categoria-box category col-xl-3 col-md-6 col-sm-10">
+    
+    
+    
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange"> <img class="image-icon" src="./../../../assets/tecnology.png" alt=""> </div>
@@ -310,9 +63,9 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="categoria-box category col-xl-3 col-md-6 col-sm-10">
+    
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-purple"> <img class="image-icon" src="./../../../assets/educ.png" alt=""> </div>
@@ -321,9 +74,9 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="categoria-box category col-xl-3 col-md-6 col-sm-10">
+    
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-cyan"> <img class="image-icon" src="./../../../assets/restau.png" alt=""> </div>
@@ -332,9 +85,9 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="categoria-box category col-xl-3 col-md-6 col-sm-10">
+    
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-pink"> <img class="image-icon" src="./../../../assets/art.png" alt=""> </div>
@@ -343,9 +96,9 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="categoria-box category col-xl-3 col-md-6 col-sm-10">
+    
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
                         <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange"> <img class="image-icon" src="./../../../assets/construcion.png" alt=""> </div>
@@ -354,41 +107,234 @@
                     </div>
                 </div>
             </div>
-             
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
+                <div class="box">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-cyan"> <img class="image-icon" src="./../../../assets/restau.png" alt=""> </div>
+                        <div class="d-flex flex-column"> <b>Restauracion</b> <a href="#">
+                            </a> </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
+                <div class="box">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-pink"> <img class="image-icon" src="./../../../assets/art.png" alt=""> </div>
+                        <div class="d-flex flex-column"> <b>Arte</b> <a href="#">
+                            </a> </div>
+                    </div>
+                </div>
+            </div>
+    
+    
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
+                <div class="box">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center pale-orange"> <img class="image-icon" src="./../../../assets/construcion.png" alt=""> </div>
+                        <div class="d-flex flex-column"> <b>Construction</b> <a href="#">
+                            </a> </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <div class="container-flex  rounded" style="  overflow: hidden; margin: 50px;" >
+            <div class="row align-items-center justify-content-center" >
+                <div class="col-6">
+                    <h3 class="mb-3 destacados-title">Ofertas destacadas</h3>
+                </div>
+                <div class="col-6 text-right">
+                    <a class="btn btn-dark mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                        <i class="fa fa-arrow-left"><</i>
+                    </a>
+                    <a class="btn btn-dark mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                        <i class="fa fa-arrow-right">></i>
+                    </a>
+                </div>
+                <div class="col-12"  >
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+    
+                                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle"  alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a" >
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+    
+                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
+                                        <div class="card" style="border-style: solid 3px; border-color: #422678;">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a" >
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
 
-
-
-
-
-
-        
-   
-
-
-
-
-
-
-
-
-
+                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
+                                        <div class="card">
+                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
     </div>
 
 
 
 
 
+    
 
 
 
 </div>
+
+
+      
+
+
+
+
+
+  
+
+
+
+
+
+
 
 
 
