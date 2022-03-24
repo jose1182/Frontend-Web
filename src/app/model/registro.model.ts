@@ -1,6 +1,6 @@
 //formulario de contacto
 export class RegistroModel {
-    username!: string;
+    login!: string;
     email!: string;
     password!: string;
 
