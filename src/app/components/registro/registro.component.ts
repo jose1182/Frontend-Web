@@ -26,7 +26,7 @@ export class RegistroComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private registroService: RegistroService) {
 
     this.registerForm = this.fb.group({
-      login: ['', [Validators.required,Validators.minLength(1), Validators.maxLength(50), Validators.pattern('')]],
+      login: ['', [Validators.required,Validators.minLength(1), Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
       password: ['',[Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       password_confirmed: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]]
