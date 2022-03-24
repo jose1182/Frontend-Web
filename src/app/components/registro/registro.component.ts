@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RegistroService } from 'src/app/services/registro.service';
 
+const EMAIL_ALREADY_EXISTS=  "email-already-used";
+const LOGIN_ALREADY_EXISTS=  "login-already-used";
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +14,8 @@ import { RegistroService } from 'src/app/services/registro.service';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+
+
 
   doNotMatch = false;
   error = false;
@@ -55,8 +59,20 @@ export class RegistroComponent implements OnInit {
       let value: RegistroModel = new RegistroModel(this.f.login.value, this.f.email.value, this.f.password.value);
       this.registroService
       .registerUser(value)
-      .subscribe({ next: ()=> (this.success), error: response => console.log(response)})
+      .subscribe({ next: ()=> {
+        this.success;
         this.router.navigate(['/login'])
+      }, error: response => {
+        let error_type: String = response.error.type;
+        if(response.status === 400 && response.error.type ===  error_type.includes(LOGIN_ALREADY_EXISTS)){
+          this.errorUserExists = true;
+        }else if(response.status === 400 && response.error.type ===  error_type.includes(EMAIL_ALREADY_EXISTS)){
+          this.errorEmailExists = true;
+        }else{
+          this.error = true
+        }
+
+      }})
     }
 
 
