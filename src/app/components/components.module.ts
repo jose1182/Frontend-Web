@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RecuperarPasswordLinkComponent } from './recuperar-password-link/recuperar-password-link.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 
@@ -16,7 +17,8 @@ import { RecuperarPasswordLinkComponent } from './recuperar-password-link/recupe
     RegistroComponent,
     RecuperarPasswordComponent,
     HomeComponent,
-    RecuperarPasswordLinkComponent
+    RecuperarPasswordLinkComponent,
+    NotfoundComponent
   ],
   imports: [
     CommonModule,

@@ -102,19 +102,19 @@
                  />
                  <div
                  *ngIf="
-                   registerForm.get('confirmPassword')!.invalid &&
-                   (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
+                   registerForm.get('password_confirmed')!.invalid &&
+                   (registerForm.get('password_confirmed')!.dirty || registerForm.get('password_confirmed')!.touched)
                  "
                >
-                 <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+                 <small class="form-text text-danger" *ngIf="registerForm.get('password_confirmed')?.errors?.required">
                    Your confirmation password is required.
                  </small>
 
-                 <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.minlength">
+                 <small class="form-text text-danger" *ngIf="registerForm.get('password_confirmed')?.errors?.minlength">
                    Your confirmation password is required to be at least 4 characters.
                  </small>
 
-                 <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength">
+                 <small class="form-text text-danger" *ngIf="registerForm.get('password_confirmed')?.errors?.maxlength">
                    Your confirmation password cannot be longer than 50 characters.
                  </small>
                </div>

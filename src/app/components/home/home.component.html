@@ -14,17 +14,18 @@
                 style="height: 40px; width: 40px;"/>
               </li>
 
-              <li class="nav-item dropdown" style="color: white; font-size: 1.3rem; font-weight: 100;">  
-                <a class="nav-link dropdown-toggle" style="color: white; padding-left: 20px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">           
-                 Mi Perfil</a>
+              <li class="nav-item dropdown" style="color: white; font-size: 1.3rem; font-weight: 100;">
+                <a class="nav-link dropdown-toggle" style="color: white; padding-left: 20px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ accountModel ? accountModel?.login: "Perfil" }}</a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #422678;">
-                    <a class="nav-link" href="#" style="color: white;">Perfil<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" style="color: white;">Perfil<span class="sr-only">(current</span></a>
                     <a class="nav-link" href="#" style="color: white;">Buzón</a>
                     <a class="nav-link" href="#" style="color: white;">Favoritos <span class="sr-only">(current)</span></a>
                     <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only" >(current)</span></a>
                     <div class="dropdown-divider"></div>
                     <a class="nav-link" href="#" style="color: white;">Log out<span class="sr-only">(current)</span></a>
+                    <a class="nav-link"  *ngIf="!isAuthenticated()" [routerLink]="['/reset-password']" routerLinkActive="router-link-active" style="color: white;">Recuperar Password(provsional)<span class="sr-only">(current)</span></a>
                 </div>
               </li>
           </ul>
@@ -33,9 +34,10 @@
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" aria-label="Search">
             <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
-            <button class="login-button btn my-2 my-sm-0" type="button" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</button>
+            <button class="login-button btn my-2 my-sm-0" type="button" *ngIf="!isAuthenticated()" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
+            <button class="login-button btn my-2 my-sm-0" type="button" *ngIf="isAuthenticated()" routerLinkActive="router-link-active" (click)="logout()">Logout</button>
         </form>
-    </nav>  
+    </nav>
 
     <div class="container-flex  rounded" style="  overflow: hidden;" >
         <div class="categoria-title">Categorias</div>
@@ -50,10 +52,10 @@
                     </div>
                 </div>
             </div>
-    
-    
-    
-    
+
+
+
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -63,8 +65,8 @@
                     </div>
                 </div>
             </div>
-    
-    
+
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -74,8 +76,8 @@
                     </div>
                 </div>
             </div>
-    
-    
+
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -85,8 +87,8 @@
                     </div>
                 </div>
             </div>
-    
-    
+
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -96,8 +98,8 @@
                     </div>
                 </div>
             </div>
-    
-    
+
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -107,7 +109,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -117,8 +119,8 @@
                     </div>
                 </div>
             </div>
-    
-    
+
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -128,8 +130,8 @@
                     </div>
                 </div>
             </div>
-    
-    
+
+
             <div class="categoria-box category col-xl-3 col-md-5 col-sm-10">
                 <div class="box">
                     <div class="d-flex align-items-center">
@@ -159,37 +161,37 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row">
-    
+
                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
                                         <div class="card">
                                             <img class="image-person img-fluid rounded-circle"  alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a" >
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
-    
+
                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
                                         <div class="card">
                                             <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
-    
-    
+
+
                                     <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 mb-3">
                                         <div class="card">
                                             <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +202,7 @@
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
@@ -211,7 +213,7 @@
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
@@ -222,46 +224,46 @@
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </div>
                             </div>
                             <div class="carousel-item">
                                 <div class="row">
-    
+
                                     <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
                                         <div class="card" style="border-style: solid 3px; border-color: #422678;">
                                             <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a" >
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
-    
+
                                     <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
                                         <div class="card">
                                             <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
-    
-    
+
+
                                     <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
                                         <div class="card">
                                             <img class="image-person img-fluid rounded-circle" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
@@ -272,7 +274,7 @@
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +285,7 @@
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
@@ -294,28 +296,28 @@
                                             <div class="card-body">
                                                 <h4 class="card-title">Special title treatment</h4>
                                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    
+
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
-    
+
+
     </div>
 
 
 
 
 
-    
+
 
 
 

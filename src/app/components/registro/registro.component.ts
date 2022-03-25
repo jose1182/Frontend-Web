@@ -23,7 +23,7 @@ export class RegistroComponent implements OnInit {
   errorUserExists = false;
   success = false;
 
-  public registerForm: FormGroup;
+  public registerForm!: FormGroup;
   public password!: string;
   public password_confirmed!: string;
 
@@ -54,27 +54,28 @@ export class RegistroComponent implements OnInit {
     if(!this.registerForm.valid){return}
 
     if(!this.passwordConfirm()){
-      this.doNotMatch = false;
+      this.doNotMatch = true;
     } else {
       let value: RegistroModel = new RegistroModel(this.f.login.value, this.f.email.value, this.f.password.value);
       this.registroService
       .registerUser(value)
-      .subscribe({ next: ()=> {
-        this.success;
-        this.router.navigate(['/login'])
-      }, error: response => {
-        let error_type: String = response.error.errorKey;
+      .subscribe(
+        response => {
+          this.success = true;
+          this.router.navigate(['/login'])
+        }, error =>{
+          let error_type: String = error.error.errorKey;
 
-        console.log('errorKey: ', error_type);
-        if(response.status === 400 && response.error.errorKey ===  error_type.includes(LOGIN_ALREADY_EXISTS)){
-          this.errorUserExists = true;
-        }else if(response.status === 400 && response.error.errorKey ===  error_type.includes(EMAIL_ALREADY_EXISTS)){
-          this.errorEmailExists = true;
-        }else{
-          this.error = true
-        }
-
-      }})
+          console.log('response: ', error);
+          console.log('errorKey: ', error_type);
+          if(error.status === 400 && error.error.errorKey === LOGIN_ALREADY_EXISTS){
+            this.errorUserExists = true;
+          }else if(error.status === 400 && error.error.errorKey === EMAIL_ALREADY_EXISTS){
+            this.errorEmailExists = true;
+          }else{
+            this.error = true
+          }
+        })
     }
 
 
