@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 const LOGIN_KEY = 'token_id';
@@ -22,7 +23,8 @@ export class AuthJwtService {
   public login: Observable<JwtToken | null>;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private route: Router
     ) {
       this.loginModelBehaviorSubject = new BehaviorSubject<JwtToken | null>(JSON.parse(<string>localStorage?.getItem(LOGIN_KEY)));
       this.login = this.loginModelBehaviorSubject.asObservable();
@@ -53,9 +55,14 @@ export class AuthJwtService {
     }
 }
 
+performLogout(): void {
+  localStorage.removeItem(LOGIN_KEY);
+  this.loginModelBehaviorSubject.next(null);
+  this.route.navigate(['/login']);
+}
+
 
 loginValue(): JwtToken | null {
-
   return this.loginModelBehaviorSubject?.value
 
 }
