@@ -1,0 +1,90 @@
+<script src="https://kit.fontawesome.com/ec98b7bfbc.js" crossorigin="anonymous"></script>
+
+
+<div class="overlay">
+
+<nav class="navbar navbar-light navbar-expand-lg navbar-fixed-top" style="background-color: #422678">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+        <li>
+          <img
+          src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+          class="rounded-circle perfil-image"
+          style="height: 40px; width: 40px;"/>
+        </li>
+
+        <li class="nav-item dropdown" style="color: white; font-size: 1.3rem; font-weight: 100;">
+          <a class="nav-link dropdown-toggle" style="color: white; padding-left: 20px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Perfil</a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #422678;">
+              <a class="nav-link" href="#" style="color: white;">Perfil<span class="sr-only">(current</span></a>
+              <a class="nav-link" href="#" style="color: white;">Buzón</a>
+              <a class="nav-link" href="#" style="color: white;">Favoritos <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only" >(current)</span></a>
+              <div class="dropdown-divider"></div>
+              <span role="button"><a class="nav-link" style="color: white;">Log out<span class="sr-only">(current)</span></a></span>
+              <a class="nav-link"  [routerLink]="['/reset-password']" routerLinkActive="router-link-active" style="color: white;">Recuperar Password(provsional)<span class="sr-only">(current)</span></a>
+          </div>
+        </li>
+    </ul>
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" aria-label="Search">
+      <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
+      <button class="login-button btn my-2 my-sm-0" type="button"  [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
+      <button class="login-button btn my-2 my-sm-0" type="button"  routerLinkActive="router-link-active" >Logout</button>
+  </form>
+</nav>
+
+
+
+
+<div class="container-fluid" style="background-color: white;">
+  <div class="row d-flex justify-content-center align-items-center" >
+    <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
+      <div class="row" style="align-items: center;">
+            <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" >
+                  <div class="card" style="background-color: #422678">
+                      <div class="text-center image-div" style="background-color: #5C3A7D">                                             
+                        <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+
+                      </div>
+
+
+                      <div class="text-center mt-5"> 
+                        <button class="button-resenas btn btn-outline-primary p-2 px-3 rounded">Ver reseñas</button> 
+
+                          <h5 class="mt-2 mb-0 person-info">Paquito Paquiton</h5> 
+                          <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/briefcase-solid.svg">Paquitoner</h5>
+                          <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/phone-solid.svg">Paquitoner</h5>
+                          <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/location-dot-solid.svg">Paquitoner</h5>
+                          <div class="px-4 mt-1">
+                              <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                          </div>
+                          <ul class="social-list">
+                              <li><i class="fa fa-facebook"></i></li>
+                              <li><i class="fa fa-dribbble"></i></li>
+                              <li><i class="fa fa-instagram"></i></li>
+                              <li><i class="fa fa-linkedin"></i></li>
+                              <li><i class="fa fa-google"></i></li>
+                          </ul>
+                          <div class="buttons"> 
+                            <button class="button-contact btn btn-outline-primary px-4">Enviar Mensaje</button> 
+                            <button class="button-contact btn btn-primary px-4 ms-3">Contratar</button> 
+                          </div>
+                      </div>
+                  </div>
+                </div>
+          
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
