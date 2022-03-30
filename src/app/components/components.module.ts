@@ -11,6 +11,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { PerfilVisitadoComponent } from './perfil-visitado/perfil-visitado.component';
 import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
+import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicios-by-categoria.component';
 
 
 
@@ -22,9 +23,7 @@ import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
     HomeComponent,
     RecuperarPasswordLinkComponent,
     NotfoundComponent,
-    PerfilVisitadoComponent,
-    PerfilEditarComponent,
-    PerfilPropioComponent
+    ServiciosByCategoriaComponent
   ],
   imports: [
     CommonModule,

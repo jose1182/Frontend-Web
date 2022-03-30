@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RecuperarPasswordLinkComponent } from './components/recuperar-password-link/recuperar-password-link.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ServiciosByCategoriaComponent } from './components/servicios-by-categoria/servicios-by-categoria.component';
 
 
 const routes: Routes = [
@@ -34,22 +35,18 @@ const routes: Routes = [
     component: RecuperarPasswordComponent
   },
   {
-    path:'perfil-visitado',
-    component: PerfilVisitadoComponent
-  },
-  {
-    path:'perfil-editar',
-    component: PerfilEditarComponent
+    path: 'lista/servicios/:id',
+    component: ServiciosByCategoriaComponent
   },
   {
     path: 'account/reset/:finish',
     component: RecuperarPasswordLinkComponent
   },
   {
-    path: '404', 
+    path: '404',
     component: NotfoundComponent},
   {
-    path: '**', 
+    path: '**',
     redirectTo: '/404'}
 ];
 

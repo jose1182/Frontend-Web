@@ -3,6 +3,9 @@ import { AccountService } from '../../services/account.service';
 import { AccountModel } from '../../model/account.model';
 import { AuthJwtService } from '../../services/auth-jwt.service';
 import { Router } from '@angular/router';
+import { CategoriaModel } from '../../model/categoria.model';
+import { CategoriaService } from '../../services/categoria/categoria.service';
+import { Busqueda } from '../../model/busqueda.model';
 
 
 
@@ -14,11 +17,23 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   accountModel!: AccountModel | null;
+  categorias!: CategoriaModel[];
+  busqueda : Busqueda = {
+    id:{
+      equals: null,
+      in:[]
+    },
+    nombre:{
+      equals: "homogénea web"
+    }
+  };
+
 
   constructor(
     private accountService: AccountService,
     private authJwtService: AuthJwtService,
-    private route : Router) {
+    private categoriasService: CategoriaService,
+    private router : Router) {
 
   }
 
@@ -27,6 +42,17 @@ export class HomeComponent implements OnInit {
       console.log(account)
       this.accountModel = account
     })
+
+
+    this.categoriasService.categorias(this.busqueda).subscribe( categorias => {
+      this.categorias = categorias;
+
+    })
+
+
+  }
+  goToViewDetail(id: Number): void{
+    this.router.navigate(['lista/servicios', id]);
   }
 
   isAuthenticated() : boolean {
@@ -36,7 +62,7 @@ export class HomeComponent implements OnInit {
   logout(){
     this.authJwtService.performLogout();
     this.accountModel = null
-    this.route.navigate(['/home'])
+    this.router.navigate(['/home'])
 
   }
 }
