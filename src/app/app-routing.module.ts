@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RecuperarPasswordLinkComponent } from './components/recuperar-password-link/recuperar-password-link.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { ServiciosByCategoriaComponent } from './components/servicios-by-categoria/servicios-by-categoria.component';
 
 
 const routes: Routes = [
@@ -32,11 +33,20 @@ const routes: Routes = [
     component: RecuperarPasswordComponent
   },
   {
+    path: 'lista/servicios/:id',
+    component: ServiciosByCategoriaComponent
+  },
+  {
     path: 'account/reset/:finish',
     component: RecuperarPasswordLinkComponent
   },
-  {path: '404', component: NotfoundComponent},
-  {path: '**', redirectTo: '/404'}
+  {
+    path: '404',
+    component: NotfoundComponent},
+  {
+    path: '**',
+    redirectTo: '/404'
+  }
 ];
 
 @NgModule({
