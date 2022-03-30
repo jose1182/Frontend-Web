@@ -1,3 +1,5 @@
+import { PerfilEditarComponent } from './components/perfil-editar/perfil-editar.component';
+import { PerfilVisitadoComponent } from './components/perfil-visitado/perfil-visitado.component';
 import { HomeComponent } from './components/home/home.component';
 import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -32,11 +34,23 @@ const routes: Routes = [
     component: RecuperarPasswordComponent
   },
   {
+    path:'perfil-visitado',
+    component: PerfilVisitadoComponent
+  },
+  {
+    path:'perfil-editar',
+    component: PerfilEditarComponent
+  },
+  {
     path: 'account/reset/:finish',
     component: RecuperarPasswordLinkComponent
   },
-  {path: '404', component: NotfoundComponent},
-  {path: '**', redirectTo: '/404'}
+  {
+    path: '404', 
+    component: NotfoundComponent},
+  {
+    path: '**', 
+    redirectTo: '/404'}
 ];
 
 @NgModule({

@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+*{
+    font-family: "Roboto";
+
+}
+
+body {
+    background: #eee
+}
+
+.card {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    cursor: pointer;
+    border-style: solid;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    background: rgb(255,255,255);
+    background-image: linear-gradient(white, white );
+    transition: transform .2s; /* Animation */
+
+
+}
+
+.zoom {
+    padding: 50px;
+    background-color: green;
+    transition: transform .2s; /* Animation */
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  
+  .card:hover {
+    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+.fonts {
+    font-size: 2rem;
+    color: black;
+}
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0
+}
+
+.social-list li {
+    padding: 10px;
+    color: #8E24AA;
+    font-size: 19px
+}
+
+.buttons button:nth-child(1) {
+    border: 1px solid #8E24AA !important;
+    color: #8E24AA;
+    height: 80px;
+    font-size: 1.8rem;
+    width: 300px;
+    margin: 10px;
+}
+
+.buttons button:nth-child(1):hover {
+    border: 1px solid white !important;
+    color: white;
+    height: 80px;
+    background-color: #8E24AA;
+    font-size: 1.8rem;
+    width: 300px;
+    margin: 10px;
+}
+
+.buttons button:nth-child(2) {
+    border: 1px solid #8E24AA !important;
+    background-color: #8E24AA;
+    color: #fff;
+    height: 80px;
+    font-size: 1.8rem;
+    width: 300px;
+    margin: 10px;
+}
+
+.buttons button:nth-child(2):hover {
+    border: 1px solid #8E24AA !important;
+    background-color: white;
+    color: #8E24AA;
+    height: 80px;
+    font-size: 1.8rem;
+    width: 300px;
+    margin: 10px;
+}
+
+.image-person{
+    width: 250px;
+    height: 250px;
+    margin-top: 20px;
+    object-fit: cover;
+    margin-bottom: 30px;
+}
+
+.button-resenas{
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: 1px solid #8E24AA !important;
+    color: #8E24AA;
+    background-color: white;
+    height: 70px;
+    width: 250px;
+    margin: 10px;
+}
+
+.button-resenas:hover {
+    font-size: 1.4rem;
+    border: 1px solid white !important;
+    color: white;
+    height: 70px;
+    background-color: #8E24AA;
+    width: 250px;
+    margin: 10px;
+}
+
+.person-info{
+    font-size: 2.7rem;
+    color: black;
+}
+
+.person-info-detail{
+    font-size: 2rem;
+    color: black;
+}
+
+nav{
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    padding: 5px !important;
+
+}
+
+.search-button{
+    background-color: #A381BD;
+}
+
+.navbar .navbar-brend{
+    border-style: dashed;
+    border-color: aquamarine;
+}
+
+a{
+    font-weight: 300;
+}
+
+.navbar>a{
+    border-right: 1px solid white;
+    padding-right: 20px;
+}
+
+.login-button{
+    color: black;
+    background-color: #f8f8f8;
+    margin-left: 10px;
+}
+
+.overlay{
+    background-color: rgba(255, 255, 255, 1);
+    right: 0;
+    left: 0;
+    bottom: 0;
+      top: 0;
+  }
+
+  .icon{
+      height: 30px;
+      margin-right: 10px;
+      text-align: center;
+  }
+
+  .image-div{
+      padding: 0;
+      margin: 0;
+  }
+
+.buttons{
+    padding-bottom: 20px;
+}
+
+
+.profile-info{
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+}
+
+
+.info-title{
+    font-size: 1.5rem;
+    color: #8E24AA;
+
+}
+
+
