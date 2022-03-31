@@ -1,53 +1,85 @@
 <div class="container mb-5">
   <form>
       <div class="row">
-          <div class="col">
+          <div class="col-6">
               <div class="form-group">
-                  <label for="servicioElegido"><b>Servicios:</b></label>
-                  <select class="form-control" name="servicioElegido" id="servicioElegido" [(ngModel)]="servicioElegido"
-                      (change)="onChangeServicio()">
+                  <label for="usuarioElegido"><b>Espcialistas:</b></label>
+                  <select class="form-control" name="usuarioElegido" id="usuarioElegido" [(ngModel)]="usuarioElegido"
+                      (change)="onChangeUsuario()">
                       <option [ngValue]="null" selected>Elige un especialista</option>
-                      <option [ngValue]="servicio" *ngFor="let servicio of servicios">{{servicio.titulo}}</option>
+                      <option  [ngValue]="usuario.user.id" *ngFor="let usuario of usuarios">{{usuario.user.login}}</option>
                   </select>
               </div>
           </div>
 
-          <div class="col">
+          <div class="col-6">
               <div class="form-group">
-                  <label for="categoria"><b>Categoria:</b></label>
-                  <select *ngIf="!servicioElegido" class="form-control" name="categoria" id="categoria" disabled>
+                  <label for="especialista"><b>Categoria:</b></label>
+                  <select *ngIf="!usuarioElegido && !activaFindByCategory" class="form-control" name="especialista" id="especialista" disabled>
                       <option value="''" selected>Elige una Categoria</option>
                   </select>
-                  <select *ngIf="servicioElegido" class="form-control" name="categoria" id="categoria"
-                      [(ngModel)]="buscarServicios.categorias" (change)="listaServicios()">
-                      <option [ngValue]="''" selected>Elige un Modelo</option>
-                      <option [ngValue]="categoria.nombre" *ngFor="let categoria of servicioElegido.categorias">
+                  <select *ngIf="usuarioElegido || activaFindByCategory" class="form-control" name="especialista" id="especialista"
+                      [(ngModel)]="categoriaElegido" (change)="ooChangeUsuarioCategoria()">
+                      <option [ngValue]="''" selected>Elige un Categoria</option>
+                      <option [ngValue]="categoria.id" *ngFor="let categoria of categoriasFilter">
                           {{categoria.nombre}}
                       </option>
                   </select>
               </div>
           </div>
-<!--
-          <div class="col">
-              <div class="form-group">
-                  <label for="version"><b>Versión:</b></label>
-                  <div class="input-group">
-                      <button class="btn btn-outline-danger" (click)="clearVersion()"
-                      [disabled]="!busqueda.version">Vaciar</button>
-                      <input type="text" class="form-control" name="version" id="version"
-                      [(ngModel)]="busqueda.version">
-                      <button class="btn btn-outline-success" (click)="listaCoches()"
-                      [disabled]="!busqueda.version">Filtrar</button>
-                  </div>
-              </div>
-          </div>
-                -->
-
-          <div class="col-4">
-            <label for="reset"><b>Reset:</b></label>
-            <button class="btn btn-outline-danger form-control" (click)="reset()">Borrar Filtros</button>
-        </div>
       </div>
+      <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="kmDesde"><b>Kilómetros Desde:</b></label>
+                <div class="input-group">
+                    <button class="btn btn-outline-danger" (click)="ooChangeUsuarioCategoria()"
+                    [disabled]="!busqueda">Vaciar</button>
+                    <input type="number" class="form-control" name="kmDesde" id="kmDesde"
+                    [(ngModel)]="busqueda">
+                    <button class="btn btn-outline-success" (click)="ooChangeUsuarioCategoria()"
+                    [disabled]="!busqueda">Filtrar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="kmHasta"><b>Kilómetros Hasta:</b></label>
+                <div class="input-group">
+                        <button class="btn btn-outline-danger" (click)="ooChangeUsuarioCategoria()"
+                        [disabled]="!busqueda">Vaciar</button>
+                        <input type="number" class="form-control" name="kmHasta" id="kmHasta"
+                        [(ngModel)]="busqueda">
+                        <button class="btn btn-outline-success" (click)="ooChangeUsuarioCategoria()"
+                        [disabled]="!busqueda">Filtrar</button>
+                    </div>
+            </div>
+        </div>
+        <div class="col">
+            <label for="cambio"><b>Cambio:</b></label>
+            <div class="form-control">
+                <label class="radio-inline">
+                    <input type="radio" name="cambio" id="cambio" checked
+                    [value]="''" [(ngModel)]="busqueda" (change)="ooChangeUsuarioCategoria()"> Todos
+                </label>
+                &nbsp;
+                <label class="radio-inline">
+                    <input type="radio" name="cambio" id="cambio"
+                    [value]="false" [(ngModel)]="busqueda" (change)="ooChangeUsuarioCategoria()"> Manual
+                </label>
+                &nbsp;
+                <label class="radio-inline">
+                    <input type="radio" name="cambio" id="cambio"
+                    [value]="true" [(ngModel)]="busqueda" (change)="ooChangeUsuarioCategoria()"> Automático
+                </label>
+                &nbsp;
+            </div>
+        </div>
+    </div>
+      <div class="col-4">
+        <label for="reset"><b>Reset:</b></label>
+        <button class="btn btn-outline-danger form-control" (click)="reset()">Borrar Filtros</button>
+    </div>
   </form>
 </div>
 <div class="container" style="margin-top: 70px;">

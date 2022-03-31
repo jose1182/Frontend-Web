@@ -1,5 +1,4 @@
 export interface BusquedaServicio {
-  parameter: string
-  value: any
-  modelo: string
+  parameter: string[]
+  value: any[]
 }

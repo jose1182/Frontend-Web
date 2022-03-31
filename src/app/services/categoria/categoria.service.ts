@@ -19,7 +19,7 @@ export class CategoriaService {
 
   categorias(busqueda: Busqueda): Observable<CategoriaModel[]>{
     let params = new HttpParams()
-    //params = params.append("id.equals", 1);
+    params = params.append(busqueda.parameter, busqueda.value);
     //params = params.append("id.in", busqueda.id.in.join(', '))
     //params = params.append("servicioId", "")
 

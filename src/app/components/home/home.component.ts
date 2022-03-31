@@ -19,13 +19,8 @@ export class HomeComponent implements OnInit {
   accountModel!: AccountModel | null;
   categorias!: CategoriaModel[];
   busqueda : Busqueda = {
-    id:{
-      equals: null,
-      in:[]
-    },
-    nombre:{
-      equals: "homogénea web"
-    }
+    parameter: "",
+    value: null,
   };
 
 
