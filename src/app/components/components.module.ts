@@ -23,7 +23,10 @@ import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicio
     HomeComponent,
     RecuperarPasswordLinkComponent,
     NotfoundComponent,
-    ServiciosByCategoriaComponent
+    ServiciosByCategoriaComponent,
+    PerfilVisitadoComponent,
+    PerfilEditarComponent,
+    PerfilPropioComponent
   ],
   imports: [
     CommonModule,
