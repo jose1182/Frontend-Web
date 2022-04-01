@@ -1,12 +1,7 @@
-import { UsuarioModel } from './usuario.model';
-import { CategoriaModel } from './categoria.model';
 export interface BusquedaServicios {
-  id: Number | null;
-  titulo: String;
-  descripcion: String;
-  disponibilidad: String;
-  preciohora: Number | null;
-  preciotraslado: Number | null;
-  usuario: UsuarioModel | null;
-  categorias: CategoriaModel[]
+  usuarioElegido: number | null;
+  categoriaElegido: number |null;
+  disponibilidadElegido: string | null;
+  contenido: boolean | true,
+  todos: boolean | null
 }

@@ -1,4 +1,3 @@
-import { Busqueda } from './../../model/busqueda.model';
 import { ServiciosService } from './../../services/servicios/servicios.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -7,6 +6,7 @@ import { BusquedaServicio } from '../../model/busquedaServicio.model';
 import { CategoriaService } from '../../services/categoria/categoria.service';
 import { CategoriaModel } from '../../model/categoria.model';
 import { BusquedaServicios } from '../../model/busquedaServicios.model';
+import { Busqueda } from '../../model/busqueda.model';
 
 @Component({
   selector: 'app-servicios-by-categoria',
@@ -17,10 +17,15 @@ export class ServiciosByCategoriaComponent implements OnInit {
 
   initialized = false;
   id!: number
-  usuarioElegido: any = null;
-  categoriaElegido: any = null;
 
-  activaFindByCategory: boolean = false;
+  filter : BusquedaServicios = {
+    usuarioElegido:  null,
+    categoriaElegido: null,
+    disponibilidadElegido:  null,
+    contenido: true,
+    todos: false
+  }
+
 
   usuarios: any = null;
   categoriasFilter: any = null;
@@ -32,16 +37,10 @@ export class ServiciosByCategoriaComponent implements OnInit {
     value: [],
   };
 
-  //comporbar si es necesario !!!!!!!!!!!!!!!!!!!!!!!!
-  busqueda : Busqueda = {
-    parameter: "",
-    value: null,
-  };
 
   constructor(
     private  route: ActivatedRoute,
     private serviciosService:ServiciosService,
-    private categoriasService: CategoriaService,
     ) {
 
     }
@@ -50,7 +49,6 @@ export class ServiciosByCategoriaComponent implements OnInit {
 
     this.getQueryParams();
     this.listaServicios();
-    this.listaCategorias();
 
   }
 
@@ -59,8 +57,6 @@ export class ServiciosByCategoriaComponent implements OnInit {
       this.id = params.get('id');
       this.busquedaServicio.parameter.push("categoriaId.equals");
       this.busquedaServicio.value.push(this.id);
-      this.busqueda.parameter = "id.equals"
-      this.busqueda.value = this.id;
     })
   }
 
@@ -79,21 +75,14 @@ export class ServiciosByCategoriaComponent implements OnInit {
     })
   }
 
-  listaCategorias(): void{
-    this.categoriasService.categorias(this.busqueda).subscribe( categorias => {
-      this.categorias = categorias;
-
-    })
-  }
-
   onChangeUsuario(): void{
-    if(this.usuarioElegido){
+    if(this.filter.usuarioElegido){
 
       this.resetValues();
 
       //set query parameters
       this.busquedaServicio.parameter[0]= "usuarioId.equals";
-      this.busquedaServicio.value[0] = this.usuarioElegido;
+      this.busquedaServicio.value[0] = this.filter.usuarioElegido;
 
     } else {
 
@@ -103,11 +92,11 @@ export class ServiciosByCategoriaComponent implements OnInit {
     this.listaServicios();
   }
 
-  ooChangeUsuarioCategoria() :void {
-    if(this.categoriaElegido){
+  onChangeUsuarioCategoria() :void {
+    if(this.filter.categoriaElegido){
 
       this.busquedaServicio.parameter[1] = "categoriaId.equals";
-      this.busquedaServicio.value[1] = this.categoriaElegido;
+      this.busquedaServicio.value[1] = this.filter.categoriaElegido;
 
     } else {
 
@@ -116,15 +105,41 @@ export class ServiciosByCategoriaComponent implements OnInit {
       //reset value find by categoryId
       this.busquedaServicio.value[1] = "";
       //reset chosen category
-      this.categoriaElegido = ""
+      this.filter.categoriaElegido = null
     }
 
     this.listaServicios();
   }
 
+  onChangeListByContenido() : void {
+
+    if(this.filter.contenido == null){
+      this.filter.todos = true;
+      this.clearDisponibilidad();
+    } else if (this.filter.contenido){
+      this.busquedaServicio.parameter[0] = "titulo.contains";
+      this.busquedaServicio.value[0] = this.filter.disponibilidadElegido;
+    }else {
+      this.busquedaServicio.parameter[0] = "descripcion.contains";
+      this.busquedaServicio.value[0] = this.filter.disponibilidadElegido;
+    }
+
+    this.listaServicios();
+
+  }
+
+  clearDisponibilidad() :void {
+    this.filter.disponibilidadElegido = null;
+    this.resetValues()
+    this.listaServicios();
+  }
+
+  onchangeFilterTodos() :void{
+    this.filter.todos = null;
+  }
+
   reset() :void {
-    this.activaFindByCategory = true
-    this.usuarioElegido = null
+    this.filter.usuarioElegido = null
     this.resetValues();
     this.listaServicios();
   }
@@ -133,7 +148,7 @@ export class ServiciosByCategoriaComponent implements OnInit {
     this.usuarios = []
     this.busquedaServicio.parameter = [];
     this.busquedaServicio.value = [];
-    this.categoriaElegido = ""
+    this.filter.categoriaElegido = null
   }
 
 }

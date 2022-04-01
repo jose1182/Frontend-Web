@@ -1,10 +1,10 @@
-<div class="container mb-5">
+<div class="container my-5">
   <form>
       <div class="row">
-          <div class="col-6">
+          <div class="col">
               <div class="form-group">
                   <label for="usuarioElegido"><b>Espcialistas:</b></label>
-                  <select class="form-control" name="usuarioElegido" id="usuarioElegido" [(ngModel)]="usuarioElegido"
+                  <select class="form-control" name="usuarioElegido" id="usuarioElegido" [(ngModel)]="filter.usuarioElegido"
                       (change)="onChangeUsuario()">
                       <option [ngValue]="null" selected>Elige un especialista</option>
                       <option  [ngValue]="usuario.user.id" *ngFor="let usuario of usuarios">{{usuario.user.login}}</option>
@@ -12,69 +12,82 @@
               </div>
           </div>
 
-          <div class="col-6">
+          <div class="col">
               <div class="form-group">
                   <label for="especialista"><b>Categoria:</b></label>
-                  <select *ngIf="!usuarioElegido && !activaFindByCategory" class="form-control" name="especialista" id="especialista" disabled>
+                  <select *ngIf="!filter.usuarioElegido && !filter.todos" class="form-control" name="especialista" id="especialista" disabled>
                       <option value="''" selected>Elige una Categoria</option>
                   </select>
-                  <select *ngIf="usuarioElegido || activaFindByCategory" class="form-control" name="especialista" id="especialista"
-                      [(ngModel)]="categoriaElegido" (change)="ooChangeUsuarioCategoria()">
-                      <option [ngValue]="''" selected>Elige un Categoria</option>
+                  <select *ngIf="filter.usuarioElegido || filter.todos" class="form-control" name="especialista" id="especialista"
+                      [(ngModel)]="filter.categoriaElegido" (change)="onChangeUsuarioCategoria()">
+                      <option [ngValue]="null" selected>Elige un Categoria</option>
                       <option [ngValue]="categoria.id" *ngFor="let categoria of categoriasFilter">
                           {{categoria.nombre}}
                       </option>
                   </select>
               </div>
           </div>
+          <div class="col">
+            <div class="form-group">
+                <label for="contenido" class="mr-2"><b>Busqueda:</b></label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onChangeListByContenido()">
+                  <label class="form-check-label" for="contenido">
+                    Todos
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="true" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
+                  <label class="form-check-label" for="contenido">
+                    Titulo
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contenido" id="contenido" [value]="false" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
+                  <label class="form-check-label" for="contenido"
+                  >
+                    Descripción
+                  </label>
+                </div>
+                <div class="input-group">
+                    <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
+                    [disabled]="!filter.disponibilidadElegido">Vaciar</button>
+                    <input type="text" class="form-control" name="disponibilidad" id="disponibilidad"
+                    [(ngModel)]="filter.disponibilidadElegido">
+                    <button class="btn btn-outline-success" (click)="onChangeListByContenido()"
+                    [disabled]="!filter.disponibilidadElegido || filter.disponibilidadElegido && filter.todos">Filtrar</button>
+                </div>
+            </div>
+        </div>
       </div>
       <div class="row">
         <div class="col">
             <div class="form-group">
-                <label for="kmDesde"><b>Kilómetros Desde:</b></label>
+                <label for="kmDesde"><b>Precio Desde:</b></label>
                 <div class="input-group">
-                    <button class="btn btn-outline-danger" (click)="ooChangeUsuarioCategoria()"
-                    [disabled]="!busqueda">Vaciar</button>
+                    <button class="btn btn-outline-danger" (click)="onChangeUsuarioCategoria()"
+                    [disabled]="!initialized">Vaciar</button>
                     <input type="number" class="form-control" name="kmDesde" id="kmDesde"
-                    [(ngModel)]="busqueda">
-                    <button class="btn btn-outline-success" (click)="ooChangeUsuarioCategoria()"
-                    [disabled]="!busqueda">Filtrar</button>
+                    [(ngModel)]="initialized">
+                    <button class="btn btn-outline-success" (click)="onChangeUsuarioCategoria()"
+                    [disabled]="!initialized">Filtrar</button>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
-                <label for="kmHasta"><b>Kilómetros Hasta:</b></label>
+                <label for="kmHasta"><b>Precio Hasta:</b></label>
                 <div class="input-group">
-                        <button class="btn btn-outline-danger" (click)="ooChangeUsuarioCategoria()"
-                        [disabled]="!busqueda">Vaciar</button>
+                        <button class="btn btn-outline-danger" (click)="onChangeUsuarioCategoria()"
+                        [disabled]="!initialized">Vaciar</button>
                         <input type="number" class="form-control" name="kmHasta" id="kmHasta"
-                        [(ngModel)]="busqueda">
-                        <button class="btn btn-outline-success" (click)="ooChangeUsuarioCategoria()"
-                        [disabled]="!busqueda">Filtrar</button>
+                        [(ngModel)]="initialized">
+                        <button class="btn btn-outline-success" (click)="onChangeUsuarioCategoria()"
+                        [disabled]="!initialized">Filtrar</button>
                     </div>
             </div>
         </div>
-        <div class="col">
-            <label for="cambio"><b>Cambio:</b></label>
-            <div class="form-control">
-                <label class="radio-inline">
-                    <input type="radio" name="cambio" id="cambio" checked
-                    [value]="''" [(ngModel)]="busqueda" (change)="ooChangeUsuarioCategoria()"> Todos
-                </label>
-                &nbsp;
-                <label class="radio-inline">
-                    <input type="radio" name="cambio" id="cambio"
-                    [value]="false" [(ngModel)]="busqueda" (change)="ooChangeUsuarioCategoria()"> Manual
-                </label>
-                &nbsp;
-                <label class="radio-inline">
-                    <input type="radio" name="cambio" id="cambio"
-                    [value]="true" [(ngModel)]="busqueda" (change)="ooChangeUsuarioCategoria()"> Automático
-                </label>
-                &nbsp;
-            </div>
-        </div>
+
     </div>
       <div class="col-4">
         <label for="reset"><b>Reset:</b></label>
@@ -92,7 +105,7 @@
           <th>Descripción</th>
           <th>Disponibilidad</th>
           <th>Precio hora</th>
-          <th>Desplazamiento</th>
+          <th>Precio Desplazamiento</th>
           <th>Técnico</th>
           <th>Categoria</th>
         </tr>
@@ -103,8 +116,8 @@
           <td>{{ servicio.titulo }}</td>
           <td>{{ servicio.descripcion }}</td>
           <td>{{ servicio.disponibilidad }}</td>
-          <td>{{ servicio.preciohora }}</td>
-          <td>{{ servicio.preciotraslado }}</td>
+          <td>{{ servicio.preciohora }} €</td>
+          <td>{{ servicio.preciotraslado }} €</td>
           <td>{{ servicio.usuario?.user?.login }}</td>
           <td>
             <div  *ngFor="let item of servicio.categorias ; let x = index" [attr.data-index]="x">
