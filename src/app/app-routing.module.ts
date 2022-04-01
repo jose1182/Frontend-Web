@@ -44,6 +44,14 @@ const routes: Routes = [
     component: PerfilPropioComponent
   },
   {
+    path:'perfil-editar',
+    component: PerfilEditarComponent
+  },
+  {
+    path:'perfil-visitado',
+    component: PerfilVisitadoComponent
+  },
+  {
     path: 'account/reset/:finish',
     component: RecuperarPasswordLinkComponent
   },
