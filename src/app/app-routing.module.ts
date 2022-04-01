@@ -1,3 +1,4 @@
+import { PerfilPropioComponent } from './components/perfil-propio/perfil-propio.component';
 import { PerfilEditarComponent } from './components/perfil-editar/perfil-editar.component';
 import { PerfilVisitadoComponent } from './components/perfil-visitado/perfil-visitado.component';
 import { HomeComponent } from './components/home/home.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'lista/servicios/:id',
     component: ServiciosByCategoriaComponent
+  },
+  {
+    path:'perfil-propio',
+    component: PerfilPropioComponent
   },
   {
     path: 'account/reset/:finish',
