@@ -1,7 +1,10 @@
 export interface BusquedaServicios {
   usuarioElegido: number | null;
   categoriaElegido: number |null;
-  disponibilidadElegido: string | null;
+  titleOrDescription: string | null;
   contenido: boolean | true,
-  todos: boolean | null
+  todos: boolean | null,
+  precioDesde: number |null,
+  precioHasta: number |null,
+  horario: string | null
 }

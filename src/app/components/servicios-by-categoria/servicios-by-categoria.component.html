@@ -3,7 +3,7 @@
       <div class="row">
           <div class="col">
               <div class="form-group">
-                  <label for="usuarioElegido"><b>Espcialistas:</b></label>
+                  <label for="usuarioElegido"><b>Espcialista:</b></label>
                   <select class="form-control" name="usuarioElegido" id="usuarioElegido" [(ngModel)]="filter.usuarioElegido"
                       (change)="onChangeUsuario()">
                       <option [ngValue]="null" selected>Elige un especialista</option>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="contenido" class="mr-2"><b>Busqueda:</b></label>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onChangeListByContenido()">
+                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
                   <label class="form-check-label" for="contenido">
                     Todos
                   </label>
@@ -51,11 +51,11 @@
                 </div>
                 <div class="input-group">
                     <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
-                    [disabled]="!filter.disponibilidadElegido">Vaciar</button>
+                    [disabled]="filter.titleOrDescription == null">Vaciar</button>
                     <input type="text" class="form-control" name="disponibilidad" id="disponibilidad"
-                    [(ngModel)]="filter.disponibilidadElegido">
+                    [(ngModel)]="filter.titleOrDescription" [disabled]="!filter.todos">
                     <button class="btn btn-outline-success" (click)="onChangeListByContenido()"
-                    [disabled]="!filter.disponibilidadElegido || filter.disponibilidadElegido && filter.todos">Filtrar</button>
+                    [disabled]="filter.titleOrDescription == null">Filtrar</button>
                 </div>
             </div>
         </div>
@@ -63,36 +63,57 @@
       <div class="row">
         <div class="col">
             <div class="form-group">
-                <label for="kmDesde"><b>Precio Desde:</b></label>
+                <label for="precioDesde"><b>Precio Desde:</b></label>
                 <div class="input-group">
-                    <button class="btn btn-outline-danger" (click)="onChangeUsuarioCategoria()"
-                    [disabled]="!initialized">Vaciar</button>
-                    <input type="number" class="form-control" name="kmDesde" id="kmDesde"
-                    [(ngModel)]="initialized">
-                    <button class="btn btn-outline-success" (click)="onChangeUsuarioCategoria()"
-                    [disabled]="!initialized">Filtrar</button>
+                    <button class="btn btn-outline-danger" (click)="clearPreciosDesde()"
+                    [disabled]="!filter.precioDesde">Vaciar</button>
+                    <input type="number" class="form-control" name="precioDesde" id="precioDesde"
+                    [(ngModel)]="filter.precioDesde">
+                    <button class="btn btn-outline-success" (click)="onChangePrecioDesde()"
+                    [disabled]="!filter.precioDesde">Filtrar</button>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="form-group">
-                <label for="kmHasta"><b>Precio Hasta:</b></label>
+                <label for="precioHasta"><b>Precio Hasta:</b></label>
                 <div class="input-group">
-                        <button class="btn btn-outline-danger" (click)="onChangeUsuarioCategoria()"
-                        [disabled]="!initialized">Vaciar</button>
-                        <input type="number" class="form-control" name="kmHasta" id="kmHasta"
-                        [(ngModel)]="initialized">
-                        <button class="btn btn-outline-success" (click)="onChangeUsuarioCategoria()"
-                        [disabled]="!initialized">Filtrar</button>
+                        <button class="btn btn-outline-danger" (click)="clearPreciosHasta()"
+                        [disabled]="!filter.precioHasta">Vaciar</button>
+                        <input type="number" class="form-control" name="precioHasta" id="precioHasta"
+                        [(ngModel)]="filter.precioHasta">
+                        <button class="btn btn-outline-success" (click)="onChangePrecioHasta()"
+                        [disabled]="!filter.precioHasta">Filtrar</button>
                     </div>
             </div>
         </div>
-
+        <div class="col-4">
+          <div class="form-group">
+              <label for="color"><b>Horario:</b></label>
+              <select class="form-control" name="color" id="color"
+              [(ngModel)]="filter.horario" (change)="onChangeHorarioServicio()">
+                  <option value="" selected>Elige horario</option>
+                  <option value="MANANA">Mañana</option>
+                  <option value="TARDE">Tarde</option>
+                  <option value="COMPLETA">Completa</option>
+              </select>
+          </div>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-8">
+
+      </div>
       <div class="col-4">
         <label for="reset"><b>Reset:</b></label>
         <button class="btn btn-outline-danger form-control" (click)="reset()">Borrar Filtros</button>
+      </div>
     </div>
+    ----------TESTING--------
+    <br>
+    {{criteria | json}}
+    {{ this.filter.todos}}
   </form>
 </div>
 <div class="container" style="margin-top: 70px;">

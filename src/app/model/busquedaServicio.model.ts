@@ -1,4 +1,4 @@
 export interface BusquedaServicio {
-  parameter: string[]
-  value: any[]
+  param: string
+  val: any
 }

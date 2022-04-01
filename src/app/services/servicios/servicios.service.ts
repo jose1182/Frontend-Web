@@ -14,10 +14,15 @@ export class ServiciosService {
   constructor(private http: HttpClient) { }
 
 
-  servicios(busqueda: BusquedaServicio):Observable<ServicioModel[]>{
+  servicios(criteria: BusquedaServicio[]):Observable<ServicioModel[]>{
     let params = new HttpParams()
-    params = params.append(busqueda.parameter[0], busqueda.value[0]);
-    params = params.append(busqueda.parameter[1], busqueda.value[1]);
+
+    console.log("long: ", criteria.length)
+
+    for(var item of criteria){
+      params = params.append(item.param, item.val)
+    }
+
     //params = params.append("id.in", busqueda.id.in.join(', '))
     //params = params.append("servicioId", "")
     return this.http.get<ServicioModel[]>(environment.url + "servicios", {params: params})
