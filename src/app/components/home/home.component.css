@@ -191,6 +191,16 @@ b {
     object-fit: cover;
 }
 
+.button-ver{
+    border: 1px solid white !important;
+    background-color: #8E24AA;
+    color: #fff;
+    height: 70px;
+    font-size: 1.3rem;
+    width: 100px;
+    margin: 10px;
+}
+
 
 
 
