@@ -1,6 +1,6 @@
 import { ServiciosService } from './../../services/servicios/servicios.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServicioModel } from '../../model/servicio.model';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
 import { CategoriaModel } from '../../model/categoria.model';
@@ -38,6 +38,7 @@ export class ServiciosByCategoriaComponent implements OnInit {
 
   constructor(
     private  route: ActivatedRoute,
+    private router: Router,
     private serviciosService:ServiciosService,
     ) {
 
@@ -68,6 +69,8 @@ export class ServiciosByCategoriaComponent implements OnInit {
 
       //update user list
       this.usuarios = [...new Map(servicios.map(item => [JSON.stringify(item.usuario), item.usuario])).values()];
+
+      console.log("Usuarios: ", this.usuarios);
 
       //filling de categories from result of filter services
       this.categoriasFilter = [...new Map(servicios.map(item => [JSON.stringify(item.categorias[0]), item.categorias[0]])).values()];
@@ -213,5 +216,11 @@ export class ServiciosByCategoriaComponent implements OnInit {
     this.filter.precioHasta = null;
     this.filter.horario = null
   }
+
+  goDetalService(id: Number) : void {
+    this.router.navigate(['/detalle/servicios', id]);
+  }
+
+
 
 }

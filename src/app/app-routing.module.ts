@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RecuperarPasswordLinkComponent } from './components/recuperar-password-link/recuperar-password-link.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ServiciosByCategoriaComponent } from './components/servicios-by-categoria/servicios-by-categoria.component';
+import { DetalleServicioComponent } from './components/detalle-servicio/detalle-servicio.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'lista/servicios/:id',
     component: ServiciosByCategoriaComponent
+  },
+  {
+    path: 'detalle/servicios/:id',
+    component: DetalleServicioComponent
   },
   {
     path:'perfil-propio',

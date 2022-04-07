@@ -12,6 +12,8 @@ import { PerfilVisitadoComponent } from './perfil-visitado/perfil-visitado.compo
 import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicios-by-categoria.component';
+import { DetalleServicioComponent } from './detalle-servicio/detalle-servicio.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -26,13 +28,15 @@ import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicio
     ServiciosByCategoriaComponent,
     PerfilVisitadoComponent,
     PerfilEditarComponent,
-    PerfilPropioComponent
+    PerfilPropioComponent,
+    DetalleServicioComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatCardModule
   ]
 })
 export class ComponentsModule { }
