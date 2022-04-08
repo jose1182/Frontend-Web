@@ -62,6 +62,7 @@ export class ServiciosByCategoriaComponent implements OnInit {
 
   listaServicios(): void{
 
+    //TODO falta controlar array criteria con pulsación boton, solo sebe ser posible añadir un item en array.
     this.serviciosService.servicios(this.criteria).subscribe(servicios => {
 
       //saving all services

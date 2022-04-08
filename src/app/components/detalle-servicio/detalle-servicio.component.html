@@ -8,14 +8,14 @@
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{ usuario.nombre }}</mat-card-title>
-          <mat-card-subtitle>{{ usuario.profesion }}</mat-card-subtitle>
+          <mat-card-subtitle><strong>{{ usuario.profesion }}</strong></mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
         <mat-card-content>
-          <div class="row mx-3">
-            <h3>
+          <div class="mx-3">
+            <h4>
               Información de {{ service.titulo }}
-            </h3>
+            </h4>
             <p>
               {{ service.descripcion }}
             </p>
@@ -45,7 +45,7 @@
         <mat-card-actions>
           <div class="row justify-content-center py-3">
             <button class="btn btn-info m-2" mat-button><i class="material-icons text-light" style="font-size:30px; vertical-align: middle;">email</i> Contactar</button>
-            <button class="btn btn-warning m-2" mat-button><i class="material-icons" style="font-size:30px; vertical-align: middle;">handyman</i> Solicitar</button>
+            <button class="btn btn-success m-2" mat-button><i class="material-icons" style="font-size:30px; vertical-align: middle;">handyman</i> Solicitar</button>
           </div>
         </mat-card-actions>
       </mat-card>
