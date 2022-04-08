@@ -1,6 +1,6 @@
 import { UsuariosService } from './../../services/usuario/usuarios.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { ServicioModel } from '../../model/servicio.model';
 import { UsuarioModel } from '../../model/usuario.model';
@@ -19,7 +19,8 @@ export class DetalleServicioComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private serviceService: ServiciosService,
-    private usuarioService: UsuariosService
+    private usuarioService: UsuariosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +46,11 @@ export class DetalleServicioComponent implements OnInit {
         console.log("error: ", error)
     })
   }
+
+  goDetailPerfil(id: Number): void {
+    this.router.navigate(['perfil-visitado', id]);
+  }
+
 
 }
 

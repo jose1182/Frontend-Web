@@ -6,8 +6,10 @@
     <div class="col-xl-6 col-lg-6 justify-content-center d-flex">
       <mat-card class="example-card bg-light">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{ usuario.nombre }}</mat-card-title>
+          <div mat-card-avatar class="example-header-image" ></div>
+          <mat-card-title>
+            <span (click)="goDetailPerfil(usuario.id)" style="cursor:pointer">{{ usuario.nombre }}</span>
+          </mat-card-title>
           <mat-card-subtitle><strong>{{ usuario.profesion }}</strong></mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">

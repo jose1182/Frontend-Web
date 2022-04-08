@@ -53,7 +53,7 @@ const routes: Routes = [
     component: PerfilEditarComponent
   },
   {
-    path:'perfil-visitado',
+    path:'perfil-visitado/:id',
     component: PerfilVisitadoComponent
   },
   {
