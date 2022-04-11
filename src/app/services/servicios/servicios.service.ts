@@ -15,11 +15,13 @@ export class ServiciosService {
 
 
   servicios(criteria: BusquedaServicio[]):Observable<ServicioModel[]>{
+
     let params = new HttpParams()
 
-    console.log("long: ", criteria.length)
+    console.log("long: ", criteria)
 
     for(var item of criteria){
+      console.log("item:", item)
       params = params.append(item.param, item.val)
     }
 
