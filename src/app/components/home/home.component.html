@@ -35,38 +35,23 @@
             <button type="submit" class="btn mb-2 text-white" style="background-color: #422678">Buscar</button>
           </form>
 
-      </div>
 
-    </div>
+     
+    <div class="container-flex  rounded" style="  overflow: hidden;" >
+        <div class="categoria-title">Categorias</div>
 
-    <div class="container my-5">
-      <div class="row">
-        <div class="col-lx-12 col-lg-12 d-flex justify-content-center">
-          <div class="row justify-content-center">
-            <div class="card mt-2 mx-2 p-0 alert alert-dismissible fade show" role="alert" style="width: 23rem;">
-              <div class="card-body">
-                <h3 class="card-title text-dark font-weight-bold">Buscar especialista</h3>
-                <p class="card-text text-dark">Anuncia tus habilidades y comparte con la red de usuarios de toda España.</p>
-                <a href="#" class="card-link">Busca tiu especialista</a>
-              </div>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        <div class="row align-items-center justify-content-center" >
+            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let categoria of categorias" (click)="goToViewDetail(categoria.id)" >
+                <div class="box">
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center"> <img class="image-icon" src="./../../../assets/health.png" alt=""> </div>
+                        <div class="d-flex flex-column"> <b>{{categoria.nombre}}</b>  </div>
+                    </div>
+                </div>
             </div>
-            <div class="card mt-2 mx-2 p-0 alert alert-dismissible fade show" role="alert"  style="width: 23rem;">
-              <div class="card-body">
-                <h3 class="card-title text-dark font-weight-bold">Especialista</h3>
-                <p class="card-text text-dark">Anuncia tus habilidades y comparte con la red de usuarios de toda España.</p>
-                <a href="#" class="card-link">Publica tu oferta</a>
-              </div>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+                  
 
 
 
@@ -87,6 +72,9 @@
             </div>
           </div>
           <!-- End-->
+
+
+          
         </div>
         <div class="row justify-content-center mb-4">
           <div class="col-lg-5 text-center">
