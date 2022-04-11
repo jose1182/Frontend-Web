@@ -1,3 +1,5 @@
+<!--
+
 <div class="container my-5">
   <form>
       <div class="row">
@@ -133,3 +135,211 @@
   </div>
 
 </div>
+-->
+
+<!----------------------------------------------------------------------------------------------------------->
+<nav class="navbar navbar-light navbar-expand-lg navbar-fixed-top" style="background-color: #422678">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+        <li>
+          <img
+          src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+          class="rounded-circle perfil-image"
+          style="height: 40px; width: 40px;"/>
+        </li>
+
+        <li class="nav-item dropdown" style="color: white; font-size: 1.3rem; font-weight: 100;">
+          <a class="nav-link dropdown-toggle" style="color: white; padding-left: 20px; font-size: 1.2rem;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Perfil</a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #422678;">
+              <a class="nav-link" href="#" style="color: white;">Perfil<span class="sr-only">(current</span></a>
+              <a class="nav-link" href="#" style="color: white;">Buzón</a>
+              <a class="nav-link" href="#" style="color: white;">Favoritos <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only" >(current)</span></a>
+              <div class="dropdown-divider"></div>
+              <span role="button"><a class="nav-link" style="color: white;">Log out<span class="sr-only">(current)</span></a></span>
+              <a class="nav-link"  [routerLink]="['/reset-password']" routerLinkActive="router-link-active" style="color: white;">Recuperar Password(provsional)<span class="sr-only">(current)</span></a>
+          </div>
+        </li>
+    </ul>
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" aria-label="Search">
+      <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
+      <button class="login-button btn my-2 my-sm-0" type="button"  [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
+      <button class="login-button btn my-2 my-sm-0" type="button"  routerLinkActive="router-link-active" >Logout</button>
+  </form>
+</nav>
+
+
+
+<div class="container-fluid" >
+  <div class="row d-flex justify-content-center align-items-center" >
+    <div class="main-container col-lg-10" id="shadow" style="background-color: white;">
+      <form>
+        <div class="row">
+          <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label for="usuarioElegido"><b>Espcialistas:</b></label>
+              <select class="form-control" name="usuarioElegido" id="usuarioElegido" [(ngModel)]="filter.usuarioElegido"
+                (change)="onChangeUsuario()">
+                <option [ngValue]="null" selected>Elige un especialista</option>
+                <option  [ngValue]="usuario.user.id" *ngFor="let usuario of usuarios">{{usuario.user.login}}</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label for="especialista"><b>Categoria:</b></label>
+              <select *ngIf="!filter.usuarioElegido && !filter.todos" class="form-control" name="especialista" id="especialista" disabled>
+               <option value="''" selected>Elige una Categoria</option>
+              </select>
+              <select *ngIf="filter.usuarioElegido || filter.todos" class="form-control" name="especialista" id="especialista"
+                [(ngModel)]="filter.categoriaElegido" (change)="onChangeUsuarioCategoria()">
+                <option [ngValue]="null" selected>Elige un Categoria</option>
+                <option [ngValue]="categoria.id" *ngFor="let categoria of categoriasFilter">
+                {{categoria.nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+                    
+          <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label for="contenido" class="mr-2"><b>Busqueda:</b></label>
+                <div class="input-group" style="align-items: center;">
+                  <input type="text" class="form-control" name="disponibilidad" id="disponibilidad"
+                    [(ngModel)]="filter.disponibilidadElegido">
+                    <button class="btn btn-outline-success" (click)="onChangeListByContenido()"
+                    [disabled]="!filter.disponibilidadElegido || filter.disponibilidadElegido && filter.todos"><img class="img-icon" src="./../../../assets/magnifying-glass-solid.svg"></button>
+                    <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
+                    [disabled]="!filter.disponibilidadElegido"><img class="img-icon" src="./../../../assets/trash-can-solid.svg"></button>
+                </div>
+                
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onChangeListByContenido()">
+                    <label class="form-check-label" for="contenido">
+                      Todos
+                    </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="true" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
+                  <label class="form-check-label" for="contenido">
+                   Titulo
+                  </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contenido" id="contenido" [value]="false" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
+                    <label class="form-check-label" for="contenido"
+                       >
+                      Descripción
+                    </label>
+                </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="part col-xl-6 col-lg-6 col-md-12 col-sm-12" >
+            <div class="form-group">
+              <label for="kmDesde"><b>Precio Desde:</b></label>
+                <div class="input-group">
+                  <input type="number" class="form-control" name="kmDesde" id="kmDesde"
+                    [(ngModel)]="initialized">
+                    <button class="btn btn-outline-success"  (click)="onChangeUsuarioCategoria()"
+                    [disabled]="!initialized"><img class="img-icon" src="./../../../assets/magnifying-glass-solid.svg"></button>
+                    <button class="btn btn-outline-danger" (click)="onChangeUsuarioCategoria()"
+                    [disabled]="!initialized"><img class="img-icon" src="./../../../assets/trash-can-solid.svg"></button>
+                </div>
+            </div>
+          </div>
+
+          <div class="part col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label for="kmHasta"><b>Precio Hasta:</b></label>
+              <div class="input-group">
+              <input type="number" class="form-control" name="kmHasta" id="kmHasta"
+                [(ngModel)]="initialized">
+                <button class="btn btn-outline-success" (click)="onChangeUsuarioCategoria()"
+                [disabled]="!initialized"><img class="img-icon" src="./../../../assets/magnifying-glass-solid.svg"></button>
+                <button class="btn btn-outline-danger" (click)="onChangeUsuarioCategoria()"
+                [disabled]="!initialized"><img class="img-icon" src="./../../../assets/trash-can-solid.svg"></button>
+              </div>
+            </div>
+          </div>
+
+        <div class="row" >
+          <div class="part col-9">
+            <button class="btn-borrar form-control" (click)="reset()" style="text-align: center;">Borrar Filtros</button>
+          </div>
+        </div>
+         
+        </div>
+                
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid" >
+  <div class="row d-flex justify-content-center align-items-center" >
+    <div class="main-container col-lg-10" id="shadow" style="background-color: white;">
+      <div class="row" style="align-items: center;">
+              
+        <div class="col container  table-responsive" >
+          <table class="table table-hover table-dark">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Disponibilidad</th>
+                <th>Precio hora</th>
+                <th>Precio Desplazamiento</th>
+                <th>Técnico</th>
+                <th>Categoria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let servicio of servicios; let i = index" [attr.data-index]="i">
+                <td>{{ servicio.id }}</td>
+                <td>{{ servicio.titulo }}</td>
+                <td>{{ servicio.descripcion }}</td>
+                <td>{{ servicio.disponibilidad }}</td>
+                <td>{{ servicio.preciohora }} €</td>
+                <td>{{ servicio.preciotraslado }} €</td>
+                <td>{{ servicio.usuario?.user?.login }}</td>
+                <td>
+                <div  *ngFor="let item of servicio.categorias ; let x = index" [attr.data-index]="x">
+                  <span class="badge badge-warning" style="padding: 5px; font-size: 1.2rem;">{{ servicio.categorias[x]?.nombre}}</span>
+                </div>
+                </td>
+                <td>
+                  <button class="btn btn-primary details-table"> Show details</button>
+                </td>
+              </tr>
+            </tbody> 
+          </table>
+        </div>
+            
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
