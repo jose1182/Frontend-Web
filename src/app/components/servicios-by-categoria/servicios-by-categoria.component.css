@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto";
+}
+
+a{
+    text-align: center;
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
+
+
+.text{
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 100;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-top: 20px;
+}
+
+.btn{
+    border: none;
+    color: #8E24AA;
+    height: 40px;
+    font-size: 1.8rem;
+    width: 50px;
+}
+
+.btn:hover{
+    color: white;
+    height: 50px;
+    font-size: 1.8rem;
+    width: 70px;
+}
+
+
+#shadow{
+    box-shadow: -60px 20px 40px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.main-container{
+    margin-top: 50px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    cursor: pointer;
+    border-style: solid;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    background: rgb(255,255,255);
+    background-image: linear-gradient(white, white );
+    transition: transform .2s; /* Animation */
+}
+
+.form-outline{
+    margin: 30px 50px;
+}
+
+
+.img-icon{
+    height: 25px;
+    margin-bottom: 15px; 
+}
+
+.part{
+    padding: 10px;
+}
+
+label{
+    font-size: 1.3rem;
+}
+
+.form-check{
+    margin-right: 10px;
+}
+
+.btn-borrar{
+    border: 1px solid #8E24AA !important;
+    background-color: #8E24AA;
+    color: #fff;
+    height: 50px;
+    font-size: 1.5rem;
+    width: 300px;
+}
+
+.btn-borrar:hover{
+    border: 1px solid #8E24AA !important;
+    background-color: white;
+    color: #8E24AA;
+    height: 50px;
+    font-size: 1.5rem;
+    width: 300px;
+}
+
+
+/*********************/
+
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0
+}
+
+.social-list li {
+    padding: 10px;
+    color: #8E24AA;
+    font-size: 19px
+}
+
+
+
+
+
+nav{
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    padding: 5px !important;
+
+}
+
+
+.navbar .navbar-brend{
+    border-style: dashed;
+    border-color: aquamarine;
+}
+
+a{
+    font-weight: 300;
+}
+
+.navbar>a{
+    border-right: 1px solid white;
+    padding-right: 20px;
+}
+
+.login-button{
+    color: black;
+    background-color: #f8f8f8;
+    margin-left: 10px;
+    font-size: 0.9rem;
+}
+
+.login-button:hover{
+    color: black;
+    background-color: #f8f8f8;
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+
+.search-button{
+    background-color: #A381BD;
+    font-size: 0.9rem;
+
+}
+
+.search-button:hover{
+    background-color: #A381BD;
+    font-size: 1rem;
+
+}
+
+a{
+    text-align: left;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: "Roboto";
+    margin: 10px 5px;
+}
+
+td{
+    font-size: 1rem;
+}
+
+.details-table{
+    border: 1px solid #8E24AA !important;
+    border-radius: 5px;
+    background-color: #8E24AA;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 0px 10px;
+}
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
