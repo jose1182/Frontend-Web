@@ -1,5 +1,6 @@
+import { UsuarioModel } from './../model/usuario.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, of, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { AccountModel } from '../model/account.model';
@@ -37,4 +38,7 @@ export class AccountService {
     return this.http.get<AccountModel>(environment.url + 'account')
   }
 
+  public fetch2(id: any): Observable<UsuarioModel> {
+    return this.http.get<UsuarioModel>(environment.url + 'usuarios/'+ id);
+}
 }

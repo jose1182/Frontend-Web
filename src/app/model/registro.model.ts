@@ -7,7 +7,7 @@ export class RegistroModel {
     constructor(login: String, email: String,  password: String) {
       this.login = login;
       this.email = email;
-      this.password = password
+      this.password = password;
      }
 
 }
