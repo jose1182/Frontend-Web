@@ -8,18 +8,18 @@
         <mat-card-header>
           <div mat-card-avatar class="example-header-image" ></div>
           <mat-card-title>
-            <span (click)="goDetailPerfil(usuario.id)" style="cursor:pointer">{{ usuario.nombre }}</span>
+            <span (click)="goDetailPerfil(usuario.id)" style="cursor:pointer">{{ usuario?.nombre }}</span>
           </mat-card-title>
-          <mat-card-subtitle><strong>{{ usuario.profesion }}</strong></mat-card-subtitle>
+          <mat-card-subtitle><strong>{{ usuario?.profesion }}</strong></mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
         <mat-card-content>
           <div class="mx-3">
             <h4>
-              Información de {{ service.titulo }}
+              Información de {{ service?.titulo }}
             </h4>
             <p>
-              {{ service.descripcion }}
+              {{ service?.descripcion }}
             </p>
           </div>
           <hr>
@@ -27,19 +27,19 @@
             <ul class="list-group borderless">
               <li class="list-group-item bg-light">
                 <h6 class="m-0">Tipo de categoria:</h6>
-                <span class="badge badge-warning mr-2" *ngFor="let categoria of service.categorias">{{ categoria.nombre}}</span>
+                <span class="badge badge-warning mr-2" *ngFor="let categoria of service?.categorias">{{ categoria.nombre}}</span>
               </li>
               <li class="list-group-item bg-light py-2">
                 <h6 class="m-0">Disponibilidad:</h6>
-                <span>{{ service.disponibilidad }}</span>
+                <span>{{ service?.disponibilidad }}</span>
               </li>
               <li class="list-group-item bg-light py-2">
                 <h6 class="m-0">Precio hora:</h6>
-                <span>{{ service.preciohora }}</span>
+                <span>{{ service?.preciohora }}</span>
               </li>
               <li class="list-group-item bg-light py-2">
                 <h6 class="m-0">Precio desplazamiento:</h6>
-                <span>{{ service.preciotraslado }}</span>
+                <span>{{ service?.preciotraslado }}</span>
               </li>
             </ul>
           </div>

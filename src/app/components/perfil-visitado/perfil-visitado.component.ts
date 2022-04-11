@@ -13,7 +13,7 @@ import { ServicioModel } from '../../model/servicio.model';
 })
 export class PerfilVisitadoComponent implements OnInit {
 
-  id!: Number;
+  id!: number;
   usuario!: UsuarioModel
   criteria: BusquedaServicio [] = [];
   servicios!: ServicioModel[];
@@ -30,6 +30,7 @@ export class PerfilVisitadoComponent implements OnInit {
   ngOnInit(): void {
 
     this.getUrlParams();
+
     this.listaServicios();
 
   }
@@ -37,25 +38,24 @@ export class PerfilVisitadoComponent implements OnInit {
 getUrlParams(){
   this.route.paramMap.subscribe((params: Params)=>{
     this.id = params.get('id');
-    this.getUserById(this.id);
-  })
+    this.criteria.push({param: "usuarioId.equals", val: this.id})
+  });
+
+  this.getUserById(this.id);
 }
 
-getUserById(id: Number):void{
+getUserById(id: number):void{
   this.usuarioService.getUsuarioById(id).subscribe(usuario => {
     this.usuario = usuario;
-      //set query parameters
-      this.criteria.push({param: "usuarioId.equals", val: this.id});
   }, (error) => {
     //TODO gestionar error
     console.log(error)
-  })
+  });
 }
-listaServicios(): void{
 
+listaServicios(): void{
   //TODO falta controlar array criteria con pulsación boton, solo sebe ser posible añadir un item en array.
   this.serviciosService.servicios(this.criteria).subscribe(servicios => {
-
     //saving all services
     this.servicios = servicios;
 

@@ -14,6 +14,7 @@ import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicios-by-categoria.component';
 import { DetalleServicioComponent } from './detalle-servicio/detalle-servicio.component';
 import { MatCardModule } from '@angular/material/card';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -29,7 +30,8 @@ import { MatCardModule } from '@angular/material/card';
     PerfilVisitadoComponent,
     PerfilEditarComponent,
     PerfilPropioComponent,
-    DetalleServicioComponent
+    DetalleServicioComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,

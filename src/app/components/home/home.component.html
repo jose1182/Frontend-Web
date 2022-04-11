@@ -1,261 +1,241 @@
 <!--Mio-->
-<div class="overlay">
-    <nav class="navbar navbar-light navbar-expand-lg navbar-fixed-top" style="background-color: #422678">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav">
-              <li>
-                <img
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-                class="rounded-circle perfil-image"
-                style="height: 40px; width: 40px;"/>
-              </li>
 
-              <li class="nav-item dropdown" style="color: white; font-size: 1.3rem; font-weight: 100;">
-                <a class="nav-link dropdown-toggle" style="color: white; padding-left: 20px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ accountModel ? accountModel?.login: "Perfil" }}</a>
+  <div class="bg-image rounded-3 d-none d-md-block" style="background-image: url(./../../../assets/banner.webp); height: 200px;">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+    </div>
+  </div>
+  <div class="container-fluid  p-0">
+    <div class="row justify-content-center pt-5">
+      <div class="col-lg-7 col-sm-6 col-md-3 mx-2">
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #422678;">
-                    <a class="nav-link" href="#" style="color: white;">Perfil<span class="sr-only">(current</span></a>
-                    <a class="nav-link" href="#" style="color: white;">Buzón</a>
-                    <a class="nav-link" href="#" style="color: white;">Favoritos <span class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only" >(current)</span></a>
-                    <div class="dropdown-divider"></div>
-                    <span role="button"><a class="nav-link " (click)="logout()" style="color: white;">Log out<span class="sr-only">(current)</span></a></span>
-                    <a class="nav-link"  *ngIf="!isAuthenticated()" [routerLink]="['/reset-password']" routerLinkActive="router-link-active" style="color: white;">Recuperar Password(provsional)<span class="sr-only">(current)</span></a>
-                </div>
-              </li>
-          </ul>
-        </div>
+          <h1 class="font-weight-bold">
+            Encuentra los mejores Profesionales en tu zona
+          </h1>
+          <p>Programadores, Desarrolladores, software, Electricidad, Instaladores y todo al alcance de un click! Empieza ya</p>
 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" aria-label="Search">
-            <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
-            <button class="login-button btn my-2 my-sm-0" type="button" *ngIf="!isAuthenticated()" [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
-            <button class="login-button btn my-2 my-sm-0" type="button" *ngIf="isAuthenticated()" routerLinkActive="router-link-active" (click)="logout()">Logout</button>
-        </form>
-    </nav>
+          <form class="form-inline">
+            <label class="sr-only font-weight-bold" for="inlineFormInputName2">Name</label>
+            <div class="input-group mb-2 mr-sm-2 bg-white">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white font-weight-bold">Qué</div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputName2" placeholder="Título, descrpción">
+            </div>
 
-    <div class="p-5 text-center bg-image rounded-3 d-none d-md-block" style="background-image: url(./../../../assets/banner.webp); height: 300px;">
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-        </div>
+
+            <label class="sr-only font-weight-bold" for="inlineFormInputGroupUsername2">Username</label>
+            <div class="input-group mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text bg-white font-weight-bold">Dónde</div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Madrid">
+            </div>
+
+            <button type="submit" class="btn mb-2 text-white" style="background-color: #422678">Buscar</button>
+          </form>
+
+      </div>
+
     </div>
 
-    <div class="main-content">
-      <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-        <div class="container-fluid">
-          <h2 class="mb-5 text-white">Stats Card</h2>
-          <div class="header-body">
-            <div class="row">
-              <div class="col-xl-3 col-lg-6 mt-3" *ngFor="let categoria of categorias">
-                <div class="card card-stats mb-4 mb-xl-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-
-                        <span class="h2 font-weight-bold mb-0">{{ categoria.nombre}}</span>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <img class="image-icon" src="./../../../assets/educ.png" alt="">
-                        </div>
-                      </div>
-                    </div>
-                    <p class="mt-3 mb-0 text-muted text-sm">
-                      <button type="button" class="btn btn-success" (click)="goToViewDetail(categoria.id)">Ver</button>
-                      <span class="text-nowrap ml-2">Lista de servcios</span>
-                    </p>
-                  </div>
-                </div>
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-lx-12 col-lg-12 d-flex justify-content-center">
+          <div class="row justify-content-center">
+            <div class="card mt-2 mx-2 p-0 alert alert-dismissible fade show" role="alert" style="width: 23rem;">
+              <div class="card-body">
+                <h3 class="card-title text-dark font-weight-bold">Buscar especialista</h3>
+                <p class="card-text text-dark">Anuncia tus habilidades y comparte con la red de usuarios de toda España.</p>
+                <a href="#" class="card-link">Busca tiu especialista</a>
               </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="card mt-2 mx-2 p-0 alert alert-dismissible fade show" role="alert"  style="width: 23rem;">
+              <div class="card-body">
+                <h3 class="card-title text-dark font-weight-bold">Especialista</h3>
+                <p class="card-text text-dark">Anuncia tus habilidades y comparte con la red de usuarios de toda España.</p>
+                <a href="#" class="card-link">Publica tu oferta</a>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <!-- Page content -->
     </div>
 
-    <div class="container-flex  rounded" style="overflow: hidden;" >
-
-        <div class="container-flex  rounded" style="  overflow: hidden; margin: 50px;" >
-            <div class="row align-items-center justify-content-center" >
-                <div class="col-6">
-                    <h3 class="mb-3 destacados-title">Ofertas destacadas</h3>
-                </div>
-                <div class="col-6 text-right">
-                    <a class="btn btn-dark mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
-                        <i class="fa fa-arrow-left"><</i>
-                    </a>
-                    <a class="btn btn-dark mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
-                        <i class="fa fa-arrow-right">></i>
-                    </a>
-                </div>
-                <div class="col-12"  >
-                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
 
 
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <hr>
+    <div class="container pb-5">
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-5">
+            <h2 class="display-5 font-weight-bold">En Net Jobs encontrarás lo que necesitas...</h2>
+          </div>
+        </div>
 
-                                            </div>
-                                        </div>
-                                    </div>
+        <div class="row text-center">
+          <!-- Team item-->
+          <div class="col-xl-2 col-sm-4 mb-5 rounded" *ngFor="let categoria of categorias" style="cursor:pointer"  (click)="goToViewDetail(categoria.id)">
+            <div class="bg-white rounded shadow-sm py-4 px-4"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+              <h5 class="mb-0">{{categoria.nombre}}</h5>
+            </div>
+          </div>
+          <!-- End-->
+        </div>
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-5 text-center">
+            <h2 class="font-italic">Muchos más que servicios...</h2>
+          </div>
+        </div>
+    </div>
 
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!------ Include the above in your HEAD tag ---------->
 
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-2 col-md-4 col-sm-12 mb-3">
-                                        <div class="card">
-                                            <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Job Description</h4>
-                                                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
+      <!-- Team -->
+      <section id="team" class="pb-5">
+          <div class="container">
+            <div class="row justify-content-center mb-4">
+              <div class="col-lg-5">
+                <h1 class="font-weight-bold">Encuentra los mejores servcios</h1>
+              </div>
+            </div>
+              <div class="row">
+                  <!-- Team member -->
+                  <div class="col-xs-12 col-sm-6 col-md-3">
+                      <div class="card" style="cursor:pointer">
+                        <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+                          <div class="card-body text-center">
+                              <h4 class="card-title font-weight-bold">Sunlimetech</h4>
+                              <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- ./Team member -->
+                  <!-- Team member -->
+                  <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="card" style="cursor:pointer">
+                      <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Sunlimetech</h4>
+                            <p class="card-text">This is basic card with image on top, title, description and button.</p>
                         </div>
                     </div>
                 </div>
+                <!-- ./Team member -->
+                <!-- Team member -->
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="card" style="cursor:pointer">
+                    <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+                      <div class="card-body text-center">
+                          <h4 class="card-title font-weight-bold">Sunlimetech</h4>
+                          <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                      </div>
+                  </div>
+                </div>
+                <!-- ./Team member -->
+                <!-- Team member -->
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="card" style="cursor:pointer">
+                    <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+                      <div class="card-body text-center">
+                          <h4 class="card-title font-weight-bold">Sunlimetech</h4>
+                          <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                      </div>
+                  </div>
+                </div>
+                <!-- ./Team member -->
+                    <!-- Team member -->
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <div class="card" style="cursor:pointer">
+                        <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+                          <div class="card-body text-center">
+                              <h4 class="card-title font-weight-bold">Sunlimetech</h4>
+                              <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- ./Team member -->
+                  <!-- Team member -->
+                  <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="card" style="cursor:pointer">
+                      <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+                        <div class="card-body text-center">
+                            <h4 class="card-title font-weight-bold">Sunlimetech</h4>
+                            <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./Team member -->
+              </div>
+          </div>
+      </section>
+      <!-- Team -->
+      <footer class="mainfooter" role="contentinfo">
+        <div class="footer-middle">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <div class="footer-pad">
+                <h4> Footer Heading 1</h4>
+                <ul class="list-unstyled">
+                  <li> <a href="#"> </a> </li>
+                  <li> <a href="#">Payment Center</a></li>
+                  <li> <a href="#"> Contact Directory </a></li>
+                  <li> <a href="#">Forms</a></li>
+                  <li> <a href="#">News and Updates</a></li>
+                  <li> <a href="#">FAQs</a></li>
+                </ul>
+              </div>
             </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="footer-pad">
+                <h4> Footer Heading 2</h4>
+                <ul class="list-unstyled">
+                  <li><a href="#"> Blog </a> </li>
+                  <li><a href="#">Accessibility</a> </li>
+                  <li><a href="#">Disclaimer</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">FAQs</a></li>
+                  <li><a href="#">Webmaster</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="footer-pad">
+                <h4> Footer Heading 3 </h4>
+                <ul class="list-unstyled">
+                  <li> <a href="#"> Parks and Recreation </a> </li>
+                  <li> <a href="#"> Public Works </a> </li>
+                  <li> <a href="#">Police Department</a> </li>
+                  <li> <a href="#"> Fire </a> </li>
+                  <li> <a href="#"> Mayor and City Council </a> </li>
+                </ul>
+              </div>
+            </div>
+              <div class="col-md-3">
+                  <h4> Follow Us </h4>
+                  <ul class="social-network social-circle">
+                   <li> <a href="#" class="icoFacebook" title="Facebook"> <i class="fa fa-facebook"> </i> </a> </li>
+                   <li> <a href="#" class="icoLinkedin" title="Linkedin"> <i class="fa fa-linkedin"> </i> </a> </li>
+          <li> <a href="#"> <i class="fa fa-youtube" aria-hidden="true"> </i> </a> </li>
+                  </ul>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-md-12 copy">
+          <p class="text-center"> © Copyright 2021 - Company Name.  All rights reserved. </p>
+          </div>
+          </div>
         </div>
-
-
-    </div>
-
-
-
-
-
-
-
-
-
+        </div>
+      </footer>
 </div>
