@@ -10,6 +10,8 @@ import { InterceptorsModule } from './interceptors/interceptors.module';
 import { ServicesModule } from './services/services.module';
 import { AuthguardGuard } from './guards/authguard.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ServicesModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthguardGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}],
+  providers: [
+    CookieService,
+    AuthguardGuard,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true
+    },
+    {
+      provide: JWT_OPTIONS, useValue:JWT_OPTIONS
+    },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,13 +13,13 @@
         </ul>
         <ul class="navbar-nav  mt-2 mt-lg-0 navbar-right">
           <li class="nav-item">
-            <a class="nav-link" href="#">Iniciar sesión</a>
+            <a class="nav-link" *ngIf="isAuthenticated()" routerLink="login">Iniciar sesión</a>
         </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons"  style="font-size:18px; vertical-align: middle;">person</i></a>
+            <a class="nav-link dropdown-toggle" *ngIf="!isAuthenticated()" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons"  style="font-size:18px; vertical-align: middle;">person</i></a>
             <div class="dropdown-menu" aria-labelledby="dropdownId">
-                <a class="dropdown-item" href="#">Action 1</a>
-                <a class="dropdown-item" href="#">Action 2</a>
+                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
             </div>
         </li>
         <li class="nav-item active">
@@ -30,6 +30,7 @@
         </li>
       </ul>
     </div>
+    {{ isAuthenticated() }}
 </nav>
 
 

@@ -5,6 +5,7 @@ import { Observable, of, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { AccountModel } from '../model/account.model';
 import { environment } from '../../environments/environment';
 import { shareReplay, tap, catchError} from 'rxjs/operators';
+import { AuthJwtService } from './auth-jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AccountService {
 
   constructor(
     private http : HttpClient,
-    private route: Router
+    private route: Router,
+    private authJwtService: AuthJwtService
 
   ) {}
 
@@ -35,6 +37,14 @@ export class AccountService {
   private fetch(): Observable<AccountModel>{
     console.log('fetch: ', environment.url + 'account')
     return this.http.get<AccountModel>(environment.url + 'account')
+  }
+
+  logout(){
+    this.authJwtService.performLogout();
+  }
+
+  isAuthenticated(){
+    return this.authJwtService.isAuthenticated();
   }
 
 }
