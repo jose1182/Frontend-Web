@@ -211,7 +211,7 @@
               </select>
             </div>
           </div>
-          
+
           <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="form-group">
               <label for="especialista"><b>Categoria:</b></label>
@@ -227,7 +227,7 @@
               </select>
             </div>
           </div>
-                    
+
           <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="form-group">
               <label for="contenido" class="mr-2"><b>Busqueda:</b></label>
@@ -249,7 +249,7 @@
                     <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
                     [disabled]="!filter.titleOrDescription"><img class="img-icon" src="./../../../assets/trash-can-solid.svg"></button>
                 </div> -->
-                
+
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onChangeListByContenido()">
                     <label class="form-check-label" for="contenido">
@@ -323,9 +323,9 @@
             <button class="btn-borrar form-control" (click)="reset()" style="text-align: center;">Borrar Filtros</button>
           </div>
         </div>
-         
+
         </div>
-                
+
       </form>
     </div>
   </div>
@@ -337,7 +337,7 @@
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-10" id="shadow" style="background-color: white;">
       <div class="row" style="align-items: center;">
-              
+
         <div class="col container  table-responsive" >
           <table class="table table-hover table-dark">
             <thead>
@@ -370,10 +370,10 @@
                   <button class="btn btn-primary details-table" (click)="goDetalService(servicio.id)"> Show details</button>
                 </td>
               </tr>
-            </tbody> 
+            </tbody>
           </table>
         </div>
-            
+
       </div>
     </div>
   </div>

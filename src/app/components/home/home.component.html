@@ -7,27 +7,27 @@
   <div class="row align-items-center justify-content-center">
     <div class="col-sm-6 col-md-5 mx-2">
       <div class="row">
-        <label class="sr-only font-weight-bold" for="inlineFormInputName2">Name</label>
         <div class="input-group mb-2  bg-white">
           <div class="input-group-prepend">
             <div class="input-group-text bg-white font-weight-bold">Qué</div>
           </div>
-          <input type="text" class="form-control" id="inlineFormInputName2" placeholder="Título, descrpción">
+          <input type="text" class="form-control" id="keyword"  name="keyword" placeholder="Título, descrpción"
+          [(ngModel)]="keyword">
         </div>
       </div>
     </div>
     <div class="col-sm-6 col-md-4 mx-2">
       <div class="row">
-        <label class="sr-only font-weight-bold" for="inlineFormInputGroupUsername2">Username</label>
         <div class="input-group mb-2 ">
           <div class="input-group-prepend">
             <div class="input-group-text bg-white font-weight-bold">Dónde</div>
           </div>
-          <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Madrid">
+          <input type="text" class="form-control" id="location" name="location" placeholder="Madrid"
+          [(ngModel)]="location">
         </div>
       </div>
     </div>
-    <button type="submit" class="btn mb-2 text-white" style="background-color: #422678">Buscar servicio</button>
+    <button type="submit" class="btn mb-2 text-white" (click)="getservcios()" style="background-color: #422678">Buscar servicio</button>
   </div>
 </form>
 </div>
@@ -59,13 +59,15 @@
     <div class="row text-center">
       <!-- Team item-->
       <div class="col-xl-2 col-sm-4 mb-5 rounded" *ngFor="let categoria of categorias" style="cursor:pointer"  (click)="goToViewDetail(categoria.id)">
-        <div class="bg-white rounded shadow-sm py-4 px-4"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+        <div class="bg-white rounded shadow-sm py-4 px-4">              <img
+          [src]="'data:' + categoria.imagenContentType + ';base64,' + categoria.imagen"
+          style="max-width: 100%"
+          alt="categoria image"
+        />
           <h5 class="mb-0">{{categoria.nombre}}</h5>
         </div>
       </div>
       <!-- End-->
-
-
 
     </div>
     <div class="row justify-content-center mb-4">

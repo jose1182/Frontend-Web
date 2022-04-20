@@ -15,6 +15,7 @@ import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicio
 import { DetalleServicioComponent } from './detalle-servicio/detalle-servicio.component';
 import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from './navbar/navbar.component';
+import { BusquedaHomeComponent } from './busqueda-home/busqueda-home.component';
 
 
 
@@ -31,7 +32,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     PerfilEditarComponent,
     PerfilPropioComponent,
     DetalleServicioComponent,
-    NavbarComponent
+    NavbarComponent,
+    BusquedaHomeComponent
   ],
   imports: [
     CommonModule,

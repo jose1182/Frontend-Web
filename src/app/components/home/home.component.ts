@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
     value: null,
   };
 
+  keyword!: string | null
+  location!: string | null
 
   constructor(
     private accountService: AccountService,
@@ -59,5 +61,9 @@ export class HomeComponent implements OnInit {
     this.accountModel = null
     this.router.navigate(['/home'])
 
+  }
+
+  getservcios(): void{
+    this.router.navigate(['/es/buscar-servicios'],{queryParams:{keyword: this.keyword, location: this.location}})
   }
 }
