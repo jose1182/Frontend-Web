@@ -11,10 +11,10 @@ import { RecuperarPasswordLinkComponent } from './components/recuperar-password-
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ServiciosByCategoriaComponent } from './components/servicios-by-categoria/servicios-by-categoria.component';
 import { DetalleServicioComponent } from './components/detalle-servicio/detalle-servicio.component';
+import { BusquedaHomeComponent } from './components/busqueda-home/busqueda-home.component';
 
 
 const routes: Routes = [
-
   {
     path: '',
     redirectTo: 'home',
@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'es/:buscar-servicios',
+    component: BusquedaHomeComponent
   },
   {
     path: 'reset-password',
