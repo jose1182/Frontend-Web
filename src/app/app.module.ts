@@ -12,6 +12,7 @@ import { AuthguardGuard } from './guards/authguard.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     InterceptorsModule,
     HttpClientModule,
     ServicesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [
     CookieService,
