@@ -87,85 +87,16 @@
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <!------ Include the above in your HEAD tag ---------->
-
-      <!-- Team -->
-      <section id="team" class="pb-5">
-          <div class="container">
-            <div class="row justify-content-center mb-4">
-              <div class="col-lg-5">
-                <h1 class="font-weight-bold">Encuentra los mejores servcios</h1>
-              </div>
-            </div>
-              <div class="row">
-                  <!-- Team member -->
-                  <div class="col-xs-12 col-sm-6 col-md-3">
-                      <div class="card" style="cursor:pointer">
-                        <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                          <div class="card-body text-center">
-                              <h4 class="card-title font-weight-bold">Sunlimetech</h4>
-                              <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- ./Team member -->
-                  <!-- Team member -->
-                  <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="card" style="cursor:pointer">
-                      <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                        <div class="card-body text-center">
-                            <h4 class="card-title font-weight-bold">Sunlimetech</h4>
-                            <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- ./Team member -->
-                <!-- Team member -->
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                  <div class="card" style="cursor:pointer">
-                    <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                      <div class="card-body text-center">
-                          <h4 class="card-title font-weight-bold">Sunlimetech</h4>
-                          <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                      </div>
-                  </div>
-                </div>
-                <!-- ./Team member -->
-                <!-- Team member -->
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                  <div class="card" style="cursor:pointer">
-                    <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                      <div class="card-body text-center">
-                          <h4 class="card-title font-weight-bold">Sunlimetech</h4>
-                          <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                      </div>
-                  </div>
-                </div>
-                <!-- ./Team member -->
-                    <!-- Team member -->
-                    <div class="col-xs-12 col-sm-6 col-md-3">
-                      <div class="card" style="cursor:pointer">
-                        <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                          <div class="card-body text-center">
-                              <h4 class="card-title font-weight-bold">Sunlimetech</h4>
-                              <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- ./Team member -->
-                  <!-- Team member -->
-                  <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="card" style="cursor:pointer">
-                      <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                        <div class="card-body text-center">
-                            <h4 class="card-title font-weight-bold">Sunlimetech</h4>
-                            <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- ./Team member -->
-              </div>
-          </div>
-      </section>
+//pruebas juan
+   <div class="row text-center">
+    <!-- Team item-->
+    <div class="col-xl-2 col-sm-4 mb-5 rounded" *ngFor="let servicio of servicios" style="cursor:pointer"  (click)="goToViewDetail(servicio.id)">
+      <div class="bg-white rounded shadow-sm py-4 px-4"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+        <h5 class="mb-0">{{servicio.titulo}}</h5>
+      </div>
+    </div>
+   </div>
+    <!-- End-->
       <!-- Team -->
       <footer class="mainfooter" role="contentinfo">
         <div class="footer-middle">

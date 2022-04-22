@@ -1,3 +1,5 @@
+import { servicioDesModel } from './../../model/servicioDes.model';
+import { Destaca2 } from './../../model/busqueda.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -33,6 +35,24 @@ export class ServiciosService {
 
   getServiceById(id: Number):Observable<ServicioModel>{
     return this.http.get<ServicioModel>(`${environment.url}servicios/${id}`);
+  }
+//mis pruebas juan
+ /* getServiciosByDestacado(destacado: boolean):Observable<ServicioModel>{
+    return this.http.get<ServicioModel>(`${environment.url}servicios?destacado.equals=true`);
+  }
+*/
+  serviciosDestacados(destacado3: Destaca2):Observable<servicioDesModel[]>{
+    let params = new HttpParams()
+    params = params.append(destacado3.parameter, destacado3.value);
+    //params = params.append("id.in", busqueda.id.in.join(', '))
+    //params = params.append("servicioId", "")
+
+
+    return this.http.get<servicioDesModel[]>(`${environment.url}servicios?destacado.equals=true`).pipe((result => {
+      console.log("result: " ,result)
+      //make son validations in futuro
+      return result;
+    }));
   }
 
 }

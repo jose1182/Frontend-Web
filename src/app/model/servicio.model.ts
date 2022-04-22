@@ -10,4 +10,6 @@ export class ServicioModel {
   preciotraslado!: Number;
   usuario!: UsuarioModel;
   categorias!: CategoriaModel[]
+  //mis pruebas juan
+  destacado!: Boolean;
 }
