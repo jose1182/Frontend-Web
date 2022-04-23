@@ -1,4 +1,3 @@
-import { Destaca2 } from './../../model/busqueda.model';
 import { ServiciosService } from './../../services/servicios/servicios.service';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
@@ -25,16 +24,9 @@ export class HomeComponent implements OnInit {
     parameter: "",
     value: null,
   };
-
-  //mi parte de pruebas
   servicios!: servicioDesModel[];
-  destacado3 : Destaca2 = {
-    parameter: "",
-    value: null,
-  };
+
   
-
-
   constructor(
     private accountService: AccountService,
     private authJwtService: AuthJwtService,
@@ -56,10 +48,9 @@ export class HomeComponent implements OnInit {
 
     })
 
-    this.serviciosService.serviciosDestacados(this.destacado3).subscribe( servicios => {
+    this.serviciosService.serviciosDestacados().subscribe( servicios => {
       this.servicios = servicios;
     })
-
 
   }
   goToViewDetail(id: Number): void{

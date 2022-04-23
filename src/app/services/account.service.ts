@@ -26,7 +26,7 @@ export class AccountService {
   identify(force?: boolean): Observable<AccountModel | null>{
     if(!this.accountCache$ || force){
       this.accountCache$ = this.fetch().pipe(tap(()=>{
-        this.route.navigate(['home'])
+        //this.route.navigate(['home'])
       }))
     }
     return this.accountCache$.pipe(catchError(() => of(null)));
@@ -37,8 +37,9 @@ export class AccountService {
     console.log('fetch: ', environment.url + 'account')
     return this.http.get<AccountModel>(environment.url + 'account')
   }
-
+/*
   public fetch2(id: any): Observable<UsuarioModel> {
     return this.http.get<UsuarioModel>(environment.url + 'usuarios/'+ id);
 }
+*/
 }

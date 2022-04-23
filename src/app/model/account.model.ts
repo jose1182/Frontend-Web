@@ -1,5 +1,6 @@
 export class AccountModel {
 
+    public id: number | null;
     public activated: boolean;
     public authorities: string[];
     public email: string;
@@ -8,8 +9,10 @@ export class AccountModel {
     public lastName: string | null;
     public login: string;
     public imageUrl: string | null;
+    
 
   constructor(
+    id: number | null,
     activated: boolean,
     authorities: string[],
     email: string,
@@ -19,6 +22,7 @@ export class AccountModel {
     login: string,
     imageUrl: string | null
   ) {
+    this.id = id
     this.activated= activated
     this.authorities = authorities
     this.email = email
