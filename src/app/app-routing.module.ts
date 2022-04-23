@@ -12,6 +12,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ServiciosByCategoriaComponent } from './components/servicios-by-categoria/servicios-by-categoria.component';
 import { DetalleServicioComponent } from './components/detalle-servicio/detalle-servicio.component';
 import { BusquedaHomeComponent } from './components/busqueda-home/busqueda-home.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'account/reset/:finish',
     component: RecuperarPasswordLinkComponent
+  },
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent
   },
   {
     path: '404',

@@ -1,10 +1,11 @@
-import { UsuarioModel } from 'src/app/model/usuario.model';
+
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuario/usuarios.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { ServicioModel } from '../../model/servicio.model';
+import { Usuario } from '../../model/usuario.model';
 
 @Component({
   selector: 'app-perfil-visitado',
@@ -14,7 +15,7 @@ import { ServicioModel } from '../../model/servicio.model';
 export class PerfilVisitadoComponent implements OnInit {
 
   id!: number;
-  usuario!: UsuarioModel
+  usuario!: Usuario
   criteria: BusquedaServicio [] = [];
   servicios!: ServicioModel[];
 
@@ -47,9 +48,10 @@ getUrlParams(){
 getUserById(id: number):void{
   this.usuarioService.getUsuarioById(id).subscribe(usuario => {
     this.usuario = usuario;
+    console.log("usuario +++: ", usuario);
   }, (error) => {
     //TODO gestionar error
-    console.log(error)
+    console.log("Error +++: ", error)
   });
 }
 

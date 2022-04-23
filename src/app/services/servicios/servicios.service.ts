@@ -31,7 +31,7 @@ export class ServiciosService {
   }
 
 
-  getServiceById(id: Number):Observable<ServicioModel>{
+  getServiceById(id: number | undefined):Observable<ServicioModel>{
     return this.http.get<ServicioModel>(`${environment.url}servicios/${id}`);
   }
 

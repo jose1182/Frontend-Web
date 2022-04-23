@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { ServicioModel } from '../../model/servicio.model';
-import { UsuarioModel } from '../../model/usuario.model';
+import { IUsuario, Usuario } from '../../model/usuario.model';
+
 
 @Component({
   selector: 'app-detalle-servicio',
@@ -12,9 +13,9 @@ import { UsuarioModel } from '../../model/usuario.model';
 })
 export class DetalleServicioComponent implements OnInit {
 
-  id!: Number;
+  id!: number | undefined;
   service!: ServicioModel
-  usuario!: UsuarioModel
+  usuario!: Usuario
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +40,8 @@ export class DetalleServicioComponent implements OnInit {
     this.serviceService.getServiceById(this.id).subscribe( (service) => {
       this.service = service
 
+      console.log("service+++:", service)
+
       //get user information from service.usuario.id
       this.usuarioService.getUsuarioById(this.service.usuario.id).subscribe(usuario => {this.usuario = usuario})
 
@@ -47,7 +50,7 @@ export class DetalleServicioComponent implements OnInit {
     })
   }
 
-  goDetailPerfil(id: Number): void {
+  goDetailPerfil(id: number | undefined): void {
     this.router.navigate(['perfil-visitado', id]);
   }
 

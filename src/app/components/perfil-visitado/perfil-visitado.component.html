@@ -2,7 +2,13 @@
   <div class="row">
     <div class="col-xl-3 col-lg-3 mb-3">
       <mat-card class="example-card text-center" style="background-color: #5C3A7D">
-        <img mat-card-image  src="./../../../assets/photo.jfif" class="image-person img-fluid rounded-circle pt-3" alt="Photo of a Shiba Inu">
+        <img
+          mat-card-image
+          class="image-person img-fluid rounded-circle pt-3"
+          [src]="'data:' + usuario.imagenContentType + ';base64,' + usuario.imagen"
+          style="max-width: 100%"
+          alt="categoria image"
+        />
             <mat-card-title class="text-white">{{ usuario?.nombre }}</mat-card-title>
             <mat-card-subtitle class="text-white">{{ usuario?.profesion }}</mat-card-subtitle>
             <mat-card-actions>
@@ -50,10 +56,10 @@
               </div>
             </div>
           </div>
-        
+
 
   </div>
-
+{{usuario | json }}
   <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" aria-label="Search">
       <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
@@ -71,16 +77,16 @@
       <div class="row" style="align-items: center;">
             <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" >
                   <div class="card" style="background-color: #422678">
-                      <div class="text-center image-div" style="background-color: #5C3A7D">                                             
+                      <div class="text-center image-div" style="background-color: #5C3A7D">
                         <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
 
                       </div>
 
 
-                      <div class="text-center mt-5"> 
-                        <button class="button-resenas btn btn-outline-primary p-2 px-3 rounded">Ver reseñas</button> 
+                      <div class="text-center mt-5">
+                        <button class="button-resenas btn btn-outline-primary p-2 px-3 rounded">Ver reseñas</button>
 
-                          <h5 class="mt-2 mb-0 person-info">Paquito Paquiton</h5> 
+                          <h5 class="mt-2 mb-0 person-info">Paquito Paquiton</h5>
                           <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/briefcase-solid.svg">Paquitoner</h5>
                           <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/phone-solid.svg">Paquitoner</h5>
                           <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/location-dot-solid.svg">Paquitoner</h5>
@@ -94,14 +100,14 @@
                               <li><i class="fa fa-linkedin"></i></li>
                               <li><i class="fa fa-google"></i></li>
                           </ul>
-                          <div class="buttons"> 
-                            <button class="button-contact btn btn-outline-primary px-4">Ver servicios</button> 
-                            <button class="button-contact btn btn-primary px-4 ms-3">Enviar mensaje</button> 
+                          <div class="buttons">
+                            <button class="button-contact btn btn-outline-primary px-4">Ver servicios</button>
+                            <button class="button-contact btn btn-primary px-4 ms-3">Enviar mensaje</button>
                           </div>
                       </div>
                   </div>
                 </div>
-          
+
 
       </div>
     </div>
