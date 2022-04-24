@@ -45,7 +45,7 @@
           <li class="nav-item dropdown"  *ngIf="!isAuthenticated()" >
             <a class="nav-link dropdown-toggle" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons"  style="font-size:22px; vertical-align: middle;">person</i></a>
             <div class="dropdown-menu" aria-labelledby="dropdownId">
-                <a class="dropdown-item" routerLink="edit-profile">Perfil</a>
+                <a class="dropdown-item" (click)="goToPerfil()" >Perfil</a>
                 <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
             </div>
           </li>

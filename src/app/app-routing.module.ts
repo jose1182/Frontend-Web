@@ -50,7 +50,7 @@ const routes: Routes = [
     component: DetalleServicioComponent
   },
   {
-    path:'perfil-propio',
+    path:'perfil-propio/:vista',
     component: PerfilPropioComponent
   },
   {

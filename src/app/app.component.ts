@@ -32,8 +32,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.identify(true).subscribe( account => {
-      console.log(account)
       this.accountModel = account
+      console.log("Acount in app compneonte: ", this.accountModel)
     })
 
   }
@@ -54,5 +54,9 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/es/buscar-servicios'],{queryParams:{keyword: this.keyword, location: this.location}})
     this.keyword = null;
     this.location = null;
+  }
+
+  goToPerfil():void{
+    this.router.navigate(['perfil-propio/vista',], {queryParams:{id: this.accountModel?.id}})
   }
 }
