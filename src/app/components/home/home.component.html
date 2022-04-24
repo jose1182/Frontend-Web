@@ -1,87 +1,53 @@
-<!--Mio-->
+<div class="bg-image rounded-3 d-none d-md-block" style="background-image: url(./../../../assets/banner.webp); height: 350px; width: 100vw;">
+</div>
+<div class="container-fluid" id="main" style="padding: 0; margin: 0; background-color: white; width: 100vw;">
+  <div class="row justify-content-center" >
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div id="quest" style="background-color: #A381BD; text-align: center; align-items: center; width: 100vw;">
+      <h1 class="font-weight-bold" style="padding-top: 20px;">Encuentra los mejores Profesionales en tu zona</h1>
+      <p style="font-size: 1.2rem;">Programadores, Desarrolladores, software, Electricidad, Instaladores y todo al alcance de un click! Empieza ya</p>
 
+      <form class="form-inline justify-content-center">
 
-  <div class="bg-image rounded-3 d-none d-md-block" style="background-image: url(./../../../assets/banner.webp); height: 200px;">
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-    </div>
-  </div>
-  <div class="container-fluid  p-0">
-    <div class="row justify-content-center pt-5">
-      <div class="col-lg-7 col-sm-6 col-md-3 mx-2">
-
-          <h1 class="font-weight-bold">
-            Encuentra los mejores Profesionales en tu zona
-          </h1>
-          <p>Programadores, Desarrolladores, software, Electricidad, Instaladores y todo al alcance de un click! Empieza ya</p>
-
-          <form class="form-inline">
-            <label class="sr-only font-weight-bold" for="inlineFormInputName2">Name</label>
-            <div class="input-group mb-2 mr-sm-2 bg-white">
+           <label class="sr-only font-weight-bold" for="inlineFormInputGroupUsername2">Name</label>
+            <div class="input-group mb-2 mr-sm-2 input-field">
               <div class="input-group-prepend">
                 <div class="input-group-text bg-white font-weight-bold">Qué</div>
               </div>
-              <input type="text" class="form-control" id="inlineFormInputName2" placeholder="Título, descrpción">
+              <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Título, descrpción">
             </div>
 
 
             <label class="sr-only font-weight-bold" for="inlineFormInputGroupUsername2">Username</label>
-            <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group mb-2 mr-sm-2 input-field">
               <div class="input-group-prepend">
                 <div class="input-group-text bg-white font-weight-bold">Dónde</div>
               </div>
               <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Madrid">
             </div>
 
-            <button type="submit" class="btn mb-2 text-white" style="background-color: #422678">Buscar</button>
-          </form>
 
-
-     
-    <div class="container-flex  rounded" style="  overflow: hidden;" >
-        <div class="categoria-title">Categorias</div>
-
-        <div class="row align-items-center justify-content-center" >
-            <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let categoria of categorias" (click)="goToViewDetail(categoria.id)" >
-                <div class="box">
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center"> <img class="image-icon" src="./../../../assets/health.png" alt=""> </div>
-                        <div class="d-flex flex-column"> <b>{{categoria.nombre}}</b>  </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <button type="submit" class="btn mb-2 text-white" style="background-color: #422678; width: 100px; font-size: 1.1rem;">Buscar</button>
+      </form>
     </div>
-                  
-
-
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <hr>
-    <div class="container pb-5">
-        <div class="row justify-content-center mb-4">
-          <div class="col-lg-5">
-            <h2 class="display-5 font-weight-bold">En Net Jobs encontrarás lo que necesitas...</h2>
-          </div>
-        </div>
-
-        <div class="row text-center">
-          <!-- Team item-->
-          <div class="col-xl-2 col-sm-4 mb-5 rounded" *ngFor="let categoria of categorias" style="cursor:pointer"  (click)="goToViewDetail(categoria.id)">
-            <div class="bg-white rounded shadow-sm py-4 px-4"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-              <h5 class="mb-0">{{categoria.nombre}}</h5>
-            </div>
-          </div>
-          <!-- End-->
 
 
           
-        </div>
-        <div class="row justify-content-center mb-4">
-          <div class="col-lg-5 text-center">
-            <h2 class="font-italic">Muchos más que servicios...</h2>
-          </div>
-        </div>
-    </div>
+          <div class="container-flex  rounded" style="  overflow: hidden;" >
+            <h2 class="display-5 font-weight-bold categoria-title">En Net Jobs encontrarás lo que necesitas...</h2>
+
+    
+            <div class="row align-items-center justify-content-center" >
+                <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let categoria of categorias" (click)="goToViewDetail(categoria.id)" >
+                    <div class="box">
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center"> <img class="image-icon" src="./../../../assets/health.png" alt=""> </div>
+                            <div class="d-flex flex-column"> <b>{{categoria.nombre}}</b>  </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  
 
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -92,8 +58,8 @@
       <section id="team" class="pb-5">
           <div class="container">
             <div class="row justify-content-center mb-4">
-              <div class="col-lg-5">
-                <h1 class="font-weight-bold">Encuentra los mejores servcios</h1>
+              <div class="col-lg-8 text-center">
+                <h2 class="font-italic" style="font-size: 2rem;">Encuentra los mejores profecionales...</h2>
               </div>
             </div>
               <div class="row">
@@ -167,15 +133,15 @@
           </div>
       </section>
       <!-- Team -->
-      <footer class="mainfooter" role="contentinfo">
+      <footer class="mainfooter" role="contentinfo" style="background-color: #422678; width: 100vw;">
         <div class="footer-middle">
         <div class="container">
           <div class="row">
-            <div class="col-md-3 col-sm-6">
+            <div class="footer-col col-xl-3 col-lg-3 col-md-3 col-sm-6">
               <div class="footer-pad">
-                <h4> Footer Heading 1</h4>
+                <h4 class="footer-title"> Footer Heading 1</h4>
                 <ul class="list-unstyled">
-                  <li> <a href="#"> </a> </li>
+                  <li> <a href="#" > </a> </li>
                   <li> <a href="#">Payment Center</a></li>
                   <li> <a href="#"> Contact Directory </a></li>
                   <li> <a href="#">Forms</a></li>
@@ -184,9 +150,9 @@
                 </ul>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div class="footer-col col-xl-3 col-lg-3 col-md-3 col-sm-6">
               <div class="footer-pad">
-                <h4> Footer Heading 2</h4>
+                <h4 class="footer-title"> Footer Heading 2</h4>
                 <ul class="list-unstyled">
                   <li><a href="#"> Blog </a> </li>
                   <li><a href="#">Accessibility</a> </li>
@@ -197,9 +163,9 @@
                 </ul>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div class="footer-col col-xl-3 col-lg-3 col-md-3 col-sm-6">
               <div class="footer-pad">
-                <h4> Footer Heading 3 </h4>
+                <h4 class="footer-title"> Footer Heading 3 </h4>
                 <ul class="list-unstyled">
                   <li> <a href="#"> Parks and Recreation </a> </li>
                   <li> <a href="#"> Public Works </a> </li>
@@ -209,12 +175,12 @@
                 </ul>
               </div>
             </div>
-              <div class="col-md-3">
-                  <h4> Follow Us </h4>
-                  <ul class="social-network social-circle">
-                   <li> <a href="#" class="icoFacebook" title="Facebook"> <i class="fa fa-facebook"> </i> </a> </li>
-                   <li> <a href="#" class="icoLinkedin" title="Linkedin"> <i class="fa fa-linkedin"> </i> </a> </li>
-          <li> <a href="#"> <i class="fa fa-youtube" aria-hidden="true"> </i> </a> </li>
+              <div class="footer-col col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                  <h4 class="footer-title"> Follow Us </h4>
+                  <ul class="list-unstyled list-group list-group-horizontal">
+                   <li> <a href="#" class="icoFacebook" title="Facebook"> <img  class="img-social" src="./../../../assets/facebook-brands (1).svg"> Facebook</a> </li>
+                   <li> <a href="#" class="icoLinkedin" title="Linkedin"><img  class="img-social" src="./../../../assets/linkedin-brands (1).svg"> LinkedIn</a> </li>
+                  <li> <a href="#"><img  class="img-social" src="./../../../assets/youtube-brands (1).svg">YouTube </a> </li>
                   </ul>
           </div>
           </div>
@@ -227,3 +193,5 @@
         </div>
       </footer>
 </div>
+
+
