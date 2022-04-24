@@ -8,9 +8,10 @@ export class AccountModel {
     public lastName: string | null;
     public login: string;
     public imageUrl: string | null;
+    
 
   constructor(
-    id: number ,
+    id: number | null,
     activated: boolean,
     authorities: string[],
     email: string,

@@ -1,3 +1,4 @@
+import { servicioDesModel } from './../../model/servicioDes.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -33,6 +34,13 @@ export class ServiciosService {
 
   getServiceById(id: number | undefined):Observable<ServicioModel>{
     return this.http.get<ServicioModel>(`${environment.url}servicios/${id}`);
+  }
+
+  serviciosDestacados():Observable<servicioDesModel[]>{ 
+    return this.http.get<servicioDesModel[]>(`${environment.url}servicios?destacado.equals=true`).pipe((result => {   
+      
+      return result;
+    }));
   }
 
 }

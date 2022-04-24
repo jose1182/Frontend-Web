@@ -1,3 +1,4 @@
+import { ServiciosService } from './../../services/servicios/servicios.service';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { AccountModel } from '../../model/account.model';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { CategoriaModel } from '../../model/categoria.model';
 import { CategoriaService } from '../../services/categoria/categoria.service';
 import { Busqueda } from '../../model/busqueda.model';
+import { servicioDesModel } from 'src/app/model/servicioDes.model';
 
 
 
@@ -22,13 +24,15 @@ export class HomeComponent implements OnInit {
     parameter: "",
     value: null,
   };
+  servicios!: servicioDesModel[];
 
+  
   constructor(
     private accountService: AccountService,
     private authJwtService: AuthJwtService,
     private categoriasService: CategoriaService,
-    private router : Router
-    ) {
+    private serviciosService: ServiciosService,
+    private router : Router) {
 
   }
 
@@ -44,6 +48,9 @@ export class HomeComponent implements OnInit {
 
     })
 
+    this.serviciosService.serviciosDestacados().subscribe( servicios => {
+      this.servicios = servicios;
+    })
 
   }
   goToViewDetail(id: Number): void{

@@ -1,7 +1,8 @@
+import { IUsuario } from './../../model/usuario.model';
 import { Component, OnInit } from '@angular/core';
 import { AccountModel } from 'src/app/model/account.model';
 import { ServicioModel } from 'src/app/model/servicio.model';
-
+//import { UsuarioModel } from 'src/app/model/usuario.model';
 import { AccountService } from 'src/app/services/account.service';
 import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
 import { ServiciosService } from '../../services/servicios/servicios.service';
@@ -14,8 +15,8 @@ export class PerfilPropioComponent implements OnInit {
 
   service!: ServicioModel | null;
   accountModel!: AccountModel | null;
-  
-  id: Number | null | undefined;
+  usuarioModel!: IUsuario;
+  id: number | null | undefined;
 
   constructor(
     private accountService: AccountService,
@@ -30,9 +31,19 @@ export class PerfilPropioComponent implements OnInit {
       this.id = account?.id;
       this.accountModel = account;
       //console.log(this.accountModel);
+
+      if (this.id){
+        this.userData(this.id);
+        
+      }
     })
   }
 
-  
+  userData(id: number){
+    this.userService.getUsuarioById(id).subscribe( user => {
+      this.usuarioModel = user;
+      console.log(user);
+    })
+  }
 
 }
