@@ -1,115 +1,72 @@
-<div class="container-fluid mt-5">
-  <div class="row">
-    <div class="col-xl-3 col-lg-3 mb-3">
-      <mat-card class="example-card text-center" style="background-color: #5C3A7D">
-        <img
-          mat-card-image
-          class="image-person img-fluid rounded-circle pt-3"
-          [src]="'data:' + usuario.imagenContentType + ';base64,' + usuario.imagen"
-          style="max-width: 100%"
-          alt="categoria image"
-        />
-            <mat-card-title class="text-white">{{ usuario?.nombre }}</mat-card-title>
-            <mat-card-subtitle class="text-white">{{ usuario?.profesion }}</mat-card-subtitle>
-            <mat-card-actions>
-              <div class="row justify-content-center py-3">
-                <button class="btn btn-info m-2" mat-button><i class="material-icons text-light" style="font-size:30px; vertical-align: middle;">email</i> Contactar</button>
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center align-items-center" >
+    <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
+      
+      <div class="row" style="align-items: center;">
+        <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
+          <div class="card" >
+            <div class="row gutters">
+              <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="background-color: #5C3A7D; text-align: center;">
+                  
+                          <img mat-card-image  src="./../../../assets/photo.jfif" class="image-person img-fluid rounded-circle pt-3 center" alt="Photo of a Shiba Inu" style="margin-top: 10px;">
+                          <br>    
+                          <mat-card-title class="text-white">{{ usuario?.nombre }}</mat-card-title>
+                          <br>
+                              <mat-card-subtitle class="text-white" style="font-size: 1.3rem;">{{ usuario?.profesion }}</mat-card-subtitle>
+                              <mat-card-actions>
+                                <div class="row justify-content-center py-3">
+                                  <button class="btn button-envelope btn-info m-2" mat-button><img class="img-icon" src="./../../../assets/envelope-solid.svg"> Contactar</button>
+                                </div>
+                              </mat-card-actions>
+                  
+                              <ul class="list-group borderless">
+                                <li class="list-group-item">
+                                  <label>Email:</label>
+                                  <br>
+                                  <span class="text">{{ usuario?.correo }}</span>
+                                  
+                                </li>
+                                <li class="list-group-item  py-2">
+                                  <label>Localidad:</label>
+                                  <br>
+                                  <span class="text"> {{usuario?.localidad }}</span>
+                                </li>
+                                <li class="list-group-item  py-2">
+                                  <label>Provincia:</label>
+                                  <br>
+                                  <span class="text"> {{usuario?.provincia }}</span>
+                                </li>
+                              </ul>
               </div>
-            </mat-card-actions>
-      </mat-card>
 
-      <mat-card class="example-card mt-5 bg-light">
-        <mat-card-content>
-            <ul class="list-group borderless">
-              <li class="list-group-item bg-light">
-                <h5 class="m-0 font-weight-bold">Email:</h5>
-                <span class="text-primary">{{ usuario?.correo }}</span>
-              </li>
-              <li class="list-group-item bg-light py-2">
-                <h5 class="m-0 font-weight-bold">Localidad:</h5>
-                <span class="text-primary"> {{usuario?.localidad }}</span>
-              </li>
-              <li class="list-group-item bg-light py-2">
-                <h5 class="m-0 font-weight-bold">Provincia:</h5>
-                <span class="text-primary"> {{usuario?.provincia }}</span>
-              </li>
-            </ul>
-
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="col-lx-9 col-lg-9 card bg-light">
-      <div class="row">
-        <div class="card m-2" style="width: 23.5rem;" *ngFor="let servicio of servicios">
-          <div class="card-body pb-2">
-            <h3 class="card-title font-weight-bold"> {{servicio.titulo}} </h3>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">{{ servicio.descripcion }}</p>
-            <div class="d-flex justify-content-between">
-              <div>
-                <i class="material-icons text-primary" style="font-size:18px; vertical-align: middle;">email</i>
-                <a href="#" class="card-link text-dark ml-1">Enviar mensaje</a>
-              </div>
-              <div>
-                <i class="material-icons text-primary ml-3" style="font-size:18px; vertical-align: middle;">handyman</i>
-                <a href="#" class="card-link text-dark ml-1">Solicitar</a>
+              <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                  <div class="card card-servicio m-2" style="width: 20rem;" *ngFor="let servicio of servicios">
+                    <div class="card-body pb-2">
+                      <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
+                      <h6 class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">Card subtitle</h6>
+                      <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
+                      <div class="d-flex justify-content-between">
+                      <div>
+                        <img class="img-icon" src="./../../../assets/envelope-solid.svg">
+                        <a href="#" class="card-link text-dark ml-1">Enviar mensaje</a>
+                       </div>
+                      <div>
+                        <img class="img-icon" src="./../../../assets/screwdriver-wrench-solid.svg">
+                        <a href="#" class="card-link text-dark ml-1">Solicitar</a>
+                      </div>
+                    </div>
+                   </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-
-  </div>
-{{usuario | json }}
-  <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" aria-label="Search">
-      <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
-      <button class="login-button btn my-2 my-sm-0" type="button"  [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
-      <button class="login-button btn my-2 my-sm-0" type="button"  routerLinkActive="router-link-active" >Logout</button>
-  </form>
-
-
-
-
-
-<div class="container-fluid" style="background-color: white;">
-  <div class="row d-flex justify-content-center align-items-center" >
-    <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
-      <div class="row" style="align-items: center;">
-            <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" >
-                  <div class="card" style="background-color: #422678">
-                      <div class="text-center image-div" style="background-color: #5C3A7D">
-                        <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-
-                      </div>
-
-
-                      <div class="text-center mt-5">
-                        <button class="button-resenas btn btn-outline-primary p-2 px-3 rounded">Ver reseñas</button>
-
-                          <h5 class="mt-2 mb-0 person-info">Paquito Paquiton</h5>
-                          <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/briefcase-solid.svg">Paquitoner</h5>
-                          <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/phone-solid.svg">Paquitoner</h5>
-                          <h5 class="mt-2 mb-0  person-info-detail"><img class="icon" src="./../../../assets/location-dot-solid.svg">Paquitoner</h5>
-                          <div class="px-4 mt-1">
-                              <p class="fonts">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                          </div>
-                          <ul class="social-list">
-                              <li><i class="fa fa-facebook"></i></li>
-                              <li><i class="fa fa-dribbble"></i></li>
-                              <li><i class="fa fa-instagram"></i></li>
-                              <li><i class="fa fa-linkedin"></i></li>
-                              <li><i class="fa fa-google"></i></li>
-                          </ul>
-                          <div class="buttons">
-                            <button class="button-contact btn btn-outline-primary px-4">Ver servicios</button>
-                            <button class="button-contact btn btn-primary px-4 ms-3">Enviar mensaje</button>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-
-
+       </div>
       </div>
-    </div>
   </div>
-</div>
+
+
+
+
+
