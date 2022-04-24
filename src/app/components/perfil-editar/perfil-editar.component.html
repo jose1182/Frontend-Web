@@ -3,48 +3,6 @@
 
 <div class="overlay">
 
-<nav class="navbar navbar-light navbar-expand-lg navbar-fixed-top" style="background-color: #422678">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav">
-        <li>
-          <img
-          src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
-          class="rounded-circle perfil-image"
-          style="height: 40px; width: 40px;"/>
-        </li>
-
-        <li class="nav-item dropdown" style="color: white; font-size: 1.3rem; font-weight: 100;">
-          <a class="nav-link dropdown-toggle" style="color: white; padding-left: 20px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Perfil</a>
-
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #422678;">
-              <a class="nav-link" href="#" style="color: white;">Perfil<span class="sr-only">(current</span></a>
-              <a class="nav-link" href="#" style="color: white;">Buzón</a>
-              <a class="nav-link" href="#" style="color: white;">Favoritos <span class="sr-only">(current)</span></a>
-              <a class="nav-link" href="#" style="color: white;">Home <span class="sr-only" >(current)</span></a>
-              <div class="dropdown-divider"></div>
-              <span role="button"><a class="nav-link" style="color: white;">Log out<span class="sr-only">(current)</span></a></span>
-              <a class="nav-link"  [routerLink]="['/reset-password']" routerLinkActive="router-link-active" style="color: white;">Recuperar Password(provsional)<span class="sr-only">(current)</span></a>
-          </div>
-        </li>
-    </ul>
-  </div>
-
-  <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" aria-label="Search">
-      <button class="search-button btn my-2 my-sm-0" type="submit" style="color: white;">Search</button>
-      <button class="login-button btn my-2 my-sm-0" type="button"  [routerLink]="['/login']" routerLinkActive="router-link-active">Login</button>
-      <button class="login-button btn my-2 my-sm-0" type="button"  routerLinkActive="router-link-active" >Logout</button>
-  </form>
-</nav>
-
-
-
-
 <div class="container-fluid" style="background-color: white;">
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
@@ -77,6 +35,8 @@
                       </div>
                       <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                       <div class="card h-100 profile-info">
+
+                 
                         <div class="card-body">
                           <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

@@ -70,4 +70,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/recuperar-password']);
   }
 
+  goToHome():void{
+    this.router.navigate(['/home']);
+  }
+
 }

@@ -148,3 +148,52 @@ h1 {
 .fa-comments {
   margin-right: 7px
 }
+
+.title{
+  font-size: 2rem;
+}
+
+.main-container{
+  margin-top: 50px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    cursor: pointer;
+    border-style: solid;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    background: rgb(255,255,255);
+    background-image: linear-gradient(white, white );
+    transition: transform .2s; /* Animation */
+}
+
+
+
+.btn-categ:hover{
+  border: 1px solid #67418C !important;
+  background-color: white;
+  color: #67418C;
+  height: 50px;
+  font-size: 1.3rem;
+  width: 200px;
+  margin-top:10px;
+  margin-bottom: 30px;
+
+}
+
+.btn-categ{
+  border: 1px solid white !important;
+  background-color: #67418C;
+  color: #fff;
+  height: 55px;
+  font-size: 1.3rem;
+  width: 220px;
+  margin-top:10px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.btn-cont{
+  padding: 0 20px;
+}

@@ -1,11 +1,13 @@
-<div class="container mt-5">
+<div class="container-fluid" >
+  <div class="row d-flex justify-content-center align-items-center" >   
+    <div class="main-container col-lg-10" id="shadow" style="background-color: white; padding: 20px;">
+      <h2 class="title font-weight-bold text-center">Categorias principales</h2>
 
-  <div class="row">
-    <h2 class="display-5 font-weight-bold">Categorias principales</h2>
+      <div class="row d-flex justify-content-center align-items-center" >
     <div class="row text-center">
       <!-- Team item-->
-      <div class="m-1" *ngFor="let categoria of categorias" style="cursor:pointer">
-        <button type="button" class="btn btn-danger" (click)="goToViewDetail(categoria.id)">
+      <div class="btn-cont" *ngFor="let categoria of categorias" style="cursor:pointer">
+        <button type="button" class="btn btn-categ" (click)="goToViewDetail(categoria.id)">
           {{ categoria.nombre  }} <span class="badge badge-light"></span>
         </button>
       </div>
@@ -32,4 +34,5 @@
     </div>
   </div>
 </div>
-
+  </div>
+</div>

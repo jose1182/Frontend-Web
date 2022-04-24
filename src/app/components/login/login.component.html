@@ -6,7 +6,7 @@
         <div class="form-box col-sm-12 col-md-6 col-lg-6  align-items-center">
           <form [formGroup] ="this.loginForm" (ngSubmit)="submitForm()">
             <div class="upper-box">
-              <h1 id="title" class="text">NetJob</h1>
+              <h1 id="title" class="text" style="padding-top: 100px;">NetJob</h1>
               <h5 id="subtitle" class="text">Find your Service Worker</h5>
             </div>
 
@@ -44,7 +44,7 @@
             <p class="text" style="font-size: 1.3rem;" (click)="goToRegistro();">Don't have an account? <a class="text">Register here</a> </p>
 
             <div class="form-outline">
-              <button  [disabled]="isLoading" class="button btn btn-dark btn-lg btn-circle btn-block" type="submit">
+              <button  [disabled]="isLoading" class="button btn btn-dark btn-lg btn-circle btn-block" type="submit" (click)="goToHome();">
               <span class="spinner-border spinner-border-sm mr-1" *ngIf="isLoading"></span>
                 Login
               </button>

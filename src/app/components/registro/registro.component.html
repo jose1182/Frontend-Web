@@ -20,14 +20,14 @@
         <div class="form-box col-sm-12 col-md-6 col-lg-6  align-items-center">
           <form [formGroup] ="this.registerForm" (ngSubmit)="onSubmit();">
             <div class="upper-box">
-              <h1 id="title" class="text">NetJob</h1>
+              <h1 id="title" class="text" style="padding-top: 100px;">NetJob</h1>
               <h5 id="subtitle" class="text">Find your Service Worker</h5>
             </div>
 
             <div class="form-outline form-group">
               <input type="text"
                 class="form-control form-control-lg"
-                placeholder="login"
+                placeholder="Login"
                 formControlName="login"
                 />
                 <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">

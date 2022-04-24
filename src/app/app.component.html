@@ -17,24 +17,27 @@
         </ul>
 
         <div class="justify-content-center mx-auto">
-          <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline justify-content-center">
 
-            <div class="input-group bg-white mr-2">
-              <div class="input-group-prepend">
-                <div class="input-group-text bg-white font-weight-bold">Qué</div>
-              </div>
-          <input type="text" class="form-control" id="keyword"  name="keyword" placeholder="Título, descrpción"
-          [(ngModel)]="keyword">
-            </div>
-
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text bg-white font-weight-bold">Dónde</div>
-              </div>
-              <input type="text" class="form-control" id="location" name="location" placeholder="Madrid"
+               <div class="input-group mb-2 mr-sm-2 input-field">
+                 <div class="input-group-prepend">
+                   <div class="input-group-text bg-white font-weight-bold">Qué</div>
+                 </div>
+                 <input type="text" class="form-control" id="keyword"  name="keyword" placeholder="Título, descrpción"
+                 [(ngModel)]="keyword">
+               </div>
+   
+               <div class="input-group mb-2 mr-sm-2 input-field">
+                 <div class="input-group-prepend">
+                   <div class="input-group-text bg-white font-weight-bold">Dónde</div>
+                 </div>
+                 <input type="text" class="form-control" id="location" name="location" placeholder="Madrid"
               [(ngModel)]="location">
-            </div>
-              <button type="submit" class="btn btn-outline-primary mx-2 my-sm-0" (click)="getservcios()" style="background-color: #422678">Buscar servicio</button>
+               </div>
+
+               <div class="input-group mb-2 mr-sm-2 input-field">
+                <button type="submit" class="btn btn-buscar mx-2 my-sm-0" (click)="getservcios()" >Buscar servicio</button>
+              </div>
             </form>
         </div>
 
@@ -50,9 +53,9 @@
             </div>
           </li>
 
-        <a class="btn btn-outline-success d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="registro">REGISTRATE</a>
-        <a class="btn btn-outline-info d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="login">INGRESAR</a>
-        <a class="btn btn-outline-danger d-lg-inline-block mb-3 mb-md-0 ml-md-3" routerLink="registro">PUBLICAR SERVICIO</a>
+        <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="registro">REGISTRATE</a>
+        <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="login">LOGIN</a>
+        <a class="btn btn-publicar d-lg-inline-block mb-3 mb-md-0 ml-md-3" routerLink="registro">PUBLICAR SERVICIO</a>
         </ul>
       </div>
   </div>

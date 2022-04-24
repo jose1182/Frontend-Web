@@ -1,0 +1,35 @@
+.btn-buscar{
+    color: aliceblue;
+    border: solid 1px white;
+    background-color: #422168;
+}
+
+.btn-buscar:hover{
+    color: #422168;
+    border: solid 1px #422168;
+    background-color: white;
+}
+
+.btn-publicar{
+    border: 1px solid #A381BD !important;
+    background-color: #A381BD;
+    color: #fff;
+}
+
+.btn-publicar:hover{
+    border: 1px solid #A381BD !important;
+    background-color: white;
+    color: #A381BD;
+}
+
+.btn-login{
+    border: 1px solid #A381BD !important;
+    background-color: white;
+    color: #A381BD;
+}
+
+.btn-login:hover{
+    border: 1px solid #A381BD !important;
+    background-color: #A381BD;
+    color: #fff;
+}
