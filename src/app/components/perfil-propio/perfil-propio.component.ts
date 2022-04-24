@@ -22,7 +22,7 @@ export class PerfilPropioComponent implements OnInit {
     private accountService: AccountService,
     private userService: UsuariosService,
     private serviceService: ServiciosService,
-  ) { 
+  ) {
     this.id = 0;
   }
 
@@ -30,11 +30,9 @@ export class PerfilPropioComponent implements OnInit {
     this.accountService.identify(true).subscribe( account => {
       this.id = account?.id;
       this.accountModel = account;
-      //console.log(this.accountModel);
-
       if (this.id){
         this.userData(this.id);
-        
+
       }
     })
   }

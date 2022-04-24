@@ -1,63 +1,44 @@
-<div class="bg-image rounded-3 d-none d-md-block" style="background-image: url(./../../../assets/banner.webp); height: 350px; width: 100vw;"> 
+<div class="bg-image rounded-3 d-none d-md-block" style="background-image: url(./../../../assets/banner.webp); height: 350px; width: 100vw;">
   <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
   </div>
 </div>
 
 <div class="container-fluid " style="background-color: #E6E6FA	">
-    <div class="categoria-title">En NetJob encontrarás lo que necesitas...</div>
+  <div class="categoria-title">En NetJob encontrarás lo que necesitas...</div>
 
-    <div class="row align-items-center justify-content-center" >
-        <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let categoria of categorias" (click)="goToViewDetail(categoria.id)" >
-            <div class="box">
-                <div class="d-flex align-items-center">
-                    <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center" style="width: 150px;"> 
-                      <img class="image-icon rounded-circle"
-                      [src]="'data:' + categoria.imagenContentType + ';base64,' + categoria.imagen"
-                      alt="categoria image"
-                    />
-                    <div class="d-flex flex-column"> <b>{{categoria.nombre}}</b>  </div>
-                </div>
-            </div>
-          </div>
-
-    </div>
-
-</div>
-
-
-
-<div class="col-12" style="text-align: center;">
-  <h2 class="font-italic" style="font-size: 2rem; padding-top:30px; padding-bottom: 30px;">Muchos más que servicios...</h2>
-</div>
-<div class="container-flex  rounded" style="  overflow: hidden; " >
-  <div class="row  justify-content-center" style="align-items:flex-end;">
-     <!-- <div class="col-6 text-right">
-          <a class="btn btn-dark mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
-              <i class="fa fa-arrow-left"><</i>
-          </a>
-          <a class="btn btn-dark mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
-              <i class="fa fa-arrow-right">></i>
-          </a>
-      </div>-->
-      <div class="col-12"  >
-          <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-              <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <div class="row text-center">
-                      <div class="col-xl-2 col-md-4 col-sm-12 mb-3" *ngFor="let servicio of servicios" style="cursor:pointer; padding-bottom: 50px;"  (click)="goToViewDetail(servicio.id)">
-                        <div class="card" style="background-color: #422678; color: white; text-align: center;">
-                          <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                          <div class="card-body">
-                              <h4 class="card-text" style="font-size: 1rem;">Name Name</h4>
-                              <h5 class="card-title" style="font-size: 1.3rem;">{{servicio.titulo}}</h5>
-                          </div>
-                        </div>
-                      </div>
-                     </div>
-                  </div>
-                </div>
+  <div class="row align-items-center justify-content-center" >
+    <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let categoria of categorias" (click)="goToViewDetail(categoria.id)" >
+      <div class="box">
+        <div class="d-flex align-items-center">
+          <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center" style="width: 150px;">
+            <img class="image-icon rounded-circle"
+              [src]="'data:' + categoria.imagenContentType + ';base64,' + categoria.imagen"
+              alt="categoria image"/>
+              <div class="d-flex flex-column"> <b>{{categoria.nombre}}</b>
               </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12" style="text-align: center;">
+    <h2 class="font-italic" style="font-size: 2rem; padding-top:30px; padding-bottom: 30px;">Muchos más que servicios...</h2>
+  </div>
+  <div class="container-flex  rounded m-dest" style="  overflow: hidden; " >
+    <div class="row justify-content-center" style="align-items:flex-end;">
+        <div class="col-12"  >
+          <div class="row">
+            <div class="col-xl-2 col-md-4 col-sm-12 mb-3" *ngFor="let servicio of servicios" style="cursor:pointer; padding-bottom: 50px;"  (click)="goToViewDetail(servicio.id)">
+              <div class="card" style="background-color: #422678; color: white; text-align: center;">
+                <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
+                <div class="card-body">
+                  <h4 class="card-text" style="font-size: 1rem;">Name Name</h4>
+                  <h5 class="card-title" style="font-size: 1.3rem;">{{servicio.titulo}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
   </div>
 </div>

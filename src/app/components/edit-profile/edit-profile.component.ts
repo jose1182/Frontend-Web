@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { DataUtils, FileLoadError } from '../../core/util/data-util.service';
@@ -23,7 +23,7 @@ export class EditProfileComponent implements OnInit {
   isSaving = false;
   usersSharedCollection: IUser[] = [];
   editForm: FormGroup;
-
+  id!:number;
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
@@ -33,6 +33,7 @@ export class EditProfileComponent implements OnInit {
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder,
+    protected route: ActivatedRoute
   ) {
     this.editForm = this.fb.group({
       id: [],
@@ -54,14 +55,22 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.usuariosService.getUsuarioById(3).subscribe(usuario =>{
-      this.updateForm(usuario);
-      this.loadRelationshipsOptions();
-    })
-
+    this.getQueryParams();
     console.log("user ollections: ", this.usersSharedCollection);
 
+  }
+
+  getQueryParams(): void {
+    this.route.paramMap.subscribe((params: Params) => {
+      if(params.get('id')){
+        this.id = params.get('id');
+        this.usuariosService.getUsuarioById(this.id).subscribe(usuario =>{
+          this.updateForm(usuario);
+          this.loadRelationshipsOptions();
+        })
+
+      }
+    })
   }
 
   byteSize(base64String: string): string {

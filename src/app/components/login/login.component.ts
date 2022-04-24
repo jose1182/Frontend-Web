@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
 
     this.sent = true
 
+    console.log("Error");
+
     if(!this.loginForm.valid){return}
 
     let loginModel: LoginModel = new LoginModel(this.f.username.value, this.f.password.value,this.f.remenberMe.value);
@@ -52,8 +54,11 @@ export class LoginComponent implements OnInit {
         response => {
           this.isLoading = false;
           this.errorMsg = null;
+          console.log("login: ", response);
+          this.goToHome();
         }, error =>{
           this.errorMsg = `⚠️ ¡No se ha podido iniciar la sesión! (${error.error?.detail})`;
+          console.log("Error: ", this.errorMsg);
           this.isLoading = false
         },
         () => {

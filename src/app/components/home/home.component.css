@@ -133,7 +133,7 @@ footer {
    color: white;
  }
 
- 
+
 .button-ver{
     border: 1px solid white !important;
     background-color: #8E24AA;
@@ -173,4 +173,9 @@ footer {
   height: 120px;
   margin-top: 20px;
   object-fit: cover;
+}
+
+.m-dest{
+  margin-left: 150px;
+  margin-right: 150px;
 }

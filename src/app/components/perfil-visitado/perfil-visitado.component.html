@@ -1,15 +1,16 @@
 <div class="container-fluid">
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
-      
+
       <div class="row" style="align-items: center;">
         <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
           <div class="card" >
             <div class="row gutters">
               <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="background-color: #5C3A7D; text-align: center;">
-                  
-                          <img mat-card-image  src="./../../../assets/photo.jfif" class="image-person img-fluid rounded-circle pt-3 center" alt="Photo of a Shiba Inu" style="margin-top: 10px;">
-                          <br>    
+                          <img mat-card-image class="image-person img-fluid rounded-circle pt-3 center"
+                          [src]="'data:' + usuario.imagenContentType + ';base64,' + usuario.imagen"
+                          alt="perfil image"/>
+                          <br>
                           <mat-card-title class="text-white">{{ usuario?.nombre }}</mat-card-title>
                           <br>
                               <mat-card-subtitle class="text-white" style="font-size: 1.3rem;">{{ usuario?.profesion }}</mat-card-subtitle>
@@ -18,13 +19,13 @@
                                   <button class="btn button-envelope btn-info m-2" mat-button><img class="img-icon" src="./../../../assets/envelope-solid.svg"> Contactar</button>
                                 </div>
                               </mat-card-actions>
-                  
+
                               <ul class="list-group borderless">
                                 <li class="list-group-item">
                                   <label>Email:</label>
                                   <br>
                                   <span class="text">{{ usuario?.correo }}</span>
-                                  
+
                                 </li>
                                 <li class="list-group-item  py-2">
                                   <label>Localidad:</label>

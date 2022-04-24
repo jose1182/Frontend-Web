@@ -6,7 +6,7 @@
 <div class="container-fluid" style="background-color: white;">
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
-      
+
       <div class="row" style="align-items: center;">
             <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" >
                   <div class="card" style="background-color: #422678;">
@@ -16,13 +16,13 @@
                           <div class="row gutters">
                               <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup] ="editForm">
                                 <h2 id="jhi-usuario-heading" data-cy="UsuarioCreateUpdateHeading" style="font-size: 3rem;">Editar Mis Datos</h2>
-                          
+
                                 <div class="form-row">
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" [hidden]="editForm.get('id')!.value == null">
                                     <label class="form-control-label" for="field_id">ID</label>
                                     <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
                                   </div>
-                          
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_nombre">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
@@ -33,7 +33,7 @@
                                       </small>
                                     </div>
                                   </div>
-                          
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_apellidos">Apellidos</label>
                                     <input type="text" class="form-control" name="apellidos" id="field_apellidos" data-cy="apellidos" formControlName="apellidos" />
@@ -43,10 +43,10 @@
                                       </small>
                                     </div>
                                   </div>
-                          
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_correo">Correo</label>
-                                    <input type="text" class="form-control" name="correo" id="field_correo" data-cy="correo" formControlName="correo" />
+                                    <input type="text" class="form-control" name="correo" id="field_correo" data-cy="correo" formControlName="correo"  [readonly]="true" />
                                     <div *ngIf="editForm.get('correo')!.invalid && (editForm.get('correo')!.dirty || editForm.get('correo')!.touched)">
                                       <small class="form-text text-danger" *ngIf="editForm.get('correo')?.errors?.required"> This field is required. </small>
                                       <small class="form-text text-danger" *ngIf="editForm.get('correo')?.errors?.maxlength">
@@ -54,7 +54,7 @@
                                       </small>
                                     </div>
                                   </div>
-                          
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_dni">Dni</label>
                                     <input type="text" class="form-control" name="dni" id="field_dni" data-cy="dni" formControlName="dni" />
@@ -65,7 +65,7 @@
                                       </small>
                                     </div>
                                   </div>
-                          
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_direccion">Direccion</label>
                                     <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
@@ -73,7 +73,7 @@
                                       <small class="form-text text-danger" *ngIf="editForm.get('direccion')?.errors?.required"> This field is required. </small>
                                     </div>
                                   </div>
-                          
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_localidad">Localidad</label>
                                     <input type="text" class="form-control" name="localidad" id="field_localidad" data-cy="localidad" formControlName="localidad" />
@@ -81,7 +81,7 @@
                                       <small class="form-text text-danger" *ngIf="editForm.get('localidad')?.errors?.required"> This field is required. </small>
                                     </div>
                                   </div>
-                          
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_provincia">Provincia</label>
                                     <input type="text" class="form-control" name="provincia" id="field_provincia" data-cy="provincia" formControlName="provincia" />
@@ -89,7 +89,7 @@
                                       <small class="form-text text-danger" *ngIf="editForm.get('provincia')?.errors?.required"> This field is required. </small>
                                     </div>
                                   </div>
-                          
+
 
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_fn">Fn</label>
@@ -111,8 +111,8 @@
                                       </small>
                                     </div>
                                   </div>
-                                 
-                                 
+
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_imagen">Imagen</label>
                                     <div>
@@ -127,7 +127,7 @@
                                         <button
                                           type="button"
                                           (click)="clearInputImage('imagen', 'imagenContentType', 'file_imagen')"
-                                          class="btn btn-secondary btn-xs pull-right" style="margin-left:15px;">ICONO</button>
+                                          class="btn btn-danger btn-xs pull-right" style="margin-left:15px;">Eliminar</button>
                                       </div>
                                       <input type="file" id="file_imagen" data-cy="imagen" (change)="setFileData($event, 'imagen', true)" accept="image/*" />
                                     </div>
@@ -140,7 +140,7 @@
                                       formControlName="imagenContentType"
                                     />
                                   </div>
-                          
+
 
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="field_profesion">Profesion</label>
@@ -164,32 +164,32 @@
                                   </div>
 
                                 </div>
-                          
+
 
                                 <div class="row gutters">
                                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="buttons text-right"> 
+                                    <div class="buttons text-right">
                                       <button class="button-guardar btn px-4 ms-3"  type="submit"
                                       id="save-entity"
                                       data-cy="entityCreateSaveButton"
                                       [disabled]="editForm.invalid || isSaving"
-                                     >Guardar</button> 
-                                      
+                                     >Guardar</button>
+
                                     </div>
                                   </div>
                                 </div>
                               </form>
                           </div>
-                          
-                          
+
+
                         </div>
-                      
+
                       </div>
                       </div>
                       </div>
-                  
+
                 </div>
-          
+
 
       </div>
     </div>

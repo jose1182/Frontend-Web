@@ -13,7 +13,7 @@ import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicios-by-categoria.component';
 import { DetalleServicioComponent } from './detalle-servicio/detalle-servicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { BusquedaHomeComponent } from './busqueda-home/busqueda-home.component';
+
 
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
@@ -23,8 +23,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
+
 import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { BusquedaHomeComponent } from './busqueda-home/busqueda-home.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { CrearServicioComponent } from './crear-servicio/crear-servicio.component';
+import { PasarelaPagoComponent } from './pasarela-pago/pasarela-pago.component';
 
 
 @NgModule({
@@ -42,8 +47,12 @@ import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
     NavbarComponent,
     BusquedaHomeComponent,
     EditProfileComponent,
-    PerfilEditarComponent
+    PerfilEditarComponent,
+    PricingComponent,
+    CrearServicioComponent,
+    PasarelaPagoComponent
   ],
+  exports:[PricingComponent],
   imports: [
     CommonModule,
     FormsModule,
