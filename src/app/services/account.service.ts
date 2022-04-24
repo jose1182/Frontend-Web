@@ -16,6 +16,7 @@ export class AccountService {
   private userIdentify: AccountModel | null = null;
   private authenticateState = new ReplaySubject<AccountModel | null>(1);
   public accountCache$?: Observable<AccountModel> | null;
+  public role: string = "rolespecialista"
 
   constructor(
     private http : HttpClient,
@@ -38,6 +39,11 @@ export class AccountService {
   private fetch(): Observable<AccountModel>{
     console.log('fetch: ', environment.url + 'account')
     return this.http.get<AccountModel>(environment.url + 'account')
+  }
+
+  //solo para test, no se contempla implentar un servicio de pago
+  updateAccount(): Observable<{}>{
+    return this.http.post(`${environment.url + this.role}`,"");
   }
 
   logout(){

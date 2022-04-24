@@ -13,6 +13,9 @@ import { ServiciosByCategoriaComponent } from './components/servicios-by-categor
 import { DetalleServicioComponent } from './components/detalle-servicio/detalle-servicio.component';
 import { BusquedaHomeComponent } from './components/busqueda-home/busqueda-home.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
+import { PricingComponent } from './components/pricing/pricing.component';
+import { PasarelaPagoComponent } from './components/pasarela-pago/pasarela-pago.component';
 
 
 const routes: Routes = [
@@ -50,6 +53,10 @@ const routes: Routes = [
     component: DetalleServicioComponent
   },
   {
+    path: 'crear-servicio',
+    component: CrearServicioComponent
+  },
+  {
     path:'perfil-propio/:vista',
     component: PerfilPropioComponent
   },
@@ -66,8 +73,16 @@ const routes: Routes = [
     component: RecuperarPasswordLinkComponent
   },
   {
-    path: 'edit-profile',
+    path: 'edit-profile/edit/:id',
     component: EditProfileComponent
+  },
+  {
+    path: 'cuenta-especialista',
+    component: PricingComponent
+  },
+  {
+    path: 'payment-credit-card',
+    component: PasarelaPagoComponent
   },
   {
     path: '404',
