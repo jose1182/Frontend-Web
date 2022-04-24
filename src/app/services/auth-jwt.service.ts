@@ -5,6 +5,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { CookieService } from "ngx-cookie-service";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 const LOGIN_KEY = 'token_id';
@@ -21,10 +23,13 @@ export class AuthJwtService {
 
   private loginModelBehaviorSubject: BehaviorSubject<JwtToken | null>;
   public login: Observable<JwtToken | null>;
+  public token!: JwtToken | null;
 
   constructor(
     private http: HttpClient,
-    private route: Router
+    private route: Router,
+    private cookies: CookieService,
+    private jwtHelper: JwtHelperService
     ) {
       this.loginModelBehaviorSubject = new BehaviorSubject<JwtToken | null>(JSON.parse(<string>localStorage?.getItem(LOGIN_KEY)));
       this.login = this.loginModelBehaviorSubject.asObservable();
@@ -58,7 +63,7 @@ export class AuthJwtService {
 performLogout(): void {
   localStorage.removeItem(LOGIN_KEY);
   this.loginModelBehaviorSubject.next(null);
-  this.route.navigate(['/login']);
+  this.route.navigate(['/home']);
 }
 
 
@@ -67,7 +72,15 @@ loginValue(): JwtToken | null {
 
 }
 
+getToken(){
+  return this.cookies.get("id_token");
+}
 
+
+isAuthenticated():boolean{
+  this.token = this.loginValue();
+  return this.token == null
+}
 
 
 }

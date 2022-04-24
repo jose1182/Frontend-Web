@@ -2,35 +2,35 @@
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-10" id="shadow" style="height: 500px">
       <div class="row">
-            
+
         <div class="form-box col-sm-12 col-md-6 col-lg-6  align-items-center">
           <form [formGroup] ="this.loginForm" (ngSubmit)="submitForm()">
             <div class="upper-box">
               <h1 id="title" class="text">NetJob</h1>
               <h5 id="subtitle" class="text">Find your Service Worker</h5>
             </div>
-                     
+
             <div class="form-outline form-group">
-              <input type="text" 
-                class="form-control form-control-lg is-invalid" 
+              <input type="text"
+                class="form-control form-control-lg is-invalid"
                 placeholder="Username"
                 formControlName="username"
                 [ngClass]="{'is-invalid': this.sent && this.loginForm.controls.username.errors}"/>
               <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.username.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
               </div>
             </div>
-  
+
 
             <div class="form-outline form-group">
-              <input type="password" 
-                class="form-control form-control-lg" 
+              <input type="password"
+                class="form-control form-control-lg"
                 placeholder="Password"
                 formControlName="password"
                  [ngClass]="{'is-invalid': this.sent && this.loginForm.controls.password.errors}"/>
               <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.password.errors?.required" style="font-size: 1.7rem;">¡Tienes que rellenar este campo!
               </div>
             </div>
-    
+
 
             <div class="container form-group form-outline align-items-center" style="margin: 0; text-align: center;">
                   <input type="checkbox"
@@ -61,4 +61,4 @@
     </div>
   </div>
 </div>
-  
+

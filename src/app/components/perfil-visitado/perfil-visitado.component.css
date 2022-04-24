@@ -1,10 +1,14 @@
-.image-person{
-    width: 250px;
-    height: 250px;
-    margin-top: 20px;
-    object-fit: cover;
-    margin-bottom: 30px;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+*{
+    font-family: "Roboto";
+
 }
+
+body {
+    background: #eee
+}
+
 
 .example-card {
   max-width: 600px;
@@ -19,3 +23,192 @@
   border: 0;
   padding: 0%;
 }
+
+
+.card {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    cursor: pointer;
+    border-style: solid;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    background: rgb(255,255,255);
+    background-image: linear-gradient(white, white );
+    transition: transform .2s; /* Animation */
+}
+
+.zoom {
+    padding: 50px;
+    background-color: green;
+    transition: transform .2s; /* Animation */
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+  
+  .card:hover {
+    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+
+
+.social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0
+}
+
+.social-list li {
+    padding: 10px;
+    color: #8E24AA;
+    font-size: 19px
+}
+
+
+
+.image-person{
+    width: 350px;
+    height: 350px;
+    margin-top: 20px;
+    object-fit: cover;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+
+.person-info{
+    font-size: 2.7rem;
+    color: black;
+}
+
+.person-info-detail{
+    font-size: 2rem;
+    color: black;
+}
+
+nav{
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+    padding: 5px !important;
+
+}
+
+.search-button{
+    background-color: #A381BD;
+}
+
+.navbar .navbar-brend{
+    border-style: dashed;
+    border-color: aquamarine;
+}
+
+a{
+    font-weight: 300;
+}
+
+.navbar>a{
+    border-right: 1px solid white;
+    padding-right: 20px;
+}
+
+.login-button{
+    color: black;
+    background-color: #f8f8f8;
+    margin-left: 10px;
+}
+
+
+
+  .icon{
+      height: 30px;
+      margin-right: 10px;
+      text-align: center;
+  }
+
+
+.profile-info{
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+}
+
+.button-envelope{
+    border: 1px solid #8E24AA !important;
+    background-color: white;
+    color: #8E24AA;
+    height: 50px;
+    font-size: 1.3rem;
+    width: 250px;
+    margin-top:10px;
+    margin-bottom: 30px;
+}
+
+.button-envelope:hover{
+    border: 1px solid white !important;
+    background-color: #8E24AA;
+    color: #fff;
+    height: 55px;
+    font-size: 1.3rem;
+    width: 250px;
+    margin-top:10px;
+    margin-bottom: 30px;
+}
+
+.change-img{
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+li{
+  background-color: #5C3A7D;;
+}
+
+.example-card{
+  border: none;
+  border-radius: 0;
+}
+
+.img-icon{
+  height: 30px;
+}
+
+
+
+.text{
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+label{
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #A381BD;
+  padding: 5px;
+  border-radius: 30px;
+  width: 175px;
+
+}
+
+.card-servicio{
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  background: rgb(255,255,255);
+  background-image: linear-gradient(white, white );
+  transition: transform .2s; /* Animation */
+}
+
+

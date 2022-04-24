@@ -1,5 +1,5 @@
 import { CategoriaModel } from './categoria.model';
-import { UsuarioModel } from './usuario.model';
+import { Usuario } from './usuario.model';
 export class ServicioModel {
 
   id!: Number;
@@ -8,6 +8,6 @@ export class ServicioModel {
   disponibilidad!: String;
   preciohora!: Number;
   preciotraslado!: Number;
-  usuario!: UsuarioModel;
+  usuario!: Usuario;
   categorias!: CategoriaModel[]
 }

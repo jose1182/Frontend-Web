@@ -23,12 +23,12 @@ export class HomeComponent implements OnInit {
     value: null,
   };
 
-
   constructor(
     private accountService: AccountService,
     private authJwtService: AuthJwtService,
     private categoriasService: CategoriaService,
-    private router : Router) {
+    private router : Router
+    ) {
 
   }
 

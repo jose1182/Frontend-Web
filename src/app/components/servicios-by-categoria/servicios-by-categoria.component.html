@@ -1,160 +1,3 @@
-<!--
-
-<div class="container my-5">
-  <form>
-      <div class="row">
-          <div class="col">
-              <div class="form-group">
-                  <label for="usuarioElegido"><b>Espcialista:</b></label>
-                  <select class="form-control" name="usuarioElegido" id="usuarioElegido" [(ngModel)]="filter.usuarioElegido"
-                      (change)="onChangeUsuario()">
-                      <option [ngValue]="null" selected>Elige un especialista</option>
-                      <option  [ngValue]="usuario.user.id" *ngFor="let usuario of usuarios">{{usuario.user.login}}</option>
-                  </select>
-              </div>
-          </div>
-
-          <div class="col">
-              <div class="form-group">
-                  <label for="especialista"><b>Categoria:</b></label>
-                  <select *ngIf="!filter.usuarioElegido && !filter.todos" class="form-control" name="especialista" id="especialista" disabled>
-                      <option value="''" selected>Elige una Categoria</option>
-                  </select>
-                  <select *ngIf="filter.usuarioElegido || filter.todos" class="form-control" name="especialista" id="especialista"
-                      [(ngModel)]="filter.categoriaElegido" (change)="onChangeUsuarioCategoria()">
-                      <option [ngValue]="null" selected>Elige un Categoria</option>
-                      <option [ngValue]="categoria.id" *ngFor="let categoria of categoriasFilter">
-                          {{categoria.nombre}}
-                      </option>
-                  </select>
-              </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-                <label for="contenido" class="mr-2"><b>Busqueda:</b></label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
-                  <label class="form-check-label" for="contenido">
-                    Todos
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="true" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
-                  <label class="form-check-label" for="contenido">
-                    Titulo
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="contenido" id="contenido" [value]="false" [(ngModel)]="filter.contenido" (change)="onchangeFilterTodos()">
-                  <label class="form-check-label" for="contenido"
-                  >
-                    Descripción
-                  </label>
-                </div>
-                <div class="input-group">
-                    <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
-                    [disabled]="filter.titleOrDescription == null">Vaciar</button>
-                    <input type="text" class="form-control" name="disponibilidad" id="disponibilidad"
-                    [(ngModel)]="filter.titleOrDescription" [disabled]="!filter.todos">
-                    <button class="btn btn-outline-success" (click)="onChangeListByContenido()"
-                    [disabled]="filter.titleOrDescription == null">Filtrar</button>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label for="precioDesde"><b>Precio Desde:</b></label>
-                <div class="input-group">
-                    <button class="btn btn-outline-danger" (click)="clearPreciosDesde()"
-                    [disabled]="!filter.precioDesde">Vaciar</button>
-                    <input type="number" class="form-control" name="precioDesde" id="precioDesde"
-                    [(ngModel)]="filter.precioDesde">
-                    <button class="btn btn-outline-success" (click)="onChangePrecioDesde()"
-                    [disabled]="!filter.precioDesde">Filtrar</button>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="precioHasta"><b>Precio Hasta:</b></label>
-                <div class="input-group">
-                        <button class="btn btn-outline-danger" (click)="clearPreciosHasta()"
-                        [disabled]="!filter.precioHasta">Vaciar</button>
-                        <input type="number" class="form-control" name="precioHasta" id="precioHasta"
-                        [(ngModel)]="filter.precioHasta">
-                        <button class="btn btn-outline-success" (click)="onChangePrecioHasta()"
-                        [disabled]="!filter.precioHasta">Filtrar</button>
-                    </div>
-            </div>
-        </div>
-        <div class="col-4">
-          <div class="form-group">
-              <label for="color"><b>Horario:</b></label>
-              <select class="form-control" name="color" id="color"
-              [(ngModel)]="filter.horario" (change)="onChangeHorarioServicio()">
-                  <option value="" selected>Elige horario</option>
-                  <option value="MANANA">Mañana</option>
-                  <option value="TARDE">Tarde</option>
-                  <option value="COMPLETA">Completa</option>
-              </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-      <div class="col-8">
-
-      </div>
-      <div class="col-4">
-        <label for="reset"><b>Reset:</b></label>
-        <button class="btn btn-outline-danger form-control" (click)="reset()">Borrar Filtros</button>
-      </div>
-    </div>
-  </form>
-</div>
-<div class="container" style="margin-top: 70px;">
-  <div class="table-responsive-sm">
-    <table class="table table-hover table-dark">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Título</th>
-          <th>Descripción</th>
-          <th>Disponibilidad</th>
-          <th>Precio hora</th>
-          <th>Precio Desplazamiento</th>
-          <th>Técnico</th>
-          <th>Categoria</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let servicio of servicios; let i = index" [attr.data-index]="i">
-          <td>{{ servicio.id }}</td>
-          <td>{{ servicio.titulo }}</td>
-          <td>{{ servicio.descripcion }}</td>
-          <td>{{ servicio.disponibilidad }}</td>
-          <td>{{ servicio.preciohora }} €</td>
-          <td>{{ servicio.preciotraslado }} €</td>
-          <td>{{ servicio.usuario?.user?.login }}</td>
-          <td>
-            <div  *ngFor="let item of servicio.categorias ; let x = index" [attr.data-index]="x">
-              <span class="badge badge-warning">{{ servicio.categorias[x]?.nombre}}</span>
-            </div>
-          </td>
-          <td>
-            <button class="btn btn-primary" (click)="goDetalService(servicio.id)"> Show details</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div>
--->
-
-<!----------------------------------------------------------------------------------------------------------->
 <nav class="navbar navbar-light navbar-expand-lg navbar-fixed-top" style="background-color: #422678">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -198,7 +41,7 @@
 
 <div class="container-fluid" >
   <div class="row d-flex justify-content-center align-items-center" >
-    <div class="main-container col-lg-10" id="shadow" style="background-color: white;">
+    <div class="main-container col-lg-10" id="shadow" style="background-color: white; padding: 20px;">
       <form>
         <div class="row">
           <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
@@ -211,7 +54,7 @@
               </select>
             </div>
           </div>
-          
+
           <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="form-group">
               <label for="especialista"><b>Categoria:</b></label>
@@ -227,28 +70,19 @@
               </select>
             </div>
           </div>
-                    
+
           <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="form-group">
               <label for="contenido" class="mr-2"><b>Busqueda:</b></label>
 
               <div class="input-group">
-                <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
-                [disabled]="filter.titleOrDescription == null">Vaciar</button>
                 <input type="text" class="form-control" name="disponibilidad" id="disponibilidad"
                 [(ngModel)]="filter.titleOrDescription" [disabled]="!filter.todos">
                 <button class="btn btn-outline-success" (click)="onChangeListByContenido()"
-                [disabled]="filter.titleOrDescription == null">Filtrar</button>
+                [disabled]="filter.titleOrDescription == null"><img class="img-icon" src="./../../../assets/magnifying-glass-solid.svg"></button>
+                <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
+                [disabled]="filter.titleOrDescription == null"><img class="img-icon" src="./../../../assets/trash-can-solid.svg"></button>
             </div>
-            <!--
-                <div class="input-group" style="align-items: center;">
-                  <input type="text" class="form-control" name="disponibilidad" id="disponibilidad"
-                    [(ngModel)]="filter.titleOrDescription">
-                    <button class="btn btn-outline-success" (click)="onChangeListByContenido()"
-                    [disabled]="!filter.titleOrDescription || filter.titleOrDescription && filter.todos"><img class="img-icon" src="./../../../assets/magnifying-glass-solid.svg"></button>
-                    <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
-                    [disabled]="!filter.titleOrDescription"><img class="img-icon" src="./../../../assets/trash-can-solid.svg"></button>
-                </div> -->
                 
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onChangeListByContenido()">
@@ -272,12 +106,30 @@
                     </label>
                 </div>
             </div>
-          </div>-->
+          </div>
 
         </div>
 
         <div class="row">
-          <div class="part col-xl-6 col-lg-6 col-md-12 col-sm-12" >
+
+
+
+
+          <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
+            <div class="form-group">
+                <label for="color"><b>Horario:</b></label>
+                <select class="form-control" name="color" id="color"
+                [(ngModel)]="filter.horario" (change)="onChangeHorarioServicio()">
+                    <option value="" selected>Elige horario</option>
+                    <option value="MANANA">Mañana</option>
+                    <option value="TARDE">Tarde</option>
+                    <option value="COMPLETA">Completa</option>
+                </select>
+              </div>
+          </div>
+
+
+          <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12" >
             <div class="form-group">
               <label for="kmDesde"><b>Precio Desde:</b></label>
                 <div class="input-group">
@@ -291,7 +143,7 @@
             </div>
           </div>
 
-          <div class="part col-xl-6 col-lg-6 col-md-12 col-sm-12">
+          <div class="part col-xl-4 col-lg-4 col-md-12 col-sm-12">
             <div class="form-group">
               <label for="kmHasta"><b>Precio Hasta:</b></label>
               <div class="input-group">
@@ -305,27 +157,16 @@
             </div>
           </div>
 
-          <div class="col-4">
-            <div class="form-group">
-                <label for="color"><b>Horario:</b></label>
-                <select class="form-control" name="color" id="color"
-                [(ngModel)]="filter.horario" (change)="onChangeHorarioServicio()">
-                    <option value="" selected>Elige horario</option>
-                    <option value="MANANA">Mañana</option>
-                    <option value="TARDE">Tarde</option>
-                    <option value="COMPLETA">Completa</option>
-                </select>
-              </div>
-          </div>
+         
 
         <div class="row" >
           <div class="part col-9">
             <button class="btn-borrar form-control" (click)="reset()" style="text-align: center;">Borrar Filtros</button>
           </div>
         </div>
-         
+
         </div>
-                
+
       </form>
     </div>
   </div>
@@ -337,7 +178,7 @@
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-10" id="shadow" style="background-color: white;">
       <div class="row" style="align-items: center;">
-              
+
         <div class="col container  table-responsive" >
           <table class="table table-hover table-dark">
             <thead>
@@ -367,13 +208,13 @@
                 </div>
                 </td>
                 <td>
-                  <button class="btn btn-primary details-table" (click)="goDetalService(servicio.id)"> Show details</button>
+                  <button class="btn details-table" (click)="goDetalService(servicio.id)"> Show details</button>
                 </td>
               </tr>
-            </tbody> 
+            </tbody>
           </table>
         </div>
-            
+
       </div>
     </div>
   </div>

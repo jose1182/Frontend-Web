@@ -9,13 +9,22 @@ import { RouterModule } from '@angular/router';
 import { RecuperarPasswordLinkComponent } from './recuperar-password-link/recuperar-password-link.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { PerfilVisitadoComponent } from './perfil-visitado/perfil-visitado.component';
-import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
 import { PerfilPropioComponent } from './perfil-propio/perfil-propio.component';
 import { ServiciosByCategoriaComponent } from './servicios-by-categoria/servicios-by-categoria.component';
 import { DetalleServicioComponent } from './detalle-servicio/detalle-servicio.component';
-import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from './navbar/navbar.component';
+import { BusquedaHomeComponent } from './busqueda-home/busqueda-home.component';
 
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
 
 
 @NgModule({
@@ -28,17 +37,26 @@ import { NavbarComponent } from './navbar/navbar.component';
     NotfoundComponent,
     ServiciosByCategoriaComponent,
     PerfilVisitadoComponent,
-    PerfilEditarComponent,
     PerfilPropioComponent,
     DetalleServicioComponent,
-    NavbarComponent
+    NavbarComponent,
+    BusquedaHomeComponent,
+    EditProfileComponent,
+    PerfilEditarComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MatCardModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class ComponentsModule { }

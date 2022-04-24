@@ -1,17 +1,46 @@
-export class UsuarioModel {
+import * as dayjs from 'dayjs'
 
-  id!: Number;
-  nombre!: String;
-  apellidos!: String;
-  correo!: String;
-  dni!: String;
-  direccion!: String;
-  localidad!: String;
-  provincia!: String;
-  profesion!: String;
-  fn!: string;
-  fechaRegistro!: String;
-  user!: { id: Number, login: String };
-  conversacions!: []
+import { IUser } from './user.model';
+import { IConversacion } from './conversacion.model';
 
+export interface IUsuario {
+  id?: number;
+  nombre?: string;
+  apellidos?: string | null;
+  correo?: string;
+  dni?: string;
+  direccion?: string;
+  localidad?: string;
+  provincia?: string;
+  profesion?: string | null;
+  fn?: dayjs.Dayjs;
+  fechaRegistro?: dayjs.Dayjs | null;
+  imagenContentType?: string | null;
+  imagen?: string | null;
+  user?: IUser | null;
+  conversacions?: IConversacion[] | null;
+}
+
+export class Usuario implements IUsuario {
+  constructor(
+    public id?: number,
+    public nombre?: string,
+    public apellidos?: string | null,
+    public correo?: string,
+    public dni?: string,
+    public direccion?: string,
+    public localidad?: string,
+    public provincia?: string,
+    public profesion?: string | null,
+    public fn?: dayjs.Dayjs,
+    public fechaRegistro?: dayjs.Dayjs | null,
+    public imagenContentType?: string | null,
+    public imagen?: string | null,
+    public user?: IUser | null,
+    public conversacions?: IConversacion[] | null
+  ) {}
+}
+
+export function getUsuarioIdentifier(usuario: IUsuario): number | undefined {
+  return usuario.id;
 }
