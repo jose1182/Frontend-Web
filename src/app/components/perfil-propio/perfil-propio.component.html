@@ -18,10 +18,11 @@
                                             <div class="account-settings">
                                                 <div class="user-profile">
                                                     <div class="user-avatar text-center" style="margin-bottom: 30px;">
-                                                      <img class="image-person img-fluid rounded-circle center"
+                                                      <img *ngIf="usuarioModel.imagenContentType"  class="image-person img-fluid rounded-circle center"
                                                       [src]="'data:' + usuarioModel.imagenContentType + ';base64,' + usuarioModel.imagen"
                                                       alt="categoria image"
                                                     />
+                                                    <img *ngIf="!usuarioModel.imagenContentType" class="image-person img-fluid rounded-circle center" src="../../../assets/images.png"/>
                                                     </div>
                                                     <h5 class="user-name user-info" style="font-size: 2.5rem;">{{this.usuarioModel?.user?.login}}</h5>
                                                     <h6 class="user-email user-info">{{this.usuarioModel?.correo}}</h6>

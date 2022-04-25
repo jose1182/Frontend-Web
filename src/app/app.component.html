@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top py-3" style="background-color: #422678">
     <div class="container-fluid">
-      <a class="navbar-brand" href="./"><b>NetJobs</b></a>
+      <a class="navbar-brand" routerLink="home"><b>NetJobs</b></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,7 +9,7 @@
 
         <ul class="navbar-nav">
           <li class="nav-item">
-          <a class="nav-link" href="#">INICIO <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="home">INICIO <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
           <a class="nav-link" href="#">BLOG</a>
@@ -44,7 +44,9 @@
 
 
         <ul class="navbar-nav  navbar-right">
-
+          <li class="nav-item"*ngIf="!isAuthenticated()">
+            <a class="nav-link h5 m-0">{{accountModel?.login}}</a>
+            </li>
           <li class="nav-item dropdown"  *ngIf="!isAuthenticated()" >
             <a class="nav-link dropdown-toggle" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons"  style="font-size:22px; vertical-align: middle;">person</i></a>
             <div class="dropdown-menu" aria-labelledby="dropdownId">

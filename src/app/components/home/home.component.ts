@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   };
   servicios!: servicioDesModel[];
 
-  
+
   constructor(
     private accountService: AccountService,
     private authJwtService: AuthJwtService,
@@ -49,7 +49,9 @@ export class HomeComponent implements OnInit {
     })
 
     this.serviciosService.serviciosDestacados().subscribe( servicios => {
+      console.log("hola: ", servicios)
       this.servicios = servicios;
+      console.log("destacodos: ", servicios);
     })
 
   }
