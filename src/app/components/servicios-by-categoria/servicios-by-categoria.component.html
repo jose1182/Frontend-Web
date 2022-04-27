@@ -43,7 +43,7 @@
                 <button class="btn btn-outline-danger" (click)="clearDisponibilidad()"
                 [disabled]="filter.titleOrDescription == null"><img class="img-icon" src="./../../../assets/trash-can-solid.svg"></button>
             </div>
-                
+
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="contenido" id="contenido"  [value]="null" [(ngModel)]="filter.contenido" (change)="onChangeListByContenido()">
                     <label class="form-check-label" for="contenido">
@@ -117,7 +117,7 @@
             </div>
           </div>
 
-         
+
 
         <div class="row" >
           <div class="part col-9">
@@ -163,8 +163,8 @@
                 <td>{{ servicio.preciotraslado }} €</td>
                 <td>{{ servicio.usuario?.user?.login }}</td>
                 <td>
-                <div  *ngFor="let item of servicio.categorias ; let x = index" [attr.data-index]="x">
-                  <span class="badge badge-warning" style="padding: 5px; font-size: 1.2rem;">{{ servicio.categorias[x]?.nombre}}</span>
+                <div  *ngFor="let categorias of servicio.categorias ; let x = index" [attr.data-index]="x">
+                  <span class="badge badge-warning" style="padding: 5px; font-size: 1.2rem;">{{ categorias.nombre}}</span>
                 </div>
                 </td>
                 <td>

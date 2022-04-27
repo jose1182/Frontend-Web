@@ -1,15 +1,22 @@
-export class CategoriaModel {
+import { IServicio } from './servicio.model';
+export interface ICategoria {
+  id?: number;
+  nombre?: string;
+  imagenContentType?: string | null;
+  imagen?: string | null;
+  servicios?: IServicio[] | null;
+}
 
-  public id! : Number;
-  public nombre!: String;
-  public imagen!: String;
-  public imagenContentType!: String
+export class Categoria implements ICategoria {
+  constructor(
+    public id?: number,
+    public nombre?: string,
+    public imagenContentType?: string | null,
+    public imagen?: string | null,
+    public servicios?: IServicio[] | null
+  ) {}
+}
 
-  constructor(id: Number, nombre: String, imagen: String, imagenContentType: String){
-    this.id = id;
-    this.nombre = nombre;
-    this.imagen = imagen;
-    this.imagenContentType = imagenContentType;
-  }
-
+export function getCategoriaIdentifier(categoria: ICategoria): number | undefined {
+  return categoria.id;
 }

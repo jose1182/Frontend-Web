@@ -2,7 +2,7 @@ import { servicioDesModel } from './../../model/servicioDes.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ServicioModel } from '../../model/servicio.model';
+import { IServicio } from '../../model/servicio.model';
 import { environment } from '../../../environments/environment.prod';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
 
@@ -15,7 +15,7 @@ export class ServiciosService {
   constructor(private http: HttpClient) { }
 
 
-  servicios(criteria: BusquedaServicio[]):Observable<ServicioModel[]>{
+  servicios(criteria: BusquedaServicio[]):Observable<IServicio[]>{
 
     let params = new HttpParams()
 
@@ -28,17 +28,17 @@ export class ServiciosService {
 
     //params = params.append("id.in", busqueda.id.in.join(', '))
     //params = params.append("servicioId", "")
-    return this.http.get<ServicioModel[]>(environment.url + "servicios", {params: params})
+    return this.http.get<IServicio[]>(environment.url + "servicios", {params: params})
   }
 
 
-  getServiceById(id: number | undefined):Observable<ServicioModel>{
-    return this.http.get<ServicioModel>(`${environment.url}servicios/${id}`);
+  getServiceById(id: number | undefined):Observable<IServicio>{
+    return this.http.get<IServicio>(`${environment.url}servicios/${id}`);
   }
 
-  serviciosDestacados():Observable<servicioDesModel[]>{ 
-    return this.http.get<servicioDesModel[]>(`${environment.url}servicios?destacado.equals=true`).pipe((result => {   
-      
+  serviciosDestacados():Observable<IServicio[]>{
+    return this.http.get<IServicio[]>(`${environment.url}servicios?destacado.equals=true`).pipe((result => {
+
       return result;
     }));
   }

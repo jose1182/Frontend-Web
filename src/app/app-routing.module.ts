@@ -16,6 +16,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { CrearServicioComponent } from './components/crear-servicio/crear-servicio.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { PasarelaPagoComponent } from './components/pasarela-pago/pasarela-pago.component';
+import { ServicioRoutingResolveService } from './components/crear-servicio/route/servicio/servicio-routing-resolve.service';
 
 
 const routes: Routes = [
@@ -54,7 +55,10 @@ const routes: Routes = [
   },
   {
     path: 'crear-servicio',
-    component: CrearServicioComponent
+    component: CrearServicioComponent,
+    resolve:{
+      servicio: ServicioRoutingResolveService
+    }
   },
   {
     path:'perfil-propio/:vista',
