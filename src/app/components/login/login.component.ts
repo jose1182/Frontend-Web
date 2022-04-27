@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
           this.errorMsg = null;
           console.log("login: ", response);
-          //this.goToHome();
+          this.goToHome();
         }, error =>{
           this.errorMsg = `⚠️ ¡No se ha podido iniciar la sesión! (${error.error?.detail})`;
           console.log("Error: ", this.errorMsg);
