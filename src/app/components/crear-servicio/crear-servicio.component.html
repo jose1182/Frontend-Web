@@ -109,8 +109,8 @@
           </small>
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-control-label" for="destacado">Desta tu servcio</label>
+      <div *ngIf="isEspecialista" class="form-group">
+        <label class="form-control-label" for="destacado">Destaca tu servcio</label>
         <input type="checkbox" class="form-check" name="destacado" id="destacado" formControlName="destacado" />
         <div *ngIf="f.destacado!.invalid && (f.destacado!.dirty || f.destacado!.touched)">
           <small class="form-text text-danger" *ngIf="f.destacado?.errors?.required"> Este campo es requerido. </small>

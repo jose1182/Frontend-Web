@@ -26,7 +26,8 @@ export class CrearServicioComponent implements OnInit {
   isSaving = false;
   disponibilidadValues = Object.keys(Disponibilidad);
   categoriasCollection: ICategoria[] = [];
-
+  account! : AccountModel | null;
+  isEspecialista: boolean = false;
   editForm = this.formBuilder.group({
     id: [],
     titulo: [null, [Validators.required, Validators.maxLength(60)]],
@@ -45,7 +46,8 @@ export class CrearServicioComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private categoriaService: CategoriaService,
-    private router: Router
+    private router: Router,
+    private accountService: AccountService
   ) { }
 
   ngOnInit(): void {
@@ -56,9 +58,8 @@ export class CrearServicioComponent implements OnInit {
         servicio.fechacreacion = today;
         servicio.fechaactualizacion = today;
       }
-      console.log("idd: ", servicio);
+      this.getAuthorities();
       this.updateForm(servicio);
-
       this.loadCategorias();
     })
 
@@ -79,7 +80,7 @@ export class CrearServicioComponent implements OnInit {
 
   private subscribeToSaveResponse(result: Observable<HttpResponse<IServicio>>): void {
     result.pipe(finalize( () => this.isSaving = false)).subscribe({
-      next:() => this.router.navigate(["perfil-propio"]),
+      next:() => this.previousState(),
       error: () => console.log("Error")
     })
   }
@@ -153,6 +154,17 @@ export class CrearServicioComponent implements OnInit {
     };
   }
 
+  getAuthorities(){
+    this.accountService.identify(true).subscribe( account => {
+      this.account = account
+      if(!this.checkAuthorities(this.account?.authorities)){
+        this.previousState()
+      } else {
+        this.isEspecialista = true;
+      }
+
+    })
+  }
 
   checkAuthorities(authorities:string[] | undefined): boolean{
     let authority = authorities?.find(role => role == "ROLE_ESPECIALISTA");
