@@ -6,6 +6,8 @@ import { environment } from '../../../environments/environment.prod';
 import { map } from 'rxjs/operators';
 import { Busqueda } from '../../model/busqueda.model';
 import { isPresent } from '../../core/util/operators';
+import { EntityArrayResponseType } from '../usuario.service';
+import { createRequestOption } from '../../core/request/request.util';
 
 
 
@@ -50,6 +52,11 @@ export class CategoriaService {
       return [...categoriasToAdd, ...categoriaCollection];
     }
     return categoriaCollection;
+  }
+
+  getAllCatogorias(req?: any): Observable<EntityArrayResponseType>{
+    //const options = createRequestOption(req);
+    return this.http.get<ICategoria[]>(environment.url + "categorias", { observe: 'response'})
   }
 
 }

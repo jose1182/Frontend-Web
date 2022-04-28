@@ -5,12 +5,10 @@
 
     <div class="container-fluid" style="background-color: white;">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
-
+            <div class="main-container col-lg-12" id="shadow" style="height: auto; ">
                 <div class="row" style="align-items: center;">
                     <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
                         <div class="card" style="background-color: #422678;">
-
                             <div class="row gutters">
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                     <div class="card h-100 profile-info">
@@ -24,7 +22,6 @@
                                                     <h5 class="user-name user-info" style="font-size: 2.5rem;">{{this.usuarioModel?.user?.login}}</h5>
                                                     <h6 class="user-email user-info">{{this.usuarioModel?.correo}}</h6>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +42,7 @@
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="eMail">Correo</label>
-                                                        <p>{{this.usuarioModel?.correo}}</p>
+                                                        <p class="h6">{{this.usuarioModel?.correo}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -115,4 +112,40 @@
             </div>
         </div>
     </div>
+
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-center align-items-center" >
+        <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
+          <div class="row" style="align-items: center;">
+            <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
+              <div class="card" >
+                <div class="row gutters">
+                  <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h6 class="mt-5 ml-5 info-title">Mis servcios</h6>
+                    <div class="row">
+                      <div class="card-servicio m-2" style="width: 20rem;" *ngFor="let servicio of servicios">
+                        <div class="card-body pb-2">
+                          <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
+                          <h6 class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">Card subtitle</h6>
+                          <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
+                          <div class="">
+
+                            <a [routerLink]="['/crear-servicio/update', servicio.id]" class="card-link text-dark ml-1"><img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
 </div>
+

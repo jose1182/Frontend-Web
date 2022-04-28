@@ -5,6 +5,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { IServicio } from '../../model/servicio.model';
+import { BusquedaServicio } from '../../model/busquedaServicio.model';
 @Component({
   selector: 'app-perfil-propio',
   templateUrl: './perfil-propio.component.html',
@@ -16,11 +17,13 @@ export class PerfilPropioComponent implements OnInit {
   accountModel!: AccountModel | null;
   usuarioModel!: IUsuario ;
   id: number | null | undefined;
+  criteria: BusquedaServicio [] = [];
+  servicios!: IServicio[];
 
   constructor(
     private accountService: AccountService,
     private userService: UsuariosService,
-    private serviceService: ServiciosService,
+    private serviciosService: ServiciosService,
   ) {
     this.id = 0;
   }
@@ -34,12 +37,25 @@ export class PerfilPropioComponent implements OnInit {
 
       }
     })
+
+    this.listaServicios();
   }
 
   userData(id: number){
     this.userService.getUsuarioById(id).subscribe( user => {
       this.usuarioModel = user;
       console.log(user);
+    })
+  }
+
+  listaServicios(): void{
+    //TODO falta controlar array criteria con pulsación boton, solo sebe ser posible añadir un item en array.
+    this.serviciosService.servicios(this.criteria).subscribe(servicios => {
+      //saving all services
+
+      console.log("ss",servicios);
+      this.servicios = servicios;
+
     })
   }
 

@@ -9,9 +9,12 @@ import { ServicioService } from '../../services/servicios/servicio.service';
 import * as dayjs from 'dayjs';
 import { Disponibilidad } from './enums/disponibilidad.model';
 import { FormBuilder, Validators } from '@angular/forms';
-import { IServicio } from '../../model/servicio.model';
+import { IServicio, Servicio } from '../../model/servicio.model';
 import { CategoriaService } from '../../services/categoria/categoria.service';
 import { ICategoria } from '../../model/categoria.model';
+import { Observable } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
+import { finalize, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crear-servicio',
@@ -22,7 +25,7 @@ export class CrearServicioComponent implements OnInit {
 
   isSaving = false;
   disponibilidadValues = Object.keys(Disponibilidad);
-  categoriaCollection: ICategoria[] = [];
+  categoriasCollection: ICategoria[] = [];
 
   editForm = this.formBuilder.group({
     id: [],
@@ -39,10 +42,10 @@ export class CrearServicioComponent implements OnInit {
 
   constructor(
     private servicioService: ServicioService,
-    private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -53,12 +56,46 @@ export class CrearServicioComponent implements OnInit {
         servicio.fechacreacion = today;
         servicio.fechaactualizacion = today;
       }
-
+      console.log("idd: ", servicio);
       this.updateForm(servicio);
 
-      //this.loadCategorias();
+      this.loadCategorias();
     })
 
+  }
+
+      // convenience getter for easy access to form fields
+      get f() { return this.editForm.controls; }
+
+  save(): void{
+    this.isSaving = true;
+    const servicio = this.createFromForm();
+    if(servicio.id !== undefined){
+      this.subscribeToSaveResponse(this.servicioService.update(servicio));
+    }else {
+      this.subscribeToSaveResponse(this.servicioService.create(servicio));
+    }
+  }
+
+  private subscribeToSaveResponse(result: Observable<HttpResponse<IServicio>>): void {
+    result.pipe(finalize( () => this.isSaving = false)).subscribe({
+      next:() => this.router.navigate(["perfil-propio"]),
+      error: () => console.log("Error")
+    })
+  }
+
+  private loadCategorias(): void {
+    this.categoriaService.getAllCatogorias()
+     .pipe(map((res: HttpResponse<ICategoria[]>) => res.body ?? []))
+     .pipe(
+      map((categorias: ICategoria[]) =>
+        this.categoriaService.addCategoriaToCollectionIfMissing(categorias, ...(this.editForm.get('categorias')!.value ?? []))
+      )
+    ).subscribe((categorias: ICategoria[]) => (this.categoriasCollection = categorias))
+  }
+
+  previousState(): void {
+    window.history.back();
   }
 
   updateForm(servicio: IServicio): void{
@@ -75,31 +112,46 @@ export class CrearServicioComponent implements OnInit {
       categorias : servicio.categorias
     });
 
-    this.categoriaCollection = this.categoriaService.addCategoriaToCollectionIfMissing(
-      this.categoriaCollection, ...(servicio.categorias ?? [])
+    this.categoriasCollection = this.categoriaService.addCategoriaToCollectionIfMissing(
+      this.categoriasCollection, ...(servicio.categorias ?? [])
     );
   }
 
+  trackCategoriaById(index: number, item: ICategoria): number {
+    return item.id!;
+  }
+
+  getSelectedCategoria(option: ICategoria, selectedVals?: ICategoria[]):ICategoria{
+    if(selectedVals){
+      for(const selectedVal of selectedVals){
+        if(option.id === selectedVal.id){
+          return selectedVal;
+        }
+      }
+    }
+    return option;
+  }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  private createFromForm(): IServicio {
+    return {
+      ...new Servicio(),
+      id: this.editForm.get(['id'])!.value,
+      titulo: this.editForm.get(['titulo'])!.value,
+      descripcion: this.editForm.get(['descripcion'])!.value,
+      disponibilidad: this.editForm.get(['disponibilidad'])!.value,
+      preciohora: this.editForm.get(['preciohora'])!.value,
+      preciotraslado: this.editForm.get(['preciotraslado'])!.value,
+      fechacreacion: this.editForm.get(['fechacreacion'])!.value
+        ? dayjs(this.editForm.get(['fechacreacion'])!.value, "YYYY-MM-DDTHH:mm")
+        : undefined,
+      fechaactualizacion: this.editForm.get(['fechaactualizacion'])!.value
+        ? dayjs(this.editForm.get(['fechaactualizacion'])!.value, "YYYY-MM-DDTHH:mm")
+        : undefined,
+      destacado: this.editForm.get(['destacado'])!.value,
+      categorias: this.editForm.get(['categorias'])!.value,
+    };
+  }
 
 
   checkAuthorities(authorities:string[] | undefined): boolean{

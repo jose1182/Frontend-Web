@@ -29,7 +29,7 @@ export class ServiciosByCategoriaComponent implements OnInit {
   }
 
 
-  usuarios: any = null;
+  usuarios: any | null= null;
   categoriasFilter: any = null;
   servicios: IServicio[] | null = null;
   categorias!: ICategoria[];
@@ -67,7 +67,7 @@ export class ServiciosByCategoriaComponent implements OnInit {
 
       //saving all services
       this.servicios = servicios;
-
+      console.log("servicos****:", servicios);
       //update user list
       this.usuarios = [...new Map(servicios.map(item => [JSON.stringify(item.usuario), item.usuario])).values()];
 

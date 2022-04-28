@@ -1,8 +1,146 @@
-<div class="container text-center mt-5">
-  <p class="alert alert-danger">Antes de crear un servicio, primero es necesario completar datos en el perfil!</p>
-  <hr>
-  <img src="../../../assets/en-contruccion.jpg">
-  <h1>En construcción.......</h1>
-  <p>Si usuaro registrado no ha actulizado su perfil se redirige a editar perfil antes de crear publicaicón</p>
-</div>
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+        <label class="form-control-label" for="field_id">ID</label>
+        <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="titulo">Título</label>
+        <input type="text" class="form-control" name="titulo" id="titulo" formControlName="titulo">
+        <div *ngIf="f.titulo.invalid && (f.titulo!.dirty || f.titulo!.touched)">
+          <small class="form-text text-danger" *ngIf="f.titulo.errors?.required"> Este campo es requerido. </small>
+          <small class="form-text text-danger" *ngIf="f.titulo.errors?.maxlength">
+            Este campo no puede tener más de 60 caracteres.
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="field_descripcion">Descripcion</label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion" formControlName="descripcion"
+        />
+        <div *ngIf="f.descripcion.invalid && (f.descripcion.dirty || f.descripcion.touched)">
+          <small class="form-text text-danger" *ngIf="f.descripcion?.errors?.required"> Este campo es requerido. </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="disponibilidad">Dispolidad</label>
+        <select class="form-control" name="disponibilidad" id="disponibilidad" formControlName="disponibilidad">
+          <option [ngValue]="null"></option>
+          <option *ngFor="let disponibilidad of disponibilidadValues" [value]="disponibilidad">{{disponibilidad}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="preciohora">Precio hora servicio</label>
+        <input type="number" class="form-control" name="preciohora" id="preciohora" formControlName="preciohora">
+        <div *ngIf="f.preciohora.invalid && (f.preciohora.dirty || f.preciohora.touched)">
+          <small class="form-text text-danger" *ngIf="f.preciohora?.errors?.required"> Este campo es requerido. </small>
+          <small class="form-text text-danger" *ngIf="f.preciohora?.errors?.min"> Este campo no puede tener mínimo un valor de 0. </small>
+          <small class="form-text text-danger" [hidden]="!f.preciohora?.errors?.number">
+            Este camp debe ser un número.
+          </small>
+        </div>
+      </div>
 
+      <div class="form-group">
+        <label class="form-control-label" for="preciotraslado">Precio traslado servicio</label>
+        <input type="number" class="form-control" name="preciotraslado" id="preciotraslado" formControlName="preciotraslado"
+        />
+        <div
+          *ngIf="
+            f.preciotraslado!.invalid && (f.preciotraslado!.dirty || f.preciotraslado!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="f.preciotraslado?.errors?.required"> Este campo es requerido. </small>
+          <small class="form-text text-danger" *ngIf="f.preciotraslado?.errors?.min">
+            Este campo no puede tener mínimo un valor de 0.
+          </small>
+          <small class="form-text text-danger" [hidden]="!f.preciotraslado?.errors?.number">
+            Este camp debe ser un número.
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="field_fechacreacion">Fecha creación</label>
+        <div class="d-flex">
+          <input
+            id="fechacreacion"
+            type="datetime-local"
+            class="form-control"
+            name="fechacreacion"
+            formControlName="fechacreacion"
+            placeholder="YYYY-MM-DD HH:mm"
+          />
+        </div>
+        <div
+          *ngIf="
+            f.fechacreacion!.invalid && (f.fechacreacion!.dirty || f.fechacreacion!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="f.fechacreacion?.errors?.required"> Este campo es requerido. </small>
+          <small class="form-text text-danger" [hidden]="!f.fechacreacion?.errors?.ZonedDateTimelocal">
+            Este campo deberia ser una fecha y hora.
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="fechaactualizacion">Fecha actualizacion</label>
+        <div class="d-flex">
+          <input
+            id="fechaactualizacion"
+            type="datetime-local"
+            class="form-control"
+            name="fechaactualizacion"
+            formControlName="fechaactualizacion"
+            placeholder="YYYY-MM-DD HH:mm"
+          />
+        </div>
+        <div
+          *ngIf="
+            f.fechaactualizacion!.invalid &&
+            (f.fechaactualizacion!.dirty || f.fechaactualizacion!.touched)
+          "
+        >
+          <small class="form-text text-danger" *ngIf="f.fechaactualizacion?.errors?.required">
+            Este campo es requerido.
+          </small>
+          <small class="form-text text-danger" [hidden]="!f.fechaactualizacion?.errors?.ZonedDateTimelocal">
+            Este campo deberia ser una fecha y hora.
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label" for="destacado">Desta tu servcio</label>
+        <input type="checkbox" class="form-check" name="destacado" id="destacado" formControlName="destacado" />
+        <div *ngIf="f.destacado!.invalid && (f.destacado!.dirty || f.destacado!.touched)">
+          <small class="form-text text-danger" *ngIf="f.destacado?.errors?.required"> Este campo es requerido. </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ategorias">Categoria</label>
+        <select class="form-control" id="categorias" multiple name="categorias" formControlName="categorias">
+          <option
+            [ngValue]="getSelectedCategoria(categoriaOption, f.categorias!.value)"
+            *ngFor="let categoriaOption of categoriasCollection; trackBy: trackCategoriaById"
+          >
+            {{ categoriaOption.nombre }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+         <span>Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <span>Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

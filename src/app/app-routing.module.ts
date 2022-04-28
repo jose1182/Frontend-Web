@@ -54,7 +54,14 @@ const routes: Routes = [
     component: DetalleServicioComponent
   },
   {
-    path: 'crear-servicio',
+    path: 'crear-servicio/new',
+    component: CrearServicioComponent,
+    resolve:{
+      servicio: ServicioRoutingResolveService
+    }
+  },
+  {
+    path: 'crear-servicio/update/:id',
     component: CrearServicioComponent,
     resolve:{
       servicio: ServicioRoutingResolveService

@@ -10,7 +10,7 @@
               <select class="form-control" name="usuarioElegido" id="usuarioElegido" [(ngModel)]="filter.usuarioElegido"
                 (change)="onChangeUsuario()">
                 <option [ngValue]="null" selected>Elige un especialista</option>
-                <option  [ngValue]="usuario.user.id" *ngFor="let usuario of usuarios">{{usuario.user.login}}</option>
+                <option [ngValue]="usuario?.user?.id" *ngFor="let usuario of usuarios">{{usuario?.user?.login}}</option>
               </select>
             </div>
           </div>

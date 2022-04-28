@@ -57,7 +57,7 @@
 
         <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="registro">REGISTRATE</a>
         <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="login">LOGIN</a>
-        <a class="btn btn-publicar d-lg-inline-block mb-3 mb-md-0 ml-md-3" routerLink="crear-servicio">PUBLICAR SERVICIO</a>
+        <a class="btn btn-publicar d-lg-inline-block mb-3 mb-md-0 ml-md-3" [routerLink]="['/crear-servicio/new']">PUBLICAR SERVICIO</a>
         </ul>
       </div>
   </div>
