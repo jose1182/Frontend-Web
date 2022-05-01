@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
-import { CategoriaModel } from '../../model/categoria.model';
-import { ServicioModel } from '../../model/servicio.model';
+import { ICategoria } from '../../model/categoria.model';
+import { IServicio } from '../../model/servicio.model';
 import { CategoriaService } from '../../services/categoria/categoria.service';
 import { Busqueda } from '../../model/busqueda.model';
 
@@ -17,8 +17,8 @@ export class BusquedaHomeComponent implements OnInit {
   keyword!: string | null
   location!: string | null
   criteria: BusquedaServicio [] = [];
-  servicios!: ServicioModel[];
-  categorias!: CategoriaModel[];
+  servicios?: IServicio[] | null = null;
+  categorias!: ICategoria[];
   busqueda : Busqueda = {
     parameter: "",
     value: null,
@@ -58,7 +58,7 @@ export class BusquedaHomeComponent implements OnInit {
     })
   }
 
-  goDetalService(id: Number) : void {
+  goDetalService(id?: number) : void {
     this.router.navigate(['/detalle/servicios', id]);
   }
 
@@ -68,7 +68,7 @@ export class BusquedaHomeComponent implements OnInit {
     })
   }
 
-  goToViewDetail(id: Number): void{
+  goToViewDetail(id?: number): void{
     this.router.navigate(['lista/servicios', id]);
   }
 }

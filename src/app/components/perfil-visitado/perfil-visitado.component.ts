@@ -4,7 +4,7 @@ import { UsuariosService } from '../../services/usuario/usuarios.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
 import { ServiciosService } from '../../services/servicios/servicios.service';
-import { ServicioModel } from '../../model/servicio.model';
+import { IServicio } from '../../model/servicio.model';
 import { Usuario } from '../../model/usuario.model';
 
 @Component({
@@ -17,7 +17,7 @@ export class PerfilVisitadoComponent implements OnInit {
   id!: number;
   usuario!: Usuario
   criteria: BusquedaServicio [] = [];
-  servicios!: ServicioModel[];
+  servicios!: IServicio[];
 
   constructor(
     private usuarioService: UsuariosService,

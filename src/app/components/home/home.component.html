@@ -7,7 +7,7 @@
   <div class="categoria-title">En NetJob encontrarás lo que necesitas...</div>
 
   <div class="row align-items-center justify-content-center" >
-    <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let categoria of categorias" (click)="goToViewDetail(categoria.id)" >
+    <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let categoria of categorias" (click)="goToViewDetail(categoria?.id)" >
       <div class="box">
         <div class="d-flex align-items-center">
           <div class="rounded-circle mx-3 d-flex align-items-center justify-content-center" style="width: 150px;">

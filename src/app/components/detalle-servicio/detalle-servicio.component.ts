@@ -2,8 +2,8 @@ import { UsuariosService } from './../../services/usuario/usuarios.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ServiciosService } from '../../services/servicios/servicios.service';
-import { ServicioModel } from '../../model/servicio.model';
 import { IUsuario, Usuario } from '../../model/usuario.model';
+import { IServicio } from '../../model/servicio.model';
 
 
 @Component({
@@ -14,8 +14,8 @@ import { IUsuario, Usuario } from '../../model/usuario.model';
 export class DetalleServicioComponent implements OnInit {
 
   id!: number | undefined;
-  service!: ServicioModel
-  usuario!: Usuario
+  service: IServicio | null = null;
+  usuario: Usuario | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -39,11 +39,9 @@ export class DetalleServicioComponent implements OnInit {
   getServiceById() : void {
     this.serviceService.getServiceById(this.id).subscribe( (service) => {
       this.service = service
-
-      console.log("service+++:", service)
-
+      console.log("lll:",service)
       //get user information from service.usuario.id
-      this.usuarioService.getUsuarioById(this.service.usuario.id).subscribe(usuario => {this.usuario = usuario})
+      this.usuarioService.getUsuarioById(this.service.usuario?.id).subscribe(usuario => {this.usuario = usuario})
 
     },(error) => {
         console.log("error: ", error)

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'frontend-web';
-
+  id : number = 1;
 
   accountModel!: AccountModel | null;
 

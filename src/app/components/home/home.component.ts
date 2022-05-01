@@ -4,10 +4,11 @@ import { AccountService } from '../../services/account.service';
 import { AccountModel } from '../../model/account.model';
 import { AuthJwtService } from '../../services/auth-jwt.service';
 import { Router } from '@angular/router';
-import { CategoriaModel } from '../../model/categoria.model';
 import { CategoriaService } from '../../services/categoria/categoria.service';
 import { Busqueda } from '../../model/busqueda.model';
 import { servicioDesModel } from 'src/app/model/servicioDes.model';
+import { ICategoria } from '../../model/categoria.model';
+import { IServicio } from '../../model/servicio.model';
 
 
 
@@ -19,12 +20,12 @@ import { servicioDesModel } from 'src/app/model/servicioDes.model';
 export class HomeComponent implements OnInit {
 
   accountModel!: AccountModel | null;
-  categorias!: CategoriaModel[];
+  categorias: ICategoria[] | null = null;;
   busqueda : Busqueda = {
     parameter: "",
     value: null,
   };
-  servicios!: servicioDesModel[];
+  servicios : IServicio[] | null=null;
 
 
   constructor(
@@ -55,7 +56,7 @@ export class HomeComponent implements OnInit {
     })
 
   }
-  goToViewDetail(id: Number): void{
+  goToViewDetail(id?: number): void{
     this.router.navigate(['lista/servicios', id]);
   }
 

@@ -1,12 +1,10 @@
 <script src="https://kit.fontawesome.com/ec98b7bfbc.js" crossorigin="anonymous"></script>
     <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
-
+            <div class="main-container col-lg-12" id="shadow" style="height: auto; ">
                 <div class="row" style="align-items: center;">
                     <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
                         <div class="card" style="background-color: #422678;">
-
                             <div class="row gutters">
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                     <div class="card h-100 profile-info">
@@ -20,7 +18,6 @@
                                                     <h5 class="user-name user-info" style="font-size: 2.5rem;">{{this.usuarioModel?.user?.login}}</h5>
                                                     <h6 class="user-email user-info">{{this.usuarioModel?.correo}}</h6>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -30,7 +27,7 @@
                                         <div class="card-body">
                                             <div class="row gutters">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                    <h6 class="mb-2 info-title">Información personal</h6>
+                                                    <h6 class="mb-4 info-title">Información personal</h6>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
@@ -41,7 +38,7 @@
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="eMail">Correo</label>
-                                                        <p>{{this.usuarioModel?.correo}}</p>
+                                                        <p class="h6">{{this.usuarioModel?.correo}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -88,6 +85,14 @@
                                                 </div>
                                             </div>
                                             <div class="row gutters">
+                                              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                  <label for="zIp">Servicios destacados</label>
+                                                  <p >{{numDestacados}} / 5</p>
+                                                  <h4 class="form-text text-danger"  *ngIf="numDestacados >= 5"><strong>Has alcanzado el limte de destacados. Puedes destacar más servcios con una cuenta Premiun.</strong></h4>                                              </div>
+                                              </div>
+                                          </div>
+                                            <div class="row gutters">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="buttons text-right">
                                                         <button class="button-contact btn btn-outline-primary px-4">Mis servicios</button>
@@ -111,3 +116,40 @@
             </div>
         </div>
     </div>
+
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-center align-items-center" >
+        <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
+          <div class="row" style="align-items: center;">
+            <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
+              <div class="card" >
+                <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h6 class="mt-5 ml-5 info-title">Mis servcios</h6>
+                    <div class="row justify-content-center">
+                      <div class="card-servicio m-2" style="width: 20rem;" *ngFor="let servicio of servicios">
+                        <div class="card-body pb-2">
+                          <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
+                          <span class="badge badge-warning mr-1 mb-2" *ngFor="let categoria of servicio.categorias" >{{categoria.nombre}}</span>
+                          <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
+                          <div class="row">
+                            <a [routerLink]="['/crear-servicio/update', servicio.id]" class="card-link text-dark ml-1"><img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
+                            <img *ngIf="servicio.destacado" class="img-icon ml-2" src="./../../../assets/star-solid.svg" >
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+

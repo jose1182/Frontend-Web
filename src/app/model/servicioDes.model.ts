@@ -1,14 +1,14 @@
 import { IUsuario } from './usuario.model';
-import { CategoriaModel } from './categoria.model';
+import { ICategoria } from './categoria.model';
 export class servicioDesModel {
 
     public id! : Number;
     public titulo!: String;
     public descripcion!: String;
     public usuario!: IUsuario;
-    public categoria!: CategoriaModel[];
+    public categoria!: ICategoria[];
 
-    constructor(id: Number, titulo: String, usuario: IUsuario, categoria: CategoriaModel[], descripcion: String){
+    constructor(id: Number, titulo: String, usuario: IUsuario, categoria: ICategoria[], descripcion: String){
       this.id = id;
       this.titulo = titulo;
       this.usuario = usuario;

@@ -1,9 +1,9 @@
 import { ServiciosService } from './../../services/servicios/servicios.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ServicioModel } from '../../model/servicio.model';
+import { IServicio } from '../../model/servicio.model';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
-import { CategoriaModel } from '../../model/categoria.model';
+import { ICategoria } from '../../model/categoria.model';
 import { BusquedaServicios } from '../../model/busquedaServicios.model';
 
 
@@ -29,10 +29,10 @@ export class ServiciosByCategoriaComponent implements OnInit {
   }
 
 
-  usuarios: any = null;
+  usuarios: any | null= null;
   categoriasFilter: any = null;
-  servicios!: ServicioModel[];
-  categorias!: CategoriaModel[];
+  servicios: IServicio[] | null = null;
+  categorias!: ICategoria[];
   criteria: BusquedaServicio [] = [];
 
 
@@ -67,14 +67,14 @@ export class ServiciosByCategoriaComponent implements OnInit {
 
       //saving all services
       this.servicios = servicios;
-
+      console.log("servicos****:", servicios);
       //update user list
       this.usuarios = [...new Map(servicios.map(item => [JSON.stringify(item.usuario), item.usuario])).values()];
 
       console.log("Usuarios: ", this.usuarios);
 
       //filling de categories from result of filter services
-      this.categoriasFilter = [...new Map(servicios.map(item => [JSON.stringify(item.categorias[0]), item.categorias[0]])).values()];
+      this.categoriasFilter = [...new Map(servicios.map(item => [JSON.stringify(item.categorias), item.categorias])).values()];
     })
   }
 
@@ -218,7 +218,7 @@ export class ServiciosByCategoriaComponent implements OnInit {
     this.filter.horario = null
   }
 
-  goDetalService(id: Number) : void {
+  goDetalService(id?: number) : void {
     this.router.navigate(['/detalle/servicios', id]);
   }
 
