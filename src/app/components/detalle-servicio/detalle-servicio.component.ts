@@ -39,7 +39,7 @@ export class DetalleServicioComponent implements OnInit {
   getServiceById() : void {
     this.serviceService.getServiceById(this.id).subscribe( (service) => {
       this.service = service
-
+      console.log("lll:",service)
       //get user information from service.usuario.id
       this.usuarioService.getUsuarioById(this.service.usuario?.id).subscribe(usuario => {this.usuario = usuario})
 

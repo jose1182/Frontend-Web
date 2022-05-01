@@ -19,7 +19,7 @@ export class PerfilPropioComponent implements OnInit {
   id: number | null | undefined;
   criteria: BusquedaServicio [] = [];
   servicios!: IServicio[];
-
+  numDestacados!: any;
   constructor(
     private accountService: AccountService,
     private userService: UsuariosService,
@@ -52,8 +52,10 @@ export class PerfilPropioComponent implements OnInit {
     //TODO falta controlar array criteria con pulsación boton, solo sebe ser posible añadir un item en array.
     this.serviciosService.servicios(this.criteria).subscribe(servicios => {
       //saving all services
+      this.numDestacados = servicios.filter((servicio) => {
+        return servicio.destacado == true;
+      }).length;
 
-      console.log("ss",servicios);
       this.servicios = servicios;
 
     })

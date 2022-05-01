@@ -28,6 +28,8 @@ export class CrearServicioComponent implements OnInit {
   categoriasCollection: ICategoria[] = [];
   account! : AccountModel | null;
   isEspecialista: boolean = false;
+  isFullRegistration = true;
+  usuario!: IUsuario | null;
   editForm = this.formBuilder.group({
     id: [],
     titulo: [null, [Validators.required, Validators.maxLength(60)]],
@@ -47,7 +49,8 @@ export class CrearServicioComponent implements OnInit {
     private formBuilder: FormBuilder,
     private categoriaService: CategoriaService,
     private router: Router,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private usuarioService : UsuariosService
   ) { }
 
   ngOnInit(): void {
@@ -150,15 +153,26 @@ export class CrearServicioComponent implements OnInit {
         ? dayjs(this.editForm.get(['fechaactualizacion'])!.value, "YYYY-MM-DDTHH:mm")
         : undefined,
       destacado: this.editForm.get(['destacado'])!.value,
+      usuario: this.usuario,
       categorias: this.editForm.get(['categorias'])!.value,
     };
   }
 
   getAuthorities(){
     this.accountService.identify(true).subscribe( account => {
-      this.account = account
+      this.account = account;
+      if(account){
+      //get user information from service.usuario.id
+      this.usuarioService.getUsuarioById(account.id as number).subscribe(usuario => {
+        this.usuario = usuario
+
+        if(this.usuario.nombre == "" || this.usuario.apellidos == ""){
+          this.isFullRegistration = false;
+        }
+      })
+      }
       if(!this.checkAuthorities(this.account?.authorities)){
-        this.previousState()
+        this.isEspecialista = false;
       } else {
         this.isEspecialista = true;
       }
