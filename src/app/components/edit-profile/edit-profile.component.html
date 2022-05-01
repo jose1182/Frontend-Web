@@ -1,9 +1,6 @@
 <script src="https://kit.fontawesome.com/ec98b7bfbc.js" crossorigin="anonymous"></script>
 
-
-<div class="overlay">
-
-<div class="container-fluid" style="background-color: white;">
+<div class="container-fluid" >
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
 
@@ -15,7 +12,7 @@
                         <div class="card-body" style="padding: 20px 150px;">
                           <div class="row gutters">
                               <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup] ="editForm">
-                                <h2 id="jhi-usuario-heading" data-cy="UsuarioCreateUpdateHeading" style="font-size: 3rem;">Editar Mis Datos</h2>
+                                <h2 id="jhi-usuario-heading" data-cy="UsuarioCreateUpdateHeading" style="font-size: 3rem; margin-top: 20px;">Editar Mis Datos</h2>
 
                                 <div class="form-row">
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" [hidden]="editForm.get('id')!.value == null">
@@ -195,7 +192,7 @@
     </div>
   </div>
 </div>
-</div>
+
 
 
 

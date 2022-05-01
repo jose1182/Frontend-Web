@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+*{
+    font-family: "Roboto";
+
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,21 +17,23 @@ h1 {
   color: #333333
 }
 
-.cardcontainer {
-  width: 350px;
-  height: 500px;
-  background-color: white;
-  margin-left: auto;
-  margin-right: auto;
-  transition: 0.3s
+h2{
+  font-size: 3rem;
 }
 
-.cardcontainer:hover {
-  box-shadow: 0 0 45px gray
+.cardcontainer {
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  transition: 0.3s;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+  margin: 25px
 }
+
+
 
 .photo {
-  height: 300px;
+  height: 280px;
   width: 100%
 }
 
@@ -39,6 +48,25 @@ h1 {
   font-size: 17px
 }
 
+.txt4 {
+  font-size: 1.5rem;
+  position: relative;
+  top:30px;
+  width: fit-content;
+}
+
+.txt5 {
+  position: relative;
+  top: 15px;
+  color: #E74C3C;
+  font-size: 1.2rem;
+}
+
+.txt2 {
+  position: relative;
+  bottom:10px
+}
+
 .content {
   width: 80%;
   height: 100px;
@@ -51,31 +79,16 @@ h1 {
 .photos {
   width: auto;
   height: 30px;
-  background-color: #E74C3C;
+  background-color: #67418C;
   color: white;
   position: relative;
   top: -30px;
   padding-left: 10px;
-  font-size: 20px
+  padding-top: 5px;
+  font-size: 20px;
 }
 
-.txt4 {
-  font-size: 27px;
-  position: relative;
-  top: 33px
-}
 
-.txt5 {
-  position: relative;
-  top: 18px;
-  color: #E74C3C;
-  font-size: 23px;
-}
-
-.txt2 {
-  position: relative;
-  top: 10px
-}
 
 .cardcontainer:hover>.photo {
   height: 200px;
@@ -84,11 +97,11 @@ h1 {
 
 @keyframes move1 {
   0% {
-      height: 300px
+      height: 280px
   }
 
   100% {
-      height: 200px
+      height: 260px
   }
 }
 
@@ -150,19 +163,15 @@ h1 {
 }
 
 .title{
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .main-container{
-  margin-top: 50px;
+    margin-top: 50px;
     border: none;
     position: relative;
     overflow: hidden;
-    border-radius: 30px;
-    cursor: pointer;
-    border-style: solid;
-    border-radius: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
     background: rgb(255,255,255);
     background-image: linear-gradient(white, white );
     transition: transform .2s; /* Animation */
@@ -183,7 +192,6 @@ h1 {
 }
 
 .btn-categ{
-  border: 1px solid white !important;
   background-color: #67418C;
   color: #fff;
   height: 55px;
@@ -192,6 +200,8 @@ h1 {
   margin-top:10px;
   margin-bottom: 30px;
   border-radius: 10px;
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
+
 }
 
 .btn-cont{

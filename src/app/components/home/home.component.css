@@ -26,11 +26,9 @@ a{
 .categoria-box{
     background-color: white;
     margin: 35px;
-    border: #422168;
-    border-style: solid;
     border-width: 0.7px;
-    border-radius: 30px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -93,11 +91,9 @@ b {
 }
 
 .card{
-  border-style: double;
   border-color:#422168;
-  border-radius: 10px;
   align-items: center;
-  box-shadow: 2px 4px 5px 0px #422678
+  box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.5)
 }
 
 .descripcion{

@@ -14,11 +14,11 @@
                                             <div class="account-settings">
                                                 <div class="user-profile">
                                                     <div class="user-avatar text-center" style="margin-bottom: 30px;">
-                                                        <img *ngIf="usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center" [src]="'data:' + usuarioModel?.imagenContentType + ';base64,' + usuarioModel.imagen" alt="categoria image" />
-                                                        <img *ngIf="!usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center" src="../../../assets/images.png" />
+                                                        <img   alt="categoria image" />
+                                                        <img class="image-person img-fluid rounded-circle center" src="../../../assets/images.png" />
                                                     </div>
-                                                    <h5 class="user-name user-info" style="font-size: 2.5rem;">{{this.usuarioModel?.user?.login}}</h5>
-                                                    <h6 class="user-email user-info">{{this.usuarioModel?.correo}}</h6>
+                                                    <h5 class="user-name user-info" style="font-size: 2.5rem;">login</h5>
+                                                    <h6 class="user-email user-info">correo</h6>
                                                 </div>
 
                                             </div>
@@ -35,25 +35,21 @@
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="fullName">Nombre y Apellidos</label>
-                                                        <p *ngIf="this.usuarioModel?.nombre">{{this.usuarioModel?.nombre}} {{this.usuarioModel?.apellidos}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="eMail">Correo</label>
-                                                        <p>{{this.usuarioModel?.correo}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="phone">DNI</label>
-                                                        <p>{{this.usuarioModel?.dni}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="website">Profeción</label>
-                                                        <p>{{this.usuarioModel?.profesion}}</p>
                                                     </div>
                                                 </div>
 
@@ -65,19 +61,16 @@
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="Street">Dirección</label>
-                                                        <p>{{this.usuarioModel?.direccion}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="ciTy">Localidad</label>
-                                                        <p>{{this.usuarioModel?.localidad}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                                     <div class="form-group">
                                                         <label for="sTate">Provincia</label>
-                                                        <p>{{this.usuarioModel?.provincia}}</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -92,7 +85,7 @@
                                                     <div class="buttons text-right">
                                                         <button class="button-contact btn btn-outline-primary px-4">Mis servicios</button>
                                                         <button class="button-contact btn btn-outline-primary px-4">Mis reseñas</button>
-                                                        <button class="button-contact btn btn-primary px-4 ms-3" [routerLink]="['/edit-profile/edit', usuarioModel?.id]" routerLinkActive="router-link-active">Editar</button>
+                                                        <button class="button-contact btn btn-primary px-4 ms-3" routerLinkActive="router-link-active">Editar</button>
                                                     </div>
 
 

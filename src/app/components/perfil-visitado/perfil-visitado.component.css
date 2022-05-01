@@ -29,11 +29,7 @@ body {
     border: none;
     position: relative;
     overflow: hidden;
-    border-radius: 30px;
-    cursor: pointer;
-    border-style: solid;
-    border-radius: 20px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.3);
     background: rgb(255,255,255);
     background-image: linear-gradient(white, white );
     transition: transform .2s; /* Animation */
@@ -200,12 +196,8 @@ label{
   border: none;
   position: relative;
   overflow: hidden;
-  border-radius: 5px;
-  cursor: pointer;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 20px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+ 
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
   background: rgb(255,255,255);
   background-image: linear-gradient(white, white );
   transition: transform .2s; /* Animation */
