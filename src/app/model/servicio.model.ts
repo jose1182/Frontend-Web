@@ -2,7 +2,7 @@ import { CategoriaModel } from './categoria.model';
 import { Usuario } from './usuario.model';
 export class ServicioModel {
 
-  id!: Number;
+  id!: number;
   titulo!: String;
   descripcion!: String;
   disponibilidad!: String;

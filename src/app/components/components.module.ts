@@ -30,6 +30,8 @@ import { BusquedaHomeComponent } from './busqueda-home/busqueda-home.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CrearServicioComponent } from './crear-servicio/crear-servicio.component';
 import { PasarelaPagoComponent } from './pasarela-pago/pasarela-pago.component';
+import { ContratosComponent } from './contratos/contratos.component';
+import { DetalleContratoComponent } from './detalle-contrato/detalle-contrato.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { PasarelaPagoComponent } from './pasarela-pago/pasarela-pago.component';
     PerfilEditarComponent,
     PricingComponent,
     CrearServicioComponent,
-    PasarelaPagoComponent
+    PasarelaPagoComponent,
+    ContratosComponent,
+    DetalleContratoComponent
   ],
   exports:[PricingComponent],
   imports: [
