@@ -21,28 +21,7 @@
       </div>
     </div>
   </div>
-  <!--
-  <div class="col-12" style="text-align: center;">
-    <h2 class="font-italic" style="font-size: 2rem; padding-top:30px; padding-bottom: 30px;">Muchos más que servicios...</h2>
-  </div>
-  <div class="container-flex  rounded m-dest" style="  overflow: hidden; " >
-    <div class="row justify-content-center" style="align-items:flex-end;">
-        <div class="col-12"  >
-          <div class="row">
-            <div class="col-xl-2 col-md-4 col-sm-12 mb-3" *ngFor="let servicio of servicios" style="cursor:pointer; padding-bottom: 50px;"  (click)="goToViewDetail(servicio.id)">
-              <div class="card" style="background-color: #422678; color: white; text-align: center;">
-                <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
-                <div class="card-body">
-                  <h4 class="card-text" style="font-size: 1rem;">{{ servicio.usuario.user?.login}}</h4>
-                  <h5 class="card-title" style="font-size: 1.3rem;">{{servicio.titulo}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-  -->
+  
   <main role="main">
 
     <section class="jumbotron text-center" style="background-color: #E6E6FA	">
@@ -57,7 +36,7 @@
     <div class="album" style="background-color: #E6E6FA	">
       <div class="container">
         <div class="row">
-          <div class="col-md-4" *ngFor="let servicio of servicios" style="cursor:pointer; padding-bottom: 50px;"  (click)="goToViewDetail(servicio.id)">
+          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6" *ngFor="let servicio of servicios" style="cursor:pointer; padding-bottom: 50px;"  (click)="goToViewDetail(servicio.id)">
             <div class="card mb-4 box-shadow"style="background-color: #422678; color: white; text-align: center;">
               <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/photo.jfif">
               <div class="card-body">

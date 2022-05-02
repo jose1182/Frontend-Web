@@ -13,11 +13,9 @@ body {
     position: relative;
     overflow: hidden;
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.3);
-    background: rgb(255,255,255);
-    background-image: linear-gradient(white, white );
+    background: white;
+    background-image: white;
     transition: transform .2s; /* Animation */
-
-
 }
 
 .zoom {
@@ -257,22 +255,22 @@ label{
 }
 
 .card-servicio{
-  border: none;
-  position: relative;
-  overflow: hidden;
-  border-radius: 5px;
-  cursor: pointer;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 20px;
-  margin: 30px !important;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  background: rgb(255,255,255);
-  background-image: linear-gradient(white, white );
-  transition: transform .2s; /* Animation */
+    border: none;
+    position: relative;
+    overflow: hidden;
+    margin: 30px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    background: white;
+    transition: transform .2s; /* Animation */
+
 }
 
 
 .img-icon{
   height: 30px;
+}
+
+h6{
+    color: white;
+    font-size: 2rem;
 }
