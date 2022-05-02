@@ -13,7 +13,6 @@
                           <div class="row gutters">
                               <form name="editForm" (ngSubmit)="save()" [formGroup]="editForm">
                                 <h2 id="jhi-usuario-heading" style="font-size: 3rem; margin-top: 20px;">Crear Nuevo Servicio</h2>
-
                                 <div class="form-row">
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" [hidden]="editForm.get('id')!.value == null">
                                     <label class="form-control-label" for="field_id">ID</label>
