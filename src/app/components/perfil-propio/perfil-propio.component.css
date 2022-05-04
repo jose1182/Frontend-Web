@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
-
-*{
+* {
     font-family: "Roboto";
-
 }
+
 body {
     background: #eee;
 }
@@ -15,21 +14,38 @@ body {
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.3);
     background: white;
     background-image: white;
-    transition: transform .2s; /* Animation */
+    transition: transform .2s;
+    /* Animation */
+    border-radius: 30px;
+    cursor: pointer;
+    border-style: solid;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    background: rgb(255, 255, 255);
+    background-image: linear-gradient(white, white);
+    transition: transform .2s;
+    /* Animation */
 }
 
 .zoom {
     padding: 50px;
     background-color: green;
-    transition: transform .2s; /* Animation */
+    transition: transform .2s;
+    /* Animation */
     width: 200px;
     height: 200px;
     margin: 0 auto;
-  }
+}
 
-  .card:hover {
-    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  }
+.card:hover {
+    transform: scale(1.03);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.card:hover {
+    transform: scale(1.03);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
 
 .fonts {
     font-size: 2rem;
@@ -49,82 +65,76 @@ body {
     font-size: 19px
 }
 
-
-
-.image-person{
+.image-person {
     width: 250px;
     height: 250px;
     margin-top: 20px;
     object-fit: cover;
     margin-bottom: 30px;
     align-items: center;
-
 }
 
-
-
-.person-info{
+.person-info {
     font-size: 2.7rem;
     color: black;
 }
 
-.person-info-detail{
+.person-info-detail {
     font-size: 2rem;
     color: black;
 }
 
-nav{
+nav {
     width: 100%;
     z-index: 2;
     text-align: center;
     padding: 5px !important;
-
 }
 
-.search-button{
+.search-button {
     background-color: #A381BD;
 }
 
-.navbar .navbar-brend{
+.navbar .navbar-brend {
     border-style: dashed;
     border-color: aquamarine;
 }
 
-a{
+a {
     font-weight: 300;
 }
 
-.navbar>a{
+.navbar>a {
     border-right: 1px solid white;
     padding-right: 20px;
 }
 
-.login-button{
+.login-button {
     color: black;
     background-color: #f8f8f8;
     margin-left: 10px;
 }
 
-.overlay{
+.overlay {
     background-color: rgba(255, 255, 255, 1);
     right: 0;
     left: 0;
     bottom: 0;
-      top: 0;
-  }
+    top: 0;
+}
 
-  .icon{
-      height: 30px;
-      margin-right: 10px;
-      text-align: center;
-  }
+.icon {
+    height: 30px;
+    margin-right: 10px;
+    text-align: center;
+}
 
-  .image-div{
-      padding: 0;
-      margin: 0;
-  }
+.image-div {
+    padding: 0;
+    margin: 0;
+}
 
-.buttons{
+.buttons {
     padding-bottom: 20px;
 }
 
@@ -186,41 +196,57 @@ a{
     margin: 10px;
 }
 
-p{
+.buttons button:nth-child(4) {
+    border: 1px solid #8E24AA !important;
+    background-color: #8E24AA;
+    color: #fff;
+    height: 70px;
+    font-size: 1.8rem;
+    width: 300px;
+    margin: 10px;
+}
+
+.buttons button:nth-child(4):hover {
+    border: 1px solid #8E24AA !important;
+    background-color: white;
+    color: #8E24AA;
+    height: 70px;
+    font-size: 1.8rem;
+    width: 300px;
+    margin: 10px;
+}
+
+p {
     font-size: 1.7rem;
 }
 
-.profile-info{
+.profile-info {
     border: none;
     border-radius: 0;
     box-shadow: none;
-
 }
 
-
-.info-title{
+.info-title {
     font-size: 1.7rem;
     color: #8E24AA;
     font-weight: 700;
-
 }
 
-.user-info{
+.user-info {
     color: white;
     font-size: 1.5rem;
     text-align: center;
     padding-bottom: 10px;
 }
 
-.user-about{
+.user-about {
     color: white;
     font-size: 1.5rem;
     text-align: center;
     padding-top: 40px;
-
 }
 
-.button-guardar{
+.button-guardar {
     border: 1px solid #8E24AA !important;
     background-color: #8E24AA;
     color: #fff;
@@ -240,9 +266,7 @@ p{
     margin: 10px;
 }
 
-
-
-label{
+label {
     font-size: 1.2rem;
     font-weight: 700;
     color: white;
@@ -250,27 +274,24 @@ label{
     padding: 5px 15px;
     border-radius: 0px 30px 30px 0px;
     width: 250px;
-
-
 }
 
-.card-servicio{
+.card-servicio {
     border: none;
     position: relative;
     overflow: hidden;
     margin: 30px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
     background: white;
-    transition: transform .2s; /* Animation */
-
+    transition: transform .2s;
+    /* Animation */
 }
 
-
-.img-icon{
-  height: 30px;
+.img-icon {
+    height: 30px;
 }
 
-h6{
+h6 {
     color: white;
     font-size: 2rem;
 }

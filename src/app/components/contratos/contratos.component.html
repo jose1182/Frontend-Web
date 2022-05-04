@@ -1,0 +1,25 @@
+<div class="container-fluid mt-5" style="background-color: #E6E6FA	">
+    <div class="album" style="background-color: #E6E6FA	">
+        <div class="container">
+
+            <div class="row" *ngIf="this.contratos">
+                <div class="col-md-4" *ngFor="let contrato of this.contratos" style="cursor:pointer; padding-bottom: 50px;" (click)="goToViewDetail(contrato.id)">
+                    <div class="card mb-4 box-shadow" style="background-color: #422678; color: white; text-align: center;">
+                        <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/categorias/contruccion.jpeg">
+                        <div class="card-body">
+                            <h5 class="card-title">{{contrato.id}}</h5>
+                            <p class="card-text">Precio: {{contrato.preciofinal}}</p>
+                            <p class="card-text">Fecha: {{contrato.fecha}}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-secondary">Detalles</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
