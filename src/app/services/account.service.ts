@@ -25,16 +25,38 @@ export class AccountService {
 
   ) {}
 
+  authenticate(identity: AccountModel | null): void {
+    this.userIdentify = identity;
+    this.authenticateState.next(this.userIdentify);
+    if (!identity) {
+      this.accountCache$ = null;
+    }
+  }
+
+  hasAnyAuthority(authorities: string [] |string ):boolean{
+    if(!this.userIdentify){
+      return false;
+    }
+    if(!Array.isArray(authorities)){
+      authorities = [authorities];
+    }
+
+    return this.userIdentify.authorities.some((authority: string) => authorities.includes(authority))
+  }
 
   identify(force?: boolean): Observable<AccountModel | null>{
     if(!this.accountCache$ || force){
-      this.accountCache$ = this.fetch().pipe(tap(()=>{
-        //this.route.navigate(['home'])
-      }))
+      this.accountCache$ = this.fetch().pipe(tap((account: AccountModel)=>{
+        this.authenticate(account);
+      }
+      ))
     }
     return this.accountCache$.pipe(catchError(() => of(null)));
   }
 
+  getAuthenticationState(): Observable<AccountModel | null> {
+    return this.authenticateState.asObservable();
+  }
 
   private fetch(): Observable<AccountModel>{
     console.log('fetch: ', environment.url + 'account')
