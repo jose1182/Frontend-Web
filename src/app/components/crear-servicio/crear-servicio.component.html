@@ -4,7 +4,12 @@
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
 
-      <div class="row" style="align-items: center;">
+      <div *ngIf="!isFullRegistration" class="row justify-content-center mx-1 my-5">
+          <ngb-alert type="danger">Antes de continuar creando tu servcio es necesario confirmar algunos datos.
+            <a [routerLink]="['/edit-profile/edit/', usuario?.id]" class="card-link text-dark ml-1 font-weight-bold">Editar mi perifl <img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
+          </ngb-alert>
+      </div>
+      <div *ngIf="isFullRegistration" class="row" style="align-items: center;">
             <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" >
                   <div class="card" style="background-color: #422678;">
                       <div class="row gutters">
@@ -21,7 +26,7 @@
 
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="titulo">Título</label>
-                                    <input type="text" class="form-control" name="titulo" id="titulo" formControlName="titulo">
+                                    <input type="text" class="form-control" name="titulo" id="titulo" formControlName="titulo" >
                                     <div *ngIf="f.titulo.invalid && (f.titulo!.dirty || f.titulo!.touched)">
                                       <small class="form-text text-danger" *ngIf="f.titulo.errors?.required"> Este campo es requerido. </small>
                                       <small class="form-text text-danger" *ngIf="f.titulo.errors?.maxlength">
@@ -58,7 +63,7 @@
                                       </small>
                                     </div>
                                   </div>
-                            
+
                                   <div class="form-group col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                     <label class="form-control-label" for="preciotraslado">Precio traslado servicio</label>
                                     <input type="number" class="form-control" name="preciotraslado" id="preciotraslado" formControlName="preciotraslado"
@@ -153,7 +158,7 @@
                                      <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn" (click)="previousState()">
                                       <span>Cancelar</span>
                                      </button>
-                             
+
                                      <button
                                        type="submit"
                                        id="save-entity"

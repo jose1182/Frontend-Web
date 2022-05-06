@@ -20,8 +20,9 @@ import { finalize, map, takeUntil } from 'rxjs/operators';
   templateUrl: './crear-servicio.component.html',
   styleUrls: ['./crear-servicio.component.css']
 })
-export class CrearServicioComponent implements OnInit {
 
+export class CrearServicioComponent implements OnInit {
+  id: number | null= null;
   isSaving = false;
   disponibilidadValues = Object.keys(Disponibilidad);
   categoriasCollection: ICategoria[] = [];
@@ -31,7 +32,6 @@ export class CrearServicioComponent implements OnInit {
   isFullRegistration = true;
   usuario!: IUsuario | null;
   private readonly destroy$ = new Subject<void>();
-
   editForm = this.formBuilder.group({
     id: [],
     titulo: [null, [Validators.required, Validators.maxLength(60)]],
@@ -64,6 +64,19 @@ export class CrearServicioComponent implements OnInit {
         servicio.fechaactualizacion = today;
       }
 
+      this.accountService
+      .getAuthenticationState()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(account => {
+        this.usuarioService.getUsuarioById(account?.id as number).subscribe( usuario => {
+          this.usuario = usuario;
+          if(this.usuario.nombre == '' || this.usuario.apellidos == ''){
+            this.isFullRegistration = false
+          }
+          ;
+        })
+      });
+
       this.isEspecialista = this.accountService.hasAnyAuthority("ROLE_ESPECIALISTA");
       if(!this.isEspecialista){
         this.router.navigate(['cuenta-especialista']);
@@ -76,8 +89,8 @@ export class CrearServicioComponent implements OnInit {
 
   }
 
-      // convenience getter for easy access to form fields
-      get f() { return this.editForm.controls; }
+  // convenience getter for easy access to form fields
+  get f() { return this.editForm.controls; }
 
   save(): void{
     this.isSaving = true;
@@ -146,6 +159,7 @@ export class CrearServicioComponent implements OnInit {
 
 
   private createFromForm(): IServicio {
+    console.log("user: ", this.usuario)
     return {
       ...new Servicio(),
       id: this.editForm.get(['id'])!.value,
@@ -166,7 +180,9 @@ export class CrearServicioComponent implements OnInit {
     };
   }
 
-
+  goToPerfil():void{
+    this.router.navigate(['edit-profile/edit',], {queryParams:{id: this.usuario?.id}})
+  }
 /*
   this.accountService.identify(true).subscribe( account => {
     this.account = account

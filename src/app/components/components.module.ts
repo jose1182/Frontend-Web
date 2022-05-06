@@ -34,6 +34,7 @@ import { ListaComponent } from './lista/lista.component';
 import { ContratosComponent } from './contratos/contratos.component';
 import { DetalleContratoComponent } from './detalle-contrato/detalle-contrato.component';
 import { ToastComponent } from './toast/toast.component';
+import { NgbAlert, NgbAlertModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -74,6 +75,8 @@ import { ToastComponent } from './toast/toast.component';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgbToastModule,
+    NgbAlertModule
 
   ]
 })
