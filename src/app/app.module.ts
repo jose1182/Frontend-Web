@@ -27,8 +27,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ServicesModule,
     BrowserAnimationsModule,
-    FormsModule,
-    NgbToastModule
+    FormsModule
   ],
   providers: [
     CookieService,
