@@ -1,0 +1,11 @@
+<div class="container conversacion mt-5">
+    <div class="row" *ngIf="this.mensajes">
+        <div class="col-md-10 d-flex" *ngFor="let mensaje of this.mensajes">
+            <div class="mensaje w-100">
+                <p>{{mensaje.texto}}</p>
+                <p class="small">{{mensaje.fecha.format("HH:mm")}}</p>
+            </div>
+
+        </div>
+    </div>
+</div>

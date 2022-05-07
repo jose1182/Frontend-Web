@@ -33,6 +33,8 @@ import { PasarelaPagoComponent } from './pasarela-pago/pasarela-pago.component';
 import { ListaComponent } from './lista/lista.component';
 import { ContratosComponent } from './contratos/contratos.component';
 import { DetalleContratoComponent } from './detalle-contrato/detalle-contrato.component';
+import { ConversacionesComponent } from './conversaciones/conversaciones.component';
+import { DetalleConversacionComponent } from './detalle-conversacion/detalle-conversacion.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { DetalleContratoComponent } from './detalle-contrato/detalle-contrato.co
     PasarelaPagoComponent,
     ListaComponent,
     ContratosComponent,
-    DetalleContratoComponent
+    DetalleContratoComponent,
+    ConversacionesComponent,
+    DetalleConversacionComponent
   ],
   exports:[PricingComponent],
   imports: [

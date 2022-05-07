@@ -19,6 +19,8 @@ import { PasarelaPagoComponent } from './components/pasarela-pago/pasarela-pago.
 import { ServicioRoutingResolveService } from './components/crear-servicio/route/servicio/servicio-routing-resolve.service';
 import { ContratosComponent } from './components/contratos/contratos.component';
 import { DetalleContratoComponent } from './components/detalle-contrato/detalle-contrato.component';
+import { ConversacionesComponent } from './components/conversaciones/conversaciones.component';
+import { DetalleConversacionComponent } from './components/detalle-conversacion/detalle-conversacion.component';
 
 
 const routes: Routes = [
@@ -104,6 +106,14 @@ const routes: Routes = [
   {
     path: 'contrato/:id',
     component: DetalleContratoComponent
+  },
+  {
+    path: 'conversaciones',
+    component: ConversacionesComponent
+  },
+  {
+    path: 'conversacion/:id',
+    component: DetalleConversacionComponent
   },
   {
     path: '404',

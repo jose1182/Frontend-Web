@@ -27,7 +27,7 @@ export class ContratosComponent implements OnInit {
     this.checkLogin();
   }
 
-  goToViewDetail(id: Number): void{
+  goToViewDetail(id: number): void{
     this.router.navigate(['contrato', id]);
   }
 

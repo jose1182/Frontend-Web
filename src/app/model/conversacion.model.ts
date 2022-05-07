@@ -1,13 +1,10 @@
-import { IUsuario } from './usuario.model';
-
 
 export interface IConversacion {
   id?: number;
-  usuarios?: IUsuario[] | null;
 }
 
 export class Conversacion implements IConversacion {
-  constructor(public id?: number, public usuarios?: IUsuario[] | null) {}
+  constructor(public id?: number) {}
 }
 
 export function getConversacionIdentifier(conversacion: IConversacion): number | undefined {
