@@ -15,7 +15,7 @@ export class UsuariosService {
   ) { }
 
 
-  getUsuarioById(id?: number ):Observable<IUsuario>{
+  getUsuarioById(id?: number | undefined ):Observable<IUsuario>{
     return this.http.get<IUsuario>(`${environment.url}usuarios/${id}`)
   }
 

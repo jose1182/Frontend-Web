@@ -1,17 +1,24 @@
-import { Usuario } from "./usuario.model";
+import { IUsuario, Usuario } from "./usuario.model";
 import * as dayjs from 'dayjs';
+import { Conversacion } from "./conversacion.model";
 
-export class MensajeModel {
-    id!: number;
-    texto!: string;
-    fecha!: dayjs.Dayjs;
-    emisor!: Usuario;
-    receptor!: Usuario;
+export interface IMensaje {
+    id?: number;
+    texto?: string;
+    fecha?: dayjs.Dayjs;
+    emisor?: IUsuario;
+    receptor?: IUsuario;
+    conversacion?: Conversacion;
+}
 
-    constructor(id: number, fecha: dayjs.Dayjs, emisor: Usuario, receptor: Usuario) {
-        this.id = id;
-        this.fecha = fecha;
-        this.emisor = emisor;
-        this.receptor = receptor;
+export class MensajeModel implements IMensaje{
+
+    constructor(
+        public id?: number, 
+        public fecha?: dayjs.Dayjs, 
+        public emisor?: IUsuario, 
+        public receptor?: IUsuario, 
+        public conversacion?: Conversacion) {
+
     }
 }
