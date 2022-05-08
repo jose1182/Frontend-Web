@@ -7,14 +7,14 @@
                     <div class="card">
                         <div class="row gutters">
                             <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color: #5C3A7D; text-align: center;">
-                                <img mat-card-image class="image-person img-fluid rounded-circle pt-3 center" [src]="'data:' + usuario.imagenContentType + ';base64,' + usuario.imagen" alt="perfil image" />
+                                <img mat-card-image class="image-person img-fluid rounded-circle pt-3 center" [src]="'data:' + usuario?.imagenContentType + ';base64,' + usuario?.imagen" alt="perfil image" />
                                 <br>
                                 <mat-card-title class="text-white">{{ usuario?.nombre }}</mat-card-title>
                                 <br>
                                 <mat-card-subtitle class="text-white" style="font-size: 1.3rem;">{{ usuario?.profesion }}</mat-card-subtitle>
                                 <mat-card-actions>
                                     <div class="row justify-content-center py-3">
-                                        <button class="btn button-envelope btn-info m-2" mat-button [routerLink]="['/conversaciones']"><img class="img-icon" src="./../../../assets/envelope-solid.svg"> Contactar</button>
+                                        <button class="btn button-envelope btn-info m-2" mat-button (click)="this.goToConversacion()"><img class="img-icon" src="./../../../assets/envelope-solid.svg"> Contactar</button>
                                     </div>
                                 </mat-card-actions>
 

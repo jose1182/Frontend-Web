@@ -112,6 +112,10 @@ const routes: Routes = [
     component: ConversacionesComponent
   },
   {
+    path: 'conversaciones/user/:id',
+    component: ConversacionesComponent
+  },
+  {
     path: 'conversacion/:id',
     component: DetalleConversacionComponent
   },

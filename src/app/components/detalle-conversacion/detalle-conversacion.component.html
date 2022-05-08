@@ -1,6 +1,14 @@
 <div class="container conversacion mt-5">
+    <div class="row d-flex justify-content-around align-items-center">
+        <div class="col-4">
+            <img *ngIf="this.receptor?.imagenContentType" class="image-person img-fluid rounded-circle center imagen-profile" [src]="'data:' + this.receptor?.imagenContentType + ';base64,' + this.receptor.imagen" alt="categoria image" />
+        </div>
+        <div class="col-6">
+            <h2>{{this.receptor?.nombre}} {{this.receptor?.apellidos}}</h2>
+        </div>
+    </div>
     <div class="row" *ngIf="this.mensajes">
-        <div class="col-md-10" *ngFor="let mensaje of this.mensajes">
+        <div class="col-12 mt-3" *ngFor="let mensaje of this.mensajes">
             <div class="mensaje w-100">
                 <div class="d-flex justify-content-end emisor" *ngIf="mensaje.emisor?.id == accountModel?.id" style="text-align: end;">
 

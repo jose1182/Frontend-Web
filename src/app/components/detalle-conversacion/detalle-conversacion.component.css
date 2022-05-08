@@ -3,7 +3,7 @@
 }
 
 .emisor {
-    background-color: lightgray;
+    background-color: rgb(90, 170, 90);
 }
 
 .receptor {
@@ -12,4 +12,8 @@
 
 .hora {
     font-size: 60%;
+}
+
+.imagen-profile {
+    width: 40%;
 }

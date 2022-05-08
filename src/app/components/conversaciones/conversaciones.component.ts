@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AccountModel } from 'src/app/model/account.model';
 import { IConversacion } from 'src/app/model/conversacion.model';
 import { MensajeModel } from 'src/app/model/mensaje.model';
@@ -17,10 +17,12 @@ export class ConversacionesComponent implements OnInit {
   conversaciones!: IConversacion[];
   mensajes!: MensajeModel[];
   accountModel!: AccountModel | undefined;
-  
+  idUser!: number | undefined;
+
   constructor(
     private conversacionesService: ConversacionesService,
     private router: Router,
+    private route: ActivatedRoute,
     private accountService: AccountService
   ) {  }
 
@@ -39,6 +41,8 @@ export class ConversacionesComponent implements OnInit {
         console.log("Logueado para ver las conversaciones");
         if(this.accountModel.id){
           this.getConversacionsIdList(this.accountModel.id);
+          //Se obtiene el usuario al que hay que buscar su conversación o bien crearla
+          this.getIdUser();
         }
         
       } else {
@@ -63,6 +67,14 @@ export class ConversacionesComponent implements OnInit {
     })
   }
 
+  getIdUser(){ 
+    this.route.paramMap.subscribe((params: Params) => {
+      if(params.get('id')){
+        let id = params.get('id');
+        console.log(id)
+      }
+    })
+  }
  
 
 }

@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuario/usuarios.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { IServicio } from '../../model/servicio.model';
@@ -21,6 +21,7 @@ export class PerfilVisitadoComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuariosService,
+    private router: Router,
     private route: ActivatedRoute,
     private serviciosService:ServiciosService,
   ) {
@@ -62,6 +63,11 @@ listaServicios(): void{
     this.servicios = servicios;
 
   })
+}
+
+goToConversacion() { 
+  //Manda el id de usuario para crear la conversación
+  this.router.navigate(['conversaciones/user', this.id]);
 }
 
 

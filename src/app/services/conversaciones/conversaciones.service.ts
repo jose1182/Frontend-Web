@@ -29,7 +29,7 @@ export class ConversacionesService {
     return this.http
     .post<IMensaje>(environment.url + 'mensajes', mensaje)
     .pipe(map( response => {
-      console.log('Register Service OK' + response);
+      console.log('OK' + JSON.stringify(response));
     }))
   }
 
