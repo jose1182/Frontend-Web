@@ -1,25 +1,39 @@
-<div class="container-fluid mt-5" style="background-color: #E6E6FA	">
-    <div class="album" style="background-color: #E6E6FA	">
-        <div class="container">
 
-            <div class="row" *ngIf="this.contratos">
-                <div class="col-md-4" *ngFor="let contrato of this.contratos" style="cursor:pointer; padding-bottom: 50px;" (click)="goToViewDetail(contrato.id)">
-                    <div class="card mb-4 box-shadow" style="background-color: #422678; color: white; text-align: center;">
+<div class="container-fluid" >
+    <div class="row d-flex justify-content-center align-items-center" >
+      <div class="main-container col-lg-12" id="shadow" style="height: 100vh;">
+        <div class="row" *ngIf="this.contratos" style="align-items: center;">
+          <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" *ngFor="let contrato of this.contratos" style="cursor:pointer; padding-bottom: 50px;" (click)="goToViewDetail(contrato.id)">
+            <div class="card card-contrato">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="row justify-content-center">
+                      
+                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12" style="text-align: center;">
                         <img class="image-person img-fluid rounded-circle" alt="100%x280" src="./../../../assets/categorias/contruccion.jpeg">
+                      </div>
+                      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 align-self-center">
                         <div class="card-body">
-                            <h5 class="card-title">{{contrato.id}}</h5>
+                            <h5 class="card-title"> Contrato №{{contrato.id}}</h5>
                             <p class="card-text">Precio: {{contrato.preciofinal}}</p>
                             <p class="card-text">Fecha: {{contrato.fecha}}</p>
+
                             <div class="d-flex justify-content-center align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-secondary">Detalles</button>
-                                </div>
                             </div>
                         </div>
-                    </div>
+                      </div>
+
+                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 align-self-center" style="text-align: center;">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-secondary">Detalles</button>
+                        </div>
+                      </div>
+                        
+                  </div>
                 </div>
             </div>
+         </div>
         </div>
+      </div>
     </div>
+  </div>
 
-</div>

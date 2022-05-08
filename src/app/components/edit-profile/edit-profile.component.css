@@ -1,26 +1,9 @@
 
-
-.top-padding{
-  padding-top: 3px;
-}
-
-.margin-left mat-radio-button:not(:first-child){
-  margin-left:10px;
-}
-
-.form-container{
-  margin: 100px;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
 
 *{
     font-family: "Roboto";
 
-}
-
-body {
-    background: #eee
 }
 
 .card {
@@ -45,25 +28,12 @@ body {
   }
   
   .card:hover {
-    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
 
 .fonts {
     font-size: 2rem;
     color: black;
-}
-
-.social-list {
-    display: flex;
-    list-style: none;
-    justify-content: center;
-    padding: 0
-}
-
-.social-list li {
-    padding: 10px;
-    color: #8E24AA;
-    font-size: 19px
 }
 
 
@@ -102,18 +72,9 @@ nav{
     background-color: #A381BD;
 }
 
-.navbar .navbar-brend{
-    border-style: dashed;
-    border-color: aquamarine;
-}
 
 a{
     font-weight: 300;
-}
-
-.navbar>a{
-    border-right: 1px solid white;
-    padding-right: 20px;
 }
 
 .login-button{
@@ -122,13 +83,6 @@ a{
     margin-left: 10px;
 }
 
-.overlay{
-    background-color: rgba(255, 255, 255, 1);
-    right: 0;
-    left: 0;
-    bottom: 0;
-      top: 0;
-  }
 
   .icon{
       height: 30px;
@@ -179,7 +133,6 @@ a{
 
 input{
     height: 50px;
-    width: 500px;
 }
 
 label{
@@ -196,43 +149,25 @@ label{
 
 
 .buttons button:nth-child(1) {
-    border: 1px solid #8E24AA !important;
-    color: #8E24AA;
+    border: 1px solid #5C3A7D !important;
+    color: #5C3A7D;
     height: 70px;
     font-size: 1.8rem;
     width: 300px;
-    margin: 10px;
+    margin-left: 10px;
 }
 
 .buttons button:nth-child(1):hover {
     border: 1px solid white !important;
     color: white;
     height: 70px;
-    background-color: #8E24AA;
+    background-color: #5C3A7D;
     font-size: 1.8rem;
     width: 300px;
     margin: 10px;
 }
 
-.buttons button:nth-child(2) {
-    border: 1px solid #8E24AA !important;
-    background-color: #8E24AA;
-    color: #fff;
-    height: 70px;
-    font-size: 1.8rem;
-    width: 300px;
-    margin: 10px;
-}
 
-.buttons button:nth-child(2):hover {
-    border: 1px solid #8E24AA !important;
-    background-color: white;
-    color: #8E24AA;
-    height: 70px;
-    font-size: 1.8rem;
-    width: 300px;
-    margin: 10px;
-}
 
 .button-image{
     border: 1px solid #8E24AA !important;
@@ -271,3 +206,7 @@ h2{
   padding: 0 10px;
 }
 
+.form-outline{
+    padding-left: 15px;
+    padding-right: 15px;
+}

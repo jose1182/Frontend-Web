@@ -30,11 +30,8 @@ a{
     width: 50px;
 }
 
-.btn:hover{
-    color: white;
-    height: 50px;
-    font-size: 1.8rem;
-    width: 70px;
+.btn:hover {
+    transform: scale(1.25); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 
@@ -49,9 +46,8 @@ a{
     position: relative;
     overflow: hidden;
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
-    background: rgb(255,255,255);
-    background-image: linear-gradient(white, white );
     transition: transform .2s; /* Animation */
+    background-color: #fff;
 }
 
 .form-outline{
@@ -77,8 +73,8 @@ label{
 }
 
 .btn-borrar{
-    border: 1px solid #8E24AA !important;
-    background-color: #8E24AA;
+    border: 1px solid #67418C !important;
+    background-color: #67418C;
     color: #fff;
     height: 50px;
     font-size: 1.5rem;
@@ -86,9 +82,9 @@ label{
 }
 
 .btn-borrar:hover{
-    border: 1px solid #8E24AA !important;
+    border: 1px solid #67418C !important;
     background-color: white;
-    color: #8E24AA;
+    color: #67418C;
     height: 50px;
     font-size: 1.5rem;
     width: 300px;
@@ -178,23 +174,17 @@ td{
 }
 
 .details-table{
-    border: 1px solid #8E24AA !important;
+    border: 1px solid #67418C !important;
     border-radius: 5px;
-    background-color: #8E24AA;
+    background-color: #67418C;
     color: #fff;
     font-size: 1rem;
     padding: 0px 10px;
     width: 130px;
 }
 
-.details-table:hover{
-    border: 1px solid #8E24AA !important;
-    border-radius: 5px;
-    background-color: #8E24AA;
-    color: #fff;
-    font-size: 1rem;
-    padding: 0px 10px;
-    width: 150px;
+.details-table:hover {
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 

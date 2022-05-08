@@ -172,8 +172,7 @@ h2{
     position: relative;
     overflow: hidden;
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
-    background: rgb(255,255,255);
-    background-image: linear-gradient(white, white );
+    background: #E6E6FA;
     transition: transform .2s; /* Animation */
 }
 
@@ -183,12 +182,11 @@ h2{
   border: 1px solid #67418C !important;
   background-color: white;
   color: #67418C;
-  height: 50px;
+  height: 55px;
   font-size: 1.3rem;
-  width: 200px;
+  width: 220px;
   margin-top:10px;
   margin-bottom: 30px;
-
 }
 
 .btn-categ{

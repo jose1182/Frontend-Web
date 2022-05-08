@@ -145,14 +145,7 @@ a{
 }
 
 .button-envelope:hover{
-    border: 1px solid white !important;
-    background-color: #8E24AA;
-    color: #fff;
-    height: 55px;
-    font-size: 1.3rem;
-    width: 250px;
-    margin-top:10px;
-    margin-bottom: 30px;
+  transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .change-img{

@@ -96,6 +96,17 @@ b {
   box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.5)
 }
 
+.card{
+  border-color:#422168;
+  align-items: center;
+  box-shadow: 5px 10px 10px 5px rgba(0, 0, 0, 0.5)
+
+}
+
+.card:hover {
+    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 .descripcion{
     font-size: 1rem;
     font-weight: 300;

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+  
+*{
+    font-family: "Roboto";
+  
+}
+
+img{
+    height: 11rem;
+}
+
+h5{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+p{
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+button{
+    border: 1px solid #5C3A7D !important;
+    background-color: #5C3A7D;
+    color: #fff;
+    height: 70px;
+    font-size: 1.8rem;
+    width: 150px;
+    margin: 10px;
+}
+
+button:hover {
+    border: 1px solid #5C3A7D !important;
+    background-color: white;
+    color: #5C3A7D;
+    height: 70px;
+    font-size: 1.8rem;
+    width: 150px;
+    margin: 10px;
+}
+
+.card-contrato{
+    padding-top: 25px; 
+    padding-bottom: 25px; 
+    background-color: #E6E6FA; 
+    border: none;
+    overflow: hidden;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
+    transition: transform .2s; /* Animation */
+}
+
+.card-contrato:hover{
+    transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+

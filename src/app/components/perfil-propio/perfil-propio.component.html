@@ -12,7 +12,7 @@
                                             <div class="account-settings">
                                                 <div class="user-profile">
                                                     <div class="user-avatar text-center" style="margin-bottom: 30px;">
-                                                        <img *ngIf="usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center" [src]="'data:' + usuarioModel?.imagenContentType + ';base64,' + usuarioModel.imagen" alt="categoria image" />
+                                                        <img *ngIf="usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center"  style="margin-top:70px" [src]="'data:' + usuarioModel?.imagenContentType + ';base64,' + usuarioModel.imagen" alt="categoria image" />
                                                         <img *ngIf="!usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center" src="../../../assets/images.png" />
                                                     </div>
                                                     <h5 class="user-name user-info" style="font-size: 2.5rem;">{{this.usuarioModel?.user?.login}}</h5>
@@ -95,10 +95,9 @@
                                             <div class="row gutters">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                     <div class="buttons text-right">
-                                                        <button class="button-contact btn btn-outline-primary px-4">Mis servicios</button>
                                                         <button class="button-contact btn btn-outline-primary px-4">Mis reseñas</button>
+                                                        <button class="button-contact btn  px-4 ms-3" [routerLink]="['/contratos', usuarioModel?.id]" routerLinkActive="router-link-active">Mis contratos</button>
                                                         <button class="button-contact btn btn-primary px-4 ms-3" [routerLink]="['/edit-profile/edit', usuarioModel?.id]" routerLinkActive="router-link-active">Editar</button>
-                                                        <button class="button-contact btn btn-primary px-4 ms-3" [routerLink]="['/contratos', usuarioModel?.id]" routerLinkActive="router-link-active">Mis contratos</button>
                                                     </div>
 
 
@@ -119,35 +118,35 @@
     </div>
 
     <div class="container-fluid" >
-      <div class="row d-flex justify-content-center align-items-center" >
-        <div class="main-container col-lg-12" id="shadow" style="height: 100vh;">
-          <div class="row" style="align-items: center;">
-            <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
-              <div class="card" style="padding-bottom: 50px; background-color: #A381BD">
-                <div class="row gutters">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <h6 class="mt-5 ml-5 info-title" style="color: white; font-size: 2.3rem; text-align: center; padding-bottom: 20px;">Mis servicios</h6>
-                    <div class="row justify-content-center">
-                      <div class="card-servicio m-2" style="width: 350px; padding: 10px;" *ngFor="let servicio of servicios">
-                        <div class="card-body pb-2">
-                          <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
-                          <span class="badge badge-warning mr-1 mb-2" *ngFor="let categoria of servicio.categorias" >{{categoria.nombre}}</span>
-                          <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
-                          <div class="row">
-                            <a [routerLink]="['/crear-servicio/update', servicio.id]" class="card-link text-dark ml-1"><img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
-                            <img *ngIf="servicio.destacado" class="img-icon ml-2" src="./../../../assets/star-solid.svg" >
-                          </div>
-                       </div>
+        <div class="row d-flex justify-content-center align-items-center" >
+          <div class="main-container col-lg-12" id="shadow" style="height: 100vh;">
+            <div class="row" style="align-items: center;">
+              <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
+                <div class="card" style="padding-bottom: 50px; background-color: #E6E6FA">
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h6 class="mt-5 ml-5 info-title" style="color: black; font-size: 2.3rem; text-align: center; padding-bottom: 20px;">Mis servicios</h6>
+                      <div class="row justify-content-center">
+                        <div class="card-servicio m-2" style="width: 350px; padding: 10px;" *ngFor="let servicio of servicios">
+                          <div class="card-body pb-2">
+                            <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
+                            <span class="badge badge-warning mr-1 mb-2" *ngFor="let categoria of servicio.categorias" >{{categoria.nombre}}</span>
+                            <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
+                            <div class="row">
+                              <a [routerLink]="['/crear-servicio/update', servicio.id]" class="card-link text-dark ml-1"><img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
+                              <img *ngIf="servicio.destacado" class="img-icon ml-2" src="./../../../assets/star-solid.svg" >
+                            </div>
+                         </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-           </div>
+             </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
 
