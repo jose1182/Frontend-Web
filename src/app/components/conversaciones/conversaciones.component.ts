@@ -41,8 +41,7 @@ export class ConversacionesComponent implements OnInit {
         console.log("Logueado para ver las conversaciones");
         if(this.accountModel.id){
           this.getConversacionsIdList(this.accountModel.id);
-          //Se obtiene el usuario al que hay que buscar su conversación o bien crearla
-          this.getIdUser();
+
         }
         
       } else {
@@ -58,23 +57,12 @@ export class ConversacionesComponent implements OnInit {
       if(conversaciones){
         this.conversaciones = conversaciones
         console.log(this.conversaciones);
-        /*
-        if(this.conversaciones[0].id){
-          this.getMensajesConversacion(this.conversaciones[0].id)
-        }
-        */
       }
     })
   }
 
-  getIdUser(){ 
-    this.route.paramMap.subscribe((params: Params) => {
-      if(params.get('id')){
-        let id = params.get('id');
-        console.log(id)
-      }
-    })
-  }
- 
+  crearConversacion(){
+     this.conversacionesService.nuevaConversacion().subscribe(data => {console.log(data)}, error => {console.log(error)});
+  } 
 
 }

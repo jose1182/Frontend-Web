@@ -16,20 +16,27 @@ export class ConversacionesService {
     private http: HttpClient
   ) { }
 
-  getConversacionsByUser(id: number | undefined):Observable<Conversacion[]>{
+  public getConversacionsByUser(id: number | undefined):Observable<Conversacion[]>{
     return this.http.get<Conversacion[]>(`${environment.url}conversacions/usuario/?id=${id}`);
   }
 
-  getMensajesByConvId(id: number | undefined): Observable<MensajeModel[]>{
+  public getMensajesByConvId(id: number | undefined): Observable<MensajeModel[]>{
     return this.http.get<MensajeModel[]>(`${environment.url}mensajes/conversacion?id=${id}`);
   }
 
   public nuevoMensaje(mensaje: IMensaje): Observable<any> {
-    console.log('Mensaje nuevo (' + JSON.stringify(mensaje) + ')');
     return this.http
     .post<IMensaje>(environment.url + 'mensajes', mensaje)
     .pipe(map( response => {
-      console.log('OK' + JSON.stringify(response));
+      console.log('Mensaje creado: ' + JSON.stringify(response));
+    }))
+  }
+
+  public nuevaConversacion(): Observable<any> {
+    return this.http
+    .post<any>(environment.url + 'conversacions', JSON.parse('{ }'))
+    .pipe(map( response => {
+      console.log('Conversacion creada: ' + JSON.stringify(response));
     }))
   }
 

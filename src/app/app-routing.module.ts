@@ -112,11 +112,11 @@ const routes: Routes = [
     component: ConversacionesComponent
   },
   {
-    path: 'conversaciones/user/:id',
-    component: ConversacionesComponent
+    path: 'conversacion/:id',
+    component: DetalleConversacionComponent
   },
   {
-    path: 'conversacion/:id',
+    path: 'conversaciones/user/:idUser',
     component: DetalleConversacionComponent
   },
   {

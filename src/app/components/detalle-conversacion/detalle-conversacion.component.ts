@@ -20,6 +20,7 @@ export class DetalleConversacionComponent implements OnInit {
 
   id!: number;
   idReceptor!: number | undefined;
+  idNuevaConv!: number | undefined;
   mensajes!: IMensaje[];
   accountModel!: AccountModel | undefined;
   mensajeForm!: FormGroup;
@@ -50,7 +51,7 @@ export class DetalleConversacionComponent implements OnInit {
     this.accountService.identify(true).subscribe( account => {
       if(account){
         this.accountModel = account
-        console.log("Logueado para ver los contratos");
+        console.log("Logueado para ver las conversaciones");
         this.getMensajesConversacion();
       } else {
         console.log('No has iniciado sesión');
@@ -62,12 +63,13 @@ export class DetalleConversacionComponent implements OnInit {
   getMensajesConversacion(): void {
     this.route.paramMap.subscribe((params: Params) => {
       if(params.get('id')){
+        console.log('hola')
         this.id = params.get('id');
         //this.conversacion = this.id
         //console.log(this.id);
-
+        // A partir del id de la conversación se buscan sus mensajes
         this.conversacionesService.getMensajesByConvId(this.id).subscribe(mensajes => {
-          if(mensajes){
+          if(mensajes != []){
             this.mensajes = mensajes;
             console.log(this.mensajes);
             if(this.mensajes){
@@ -75,34 +77,32 @@ export class DetalleConversacionComponent implements OnInit {
                 || this.mensajes[0].receptor?.id == this.accountModel?.id ){
                   console.log('Estos son tus mensajes usuario ' + this.accountModel?.id);
                   //Se busca el id del receptor de los mensajes y que no coincida con el usuario logueado
-                  this.getIdReceptor();
+                  this.getReceptor();
 
-                  //Info del usuario emisor
-                  this.usuarioService.getUsuarioById(this.accountModel?.id).subscribe( usuario => { 
-                    if(usuario){
-                      this.emisor = usuario;
-                      //console.log('emisor: ' + JSON.stringify(this.emisor)); 
-                    }
-                  })
+                  this.getEmisor();
 
-                  //Info del usuario receptor
-                  this.usuarioService.getUsuarioById(this.idReceptor).subscribe( usuario => {
-                    if(usuario){
-                      this.receptor = usuario;
-                      //console.log('receptor: ' + JSON.stringify(this.receptor));
-                    }
-                  })
+                  
                   
                   for (var mensaje of this.mensajes) {
                     mensaje.fecha = dayjs(mensaje.fecha);
                     //console.log(mensaje.fecha);
                   }
               } else {
-                this.router.navigate(['conversaciones']);
+                //this.router.navigate(['conversaciones']);
               }
-            } 
-          }
+            }
+          } 
         })
+      } else {
+        if(params.get('idUser')){
+          this.getReceptor();
+          this.getEmisor();
+          //Crear nueva conversación
+          this.crearConversacion();
+          //Nos lleva a dicha conversación
+          this.router.navigate(['conversacion', this.idNuevaConv]);
+          //Se genera un Nuevo mensaje AUTOMÁTICO para esta Conversación
+        }
       }
     })
    
@@ -113,32 +113,63 @@ export class DetalleConversacionComponent implements OnInit {
 
   crearNuevoMensaje(): void {
     console.log(this.mensajeForm.value.mensaje);
-    this.conversacionesService.nuevoMensaje(this.construirMensaje(this.mensajeForm.value.mensaje)).subscribe(data => {
+    this.conversacionesService.nuevoMensaje(this.construirMensaje(this.mensajeForm.value.mensaje, this.emisor, this.receptor, this.id)).subscribe(data => {
       this.refresh();
     })
   }
 
-  construirMensaje(texto: string): IMensaje {
+  construirMensaje(texto: string, emisor: IUsuario, receptor: IUsuario, id: number): IMensaje {
 
     return { 
       ...new MensajeModel(),
       texto: texto,
       fecha: dayjs(new Date,"YYYY-MM-DDTHH:mm"),
-      emisor: this.emisor,
-      receptor: this.receptor,
-      conversacion: { id: this.id }
+      emisor: emisor,
+      receptor: receptor,
+      conversacion: { id: id }
     }
   }
 
-  getIdReceptor(): void{
+  crearConversacion(){
+    this.conversacionesService.nuevaConversacion().subscribe();
+    this.conversacionesService.nuevoMensaje(this.construirMensaje('Hola, este mensaje es de prueba.',this.emisor, this.receptor, this.id)).subscribe(data => {
+      //this.refresh();
+      this.router.navigate(['conversacion', this.idNuevaConv]);
+    }, error => console.log(error));
+ } 
 
-    for (let i = 0; i < this.mensajes.length; i++) {
-      if(this.mensajes[i].receptor?.id != this.accountModel?.id){
-          //console.log(this.mensajes[i].receptor?.id);
-          this.idReceptor = this.mensajes[i].receptor?.id;
+  getEmisor(): IUsuario {
+    if(this.accountModel){
+      this.usuarioService.getUsuarioById(this.accountModel?.id).subscribe( usuario => { 
+        if(usuario){
+          this.emisor = usuario;
+          console.log('emisor: ' + JSON.stringify(this.emisor.nombre));
+          
         }
+      })
     }
+    return this.emisor;
   }
+
+  getReceptor(): IUsuario {
+      this.route.paramMap.subscribe((params: Params) => {
+        if(params.get('idUser')){
+          this.idReceptor = params.get('idUser');
+          console.log('IDUSER: '+ this.idReceptor);
+          if(this.accountModel){
+            this.usuarioService.getUsuarioById(this.idReceptor).subscribe( usuario => { 
+              if(usuario){
+                this.receptor = usuario;
+                console.log('receptor: ' + JSON.stringify(this.receptor.nombre)); 
+              }
+            })
+          }
+        }
+      })
+      return this.receptor;
+  }
+
+
 
   refresh(): void {
 		this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
