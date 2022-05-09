@@ -59,4 +59,8 @@ export class AppComponent implements OnInit {
   goToPerfil():void{
     this.router.navigate(['perfil-propio/vista',], {queryParams:{id: this.accountModel?.id}})
   }
+
+  favoritos():void{
+  this.router.navigate(['favoritos'])
+  }
 }

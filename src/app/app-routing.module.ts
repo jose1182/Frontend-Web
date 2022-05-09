@@ -17,6 +17,7 @@ import { CrearServicioComponent } from './components/crear-servicio/crear-servic
 import { PricingComponent } from './components/pricing/pricing.component';
 import { PasarelaPagoComponent } from './components/pasarela-pago/pasarela-pago.component';
 import { ServicioRoutingResolveService } from './components/crear-servicio/route/servicio/servicio-routing-resolve.service';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 
 
 const routes: Routes = [
@@ -94,6 +95,10 @@ const routes: Routes = [
   {
     path: 'payment-credit-card',
     component: PasarelaPagoComponent
+  },
+  {
+    path: 'favoritos',
+    component: FavoritosComponent
   },
   {
     path: '404',
