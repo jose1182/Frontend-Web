@@ -35,6 +35,8 @@ import { ContratosComponent } from './contratos/contratos.component';
 import { DetalleContratoComponent } from './detalle-contrato/detalle-contrato.component';
 import { ToastComponent } from './toast/toast.component';
 import { NgbAlert, NgbAlertModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetalleConversacionComponent } from './detalle-conversacion/detalle-conversacion.component';
+import { ConversacionesComponent } from './conversaciones/conversaciones.component';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { NgbAlert, NgbAlertModule, NgbToastModule } from '@ng-bootstrap/ng-boots
     ListaComponent,
     ContratosComponent,
     DetalleContratoComponent,
-    ToastComponent
+    ToastComponent,
+    ConversacionesComponent,
+    DetalleConversacionComponent
   ],
   exports:[PricingComponent, ToastComponent],
   imports: [

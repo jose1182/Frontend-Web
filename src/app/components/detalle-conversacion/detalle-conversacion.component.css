@@ -1,0 +1,19 @@
+.conversacion {
+    background-color: lightblue;
+}
+
+.emisor {
+    background-color: rgb(90, 170, 90);
+}
+
+.receptor {
+    background-color: lightcoral;
+}
+
+.hora {
+    font-size: 60%;
+}
+
+.imagen-profile {
+    width: 40%;
+}
