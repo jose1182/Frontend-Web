@@ -95,8 +95,11 @@ export class DetalleConversacionComponent implements OnInit {
         })
       } else {
         if(params.get('idUser')){
-          this.getReceptor();
-          this.getEmisor();
+          if(this.emisor && this.receptor){
+            this.getReceptor();
+            this.getEmisor();
+          }
+          
           //Crear nueva conversación
           this.crearConversacion();
           //Nos lleva a dicha conversación
