@@ -78,10 +78,7 @@ export class DetalleConversacionComponent implements OnInit {
                   console.log('Estos son tus mensajes usuario ' + this.accountModel?.id);
                   //Se busca el id del receptor de los mensajes y que no coincida con el usuario logueado
                   this.getReceptor();
-
-                  this.getEmisor();
-
-                  
+                  this.getEmisor();         
                   
                   for (var mensaje of this.mensajes) {
                     mensaje.fecha = dayjs(mensaje.fecha);
@@ -102,8 +99,9 @@ export class DetalleConversacionComponent implements OnInit {
           
           //Crear nueva conversación
           this.crearConversacion();
+          
           //Nos lleva a dicha conversación
-          this.router.navigate(['conversacion', this.idNuevaConv]);
+         // this.router.navigate(['conversacion', this.idNuevaConv]);
           //Se genera un Nuevo mensaje AUTOMÁTICO para esta Conversación
         }
       }
