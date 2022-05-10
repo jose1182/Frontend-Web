@@ -6,6 +6,7 @@ import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { IServicio } from '../../model/servicio.model';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
+import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-perfil-propio',
   templateUrl: './perfil-propio.component.html',
@@ -25,26 +26,29 @@ export class PerfilPropioComponent implements OnInit {
     private userService: UsuariosService,
     private serviciosService: ServiciosService,
   ) {
-    this.id = 0;
+
   }
 
   ngOnInit(): void {
     this.accountService.identify(true).subscribe( account => {
       this.id = account?.id;
       this.accountModel = account;
+
+      this.criteria.push({param: "usuarioId.equals", val: this.id})
+
+      this.listaServicios();
+
       if (this.id){
         this.userData(this.id);
-
       }
     })
 
-    this.listaServicios();
+
   }
 
   userData(id: number){
     this.userService.getUsuarioById(id).subscribe( user => {
       this.usuarioModel = user;
-      console.log(user);
     })
   }
 
@@ -55,9 +59,7 @@ export class PerfilPropioComponent implements OnInit {
       this.numDestacados = servicios.filter((servicio) => {
         return servicio.destacado == true;
       }).length;
-
       this.servicios = servicios;
-
     })
   }
 

@@ -24,7 +24,14 @@ export class PasarelaPagoComponent implements OnInit {
   makePayment() {
     this.success= true
     this.accountService.updateAccount().subscribe({
-      next: ()=> (this.success = true),
+      next: ()=> {
+        this.accountService.identify(true).subscribe( account => {
+          console.log(account)
+          //this.accountModel = account
+        })
+
+        this.error = true
+      },
       error: () =>(this.error = true)
     })
   }

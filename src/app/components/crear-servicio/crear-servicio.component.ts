@@ -2,7 +2,6 @@ import { AccountModel } from './../../model/account.model';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UsuarioService } from '../../services/usuario.service';
 import { IUsuario } from '../../model/usuario.model';
 import { UsuariosService } from '../../services/usuario/usuarios.service';
 import { ServicioService } from '../../services/servicios/servicio.service';
@@ -12,24 +11,27 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { IServicio, Servicio } from '../../model/servicio.model';
 import { CategoriaService } from '../../services/categoria/categoria.service';
 import { ICategoria } from '../../model/categoria.model';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { finalize, map } from 'rxjs/operators';
+import { finalize, map, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crear-servicio',
   templateUrl: './crear-servicio.component.html',
   styleUrls: ['./crear-servicio.component.css']
 })
-export class CrearServicioComponent implements OnInit {
 
+export class CrearServicioComponent implements OnInit {
+  id: number | null= null;
   isSaving = false;
   disponibilidadValues = Object.keys(Disponibilidad);
   categoriasCollection: ICategoria[] = [];
   account! : AccountModel | null;
+  account1! : AccountModel | null;
   isEspecialista: boolean = false;
   isFullRegistration = true;
   usuario!: IUsuario | null;
+  private readonly destroy$ = new Subject<void>();
   editForm = this.formBuilder.group({
     id: [],
     titulo: [null, [Validators.required, Validators.maxLength(60)]],
@@ -61,15 +63,34 @@ export class CrearServicioComponent implements OnInit {
         servicio.fechacreacion = today;
         servicio.fechaactualizacion = today;
       }
-      this.getAuthorities();
+
+      this.accountService
+      .getAuthenticationState()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(account => {
+        this.usuarioService.getUsuarioById(account?.id as number).subscribe( usuario => {
+          this.usuario = usuario;
+          if(this.usuario.nombre == '' || this.usuario.apellidos == ''){
+            this.isFullRegistration = false
+          }
+          ;
+        })
+      });
+
+      this.isEspecialista = this.accountService.hasAnyAuthority("ROLE_ESPECIALISTA");
+      if(!this.isEspecialista){
+        this.router.navigate(['cuenta-especialista']);
+      }
       this.updateForm(servicio);
       this.loadCategorias();
     })
 
+
+
   }
 
-      // convenience getter for easy access to form fields
-      get f() { return this.editForm.controls; }
+  // convenience getter for easy access to form fields
+  get f() { return this.editForm.controls; }
 
   save(): void{
     this.isSaving = true;
@@ -138,6 +159,7 @@ export class CrearServicioComponent implements OnInit {
 
 
   private createFromForm(): IServicio {
+    console.log("user: ", this.usuario)
     return {
       ...new Servicio(),
       id: this.editForm.get(['id'])!.value,
@@ -158,34 +180,8 @@ export class CrearServicioComponent implements OnInit {
     };
   }
 
-  getAuthorities(){
-    this.accountService.identify(true).subscribe( account => {
-      this.account = account;
-      if(account){
-      //get user information from service.usuario.id
-      this.usuarioService.getUsuarioById(account.id as number).subscribe(usuario => {
-        this.usuario = usuario
-
-        if(this.usuario.nombre == "" || this.usuario.apellidos == ""){
-          this.isFullRegistration = false;
-        }
-      })
-      }
-      if(!this.checkAuthorities(this.account?.authorities)){
-        this.isEspecialista = false;
-      } else {
-        this.isEspecialista = true;
-      }
-
-    })
-  }
-
-  checkAuthorities(authorities:string[] | undefined): boolean{
-    let authority = authorities?.find(role => role == "ROLE_ESPECIALISTA");
-    if(!authority){
-      return false;
-    }
-    return true;
+  goToPerfil():void{
+    this.router.navigate(['edit-profile/edit',], {queryParams:{id: this.usuario?.id}})
   }
 /*
   this.accountService.identify(true).subscribe( account => {

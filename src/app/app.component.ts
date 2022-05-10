@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthJwtService } from './services/auth-jwt.service';
 import { Busqueda } from './model/busqueda.model';
 import { Router } from '@angular/router';
+import { ToastService } from './services/_services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
     private accountService: AccountService,
     private cookies: CookieService,
     private authJwtService: AuthJwtService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
     ){
 
   }
@@ -58,5 +60,37 @@ export class AppComponent implements OnInit {
 
   goToPerfil():void{
     this.router.navigate(['perfil-propio/vista',], {queryParams:{id: this.accountModel?.id}})
+  }
+
+  showStandard() {
+    this.toastService.show('I am a standard toast', {
+      delay: 2000,
+      autohide: true
+    });
+  }
+
+  showSuccess() {
+    this.toastService.show('I am a success toast', {
+      classname: 'bg-success text-light',
+      delay: 2000 ,
+      autohide: true,
+      headertext: 'Toast Header'
+    });
+  }
+  showError() {
+    this.toastService.show('I am a success toast', {
+      classname: 'bg-danger text-light',
+      delay: 2000 ,
+      autohide: true,
+      headertext: 'Error!!!'
+    });
+  }
+
+  showCustomToast(customTpl:any) {
+    this.toastService.show(customTpl, {
+      classname: 'text-light color',
+      delay: 3000,
+      autohide: true,
+    });
   }
 }

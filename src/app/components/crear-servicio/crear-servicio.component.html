@@ -4,14 +4,19 @@
   <div class="row d-flex justify-content-center align-items-center" >
     <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
 
-      <div class="row" style="align-items: center;">
+      <div *ngIf="!isFullRegistration" class="row justify-content-center mx-1 my-5">
+          <ngb-alert type="danger">Antes de continuar creando tu servcio es necesario confirmar algunos datos.
+            <a [routerLink]="['/edit-profile/edit/', usuario?.id]" class="card-link text-dark ml-1 font-weight-bold">Editar mi perifl <img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
+          </ngb-alert>
+      </div>
+      <div *ngIf="isFullRegistration" class="row" style="align-items: center;">
             <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" >
                   <div class="card">
                       <div class="card h-100 profile-info" >
                         <div class="card-body"  >
                               <form name="editForm" (ngSubmit)="save()" [formGroup]="editForm">
                                   <h2 id="jhi-usuario-heading" style="font-size: 2.7rem; margin-top: 20px;">Crear nuevo servicio</h2>
-                               
+
                                   <!-- 2 column grid layout with text inputs for the first and last names -->
                                   <div class="row mb-4">
                                     <div class="col">
@@ -20,7 +25,7 @@
                                           <label class="form-control-label" for="field_id">ID</label>
                                           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
                                         </div>
-                                
+
                                           <label class="form-control-label" for="titulo">Título</label>
                                           <input type="text" class="form-control" name="titulo" id="titulo" formControlName="titulo">
                                           <div *ngIf="f.titulo.invalid && (f.titulo!.dirty || f.titulo!.touched)">
@@ -31,7 +36,7 @@
                                           </div>
                                       </div>
                                     </div>
-                                
+
                                     <div class="col">
                                       <div class="form-outline">
                                         <label class="form-control-label" for="disponibilidad">Disponibilidad</label>
@@ -42,7 +47,7 @@
                                       </div>
                                     </div>
                                   </div>
-                                
+
                                   <!-- Text input -->
                                   <div class="form-outline mb-4">
                                     <label class="form-control-label" for="field_descripcion">Descripcion</label>
@@ -51,7 +56,7 @@
                                       <small class="form-text text-danger" *ngIf="f.descripcion?.errors?.required"> Este campo es requerido. </small>
                                     </div>
                                   </div>
-                                
+
                                 <div class="row mb-4">
                                   <div class="col">
                                     <div class="form-outline">
@@ -64,7 +69,7 @@
                                       </div>
                                     </div>
                                   </div>
-                                
+
                                   <div class="col">
                                     <div class="form-outline">
                                       <label class="form-control-label" for="preciotraslado">Precio traslado servicio</label>
@@ -86,8 +91,8 @@
                                     </div>
                                   </div>
                                 </div>
-                                
-                                
+
+
                                 <div class="row mb-4">
                                   <div class="col">
                                     <div class="form-outline">
@@ -114,7 +119,7 @@
                                                                     </div>
                                     </div>
                                   </div>
-                                
+
                                   <div class="col">
                                     <div class="form-outline">
                                       <label class="form-control-label" for="fechaactualizacion">Fecha actualizacion</label>
@@ -144,10 +149,10 @@
                                     </div>
                                   </div>
                                 </div>
-                                
-                                
+
+
                                 <div class="row mb-4">
-                                
+
                                   <div class="col">
                                     <div class="form-outline mb-4">
                                       <div *ngIf="isEspecialista">
@@ -159,7 +164,7 @@
                                       </div>
                                   </div>
                                   </div>
-                                
+
                                   <div class="col">
                                     <div class="form-outline">
                                         <label for="ategorias">Categoria</label>
@@ -171,18 +176,18 @@
                                             {{ categoriaOption.nombre }}
                                           </option>
                                         </select>
-                                  </div>                                  
+                                  </div>
                                 </div>
-                                
+
                                 </div>
-                                
+
                                   <div class="row gutters">
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                       <div class="buttons text-right">
                                        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn" (click)="previousState()">
                                         <span>Cancelar</span>
                                        </button>
-                               
+
                                        <button
                                          type="submit"
                                          id="save-entity"
@@ -190,7 +195,7 @@
                                          class="btn button-guardar">
                                          <span>Guardar</span>
                                        </button>
-  
+
                                       </div>
                                     </div>
                                   </div>

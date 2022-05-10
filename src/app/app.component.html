@@ -62,4 +62,15 @@
       </div>
   </div>
 </nav>
+<button class="btn btn-primary" (click)="showStandard()" ngbTooltip="Will disappear in 5s">Standard toast</button>&nbsp;
+<button class="btn btn-success" (click)="showSuccess()" ngbTooltip="Will disappear in 10s">Success toast</button>&nbsp;
+<button class="btn btn-danger" (click)="showError()" ngbTooltip="Will disappear in 10s">Error toast</button>&nbsp;
+
+<ng-template #customTpl>
+  <i>This is</i> a <u>custome</u> template <b>toast message</b>
+</ng-template>
+
+<button class="btn btn-info" (click)="showCustomToast(customTpl)" ngbTooltip="Will disappear in 15s">Custom toast</button>&nbsp;
+
 <router-outlet></router-outlet>
+<app-toasts ></app-toasts>

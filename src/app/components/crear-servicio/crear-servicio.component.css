@@ -1,12 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
-  
+
   *{
       font-family: "Roboto";
-  
+
   }
-  
-  
+
+
   .card {
       border: none;
       position: relative;
@@ -16,7 +16,7 @@
       background-image: linear-gradient(white, white );
       transition: transform .2s; /* Animation */
   }
-  
+
   .zoom {
       padding: 50px;
       background-color: green;
@@ -25,26 +25,26 @@
       height: 200px;
       margin: 0 auto;
     }
-    
+
     .card:hover {
       transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
     }
-  
+
   .fonts {
       font-size: 2rem;
       color: black;
   }
-  
- 
+
+
   .search-button{
       background-color: #A381BD;
   }
-  
-  
+
+
   a{
       font-weight: 300;
   }
-  
+
   .buttons{
       padding-bottom: 20px;
   }
@@ -57,11 +57,11 @@
       padding: 5px 15px;
       border-radius: 0px 30px 30px 0px;
       width: 175px;
-  
-  
+
+
   }
-  
-  
+
+
   .buttons button:nth-child(1) {
       border: 1px solid #8E24AA !important;
       color: #8E24AA;
@@ -70,7 +70,7 @@
       width: 300px;
       margin: 10px;
   }
-  
+
   .buttons button:nth-child(1):hover {
       border: 1px solid white !important;
       color: white;
@@ -80,7 +80,7 @@
       width: 300px;
       margin: 10px;
   }
-  
+
   .buttons button:nth-child(2) {
       border: 1px solid #5C3A7D !important;
       background-color: #5C3A7D;
@@ -90,7 +90,7 @@
       width: 300px;
       margin: 10px;
   }
-  
+
   .buttons button:nth-child(2):hover {
       border: 1px solid #5C3A7D !important;
       background-color: white;
@@ -100,7 +100,7 @@
       width: 300px;
       margin: 10px;
   }
-  
+
   .button-image{
       border: 1px solid #5C3A7D !important;
       background-color: white;
@@ -111,7 +111,7 @@
       margin-top:10px;
       margin-bottom: 30px;
   }
-  
+
   .button-image:hover{
       border: 1px solid white !important;
       background-color: #5C3A7D;
@@ -122,18 +122,18 @@
       margin-top:10px;
       margin-bottom: 30px;
   }
-  
+
   .change-img{
       height: 20px;
       margin-right: 10px;
   }
-  
+
   h2{
     font-size: 2rem;
     text-align: center;
     padding-bottom: 20px;
   }
-  
+
   .form-group{
     padding: 0 10px;
   }
@@ -146,5 +146,5 @@
       padding-left: 15px;
       padding-right: 15px;
   }
-  
-  
+
+
