@@ -101,7 +101,7 @@ export class DetalleConversacionComponent implements OnInit {
           this.crearConversacion();
           
           //Nos lleva a dicha conversación
-         // this.router.navigate(['conversacion', this.idNuevaConv]);
+          this.router.navigate(['conversacion', this.idNuevaConv, 'user', this.receptor.id]);
           //Se genera un Nuevo mensaje AUTOMÁTICO para esta Conversación
         }
       }
@@ -112,11 +112,19 @@ export class DetalleConversacionComponent implements OnInit {
   // función getter para un fácil acceso a los campos del formulario
   get f() { return this.mensajeForm.controls; }
 
-  crearNuevoMensaje(): void {
+  crearNuevoMensaje(texto: string = ''): void {
     console.log(this.mensajeForm.value.mensaje);
-    this.conversacionesService.nuevoMensaje(this.construirMensaje(this.mensajeForm.value.mensaje, this.emisor, this.receptor, this.id)).subscribe(data => {
-      this.refresh();
-    })
+    this.getEmisor();
+    this.getReceptor();
+    if(this.emisor && this.receptor){
+      this.getEmisor();
+      this.getReceptor();
+      texto == '' ? 'Hola, este mensaje es de prueba.' : texto;
+      this.conversacionesService.nuevoMensaje(this.construirMensaje(this.mensajeForm.value.mensaje, this.emisor, this.receptor, this.id)).subscribe(data => {
+        this.refresh();
+      })
+    }
+    
   }
 
   construirMensaje(texto: string, emisor: IUsuario, receptor: IUsuario, id: number): IMensaje {
@@ -132,11 +140,7 @@ export class DetalleConversacionComponent implements OnInit {
   }
 
   crearConversacion(){
-    this.conversacionesService.nuevaConversacion().subscribe();
-    this.conversacionesService.nuevoMensaje(this.construirMensaje('Hola, este mensaje es de prueba.',this.emisor, this.receptor, this.id)).subscribe(data => {
-      //this.refresh();
-      this.router.navigate(['conversacion', this.idNuevaConv]);
-    }, error => console.log(error));
+    this.conversacionesService.nuevaConversacion().subscribe(); 
  } 
 
   getEmisor(): IUsuario {
