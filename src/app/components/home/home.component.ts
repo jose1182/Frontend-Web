@@ -9,6 +9,8 @@ import { Busqueda } from '../../model/busqueda.model';
 import { servicioDesModel } from 'src/app/model/servicioDes.model';
 import { ICategoria } from '../../model/categoria.model';
 import { IServicio } from '../../model/servicio.model';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 
@@ -26,6 +28,7 @@ export class HomeComponent implements OnInit {
     value: null,
   };
   servicios : IServicio[] | null=null;
+  private readonly destroy$ = new Subject<void>();
 
 
   constructor(
@@ -38,10 +41,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.identify(true).subscribe( account => {
-      console.log(account)
-      this.accountModel = account
-    })
+    this.accountService
+    .getAuthenticationState()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(account => {
+      this.accountModel = account;
+    });
 
 
     this.categoriasService.categorias(this.busqueda).subscribe( categorias => {

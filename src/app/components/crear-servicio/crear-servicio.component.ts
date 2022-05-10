@@ -120,7 +120,8 @@ export class CrearServicioComponent implements OnInit {
   }
 
   previousState(): void {
-    window.history.back();
+    //window.history.back();
+    this.router.navigate(['perfil-propio/vista'])
   }
 
   updateForm(servicio: IServicio): void{

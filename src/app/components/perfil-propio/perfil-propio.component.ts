@@ -21,6 +21,9 @@ export class PerfilPropioComponent implements OnInit {
   criteria: BusquedaServicio [] = [];
   servicios!: IServicio[];
   numDestacados!: any;
+  maxNumDestacados = 5;
+  maxdestalcanzados = false;
+
   constructor(
     private accountService: AccountService,
     private userService: UsuariosService,
@@ -59,6 +62,10 @@ export class PerfilPropioComponent implements OnInit {
       this.numDestacados = servicios.filter((servicio) => {
         return servicio.destacado == true;
       }).length;
+
+      if(this.numDestacados >= this.maxNumDestacados){
+        this.maxdestalcanzados = true;
+      }
       this.servicios = servicios;
     })
   }
