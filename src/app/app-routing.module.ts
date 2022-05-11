@@ -21,6 +21,7 @@ import { ContratosComponent } from './components/contratos/contratos.component';
 import { DetalleContratoComponent } from './components/detalle-contrato/detalle-contrato.component';
 import { ConversacionesComponent } from './components/conversaciones/conversaciones.component';
 import { DetalleConversacionComponent } from './components/detalle-conversacion/detalle-conversacion.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
 
 
 const routes: Routes = [
@@ -118,6 +119,10 @@ const routes: Routes = [
   {
     path: 'conversaciones/user/:idUser',
     component: DetalleConversacionComponent
+  },
+  {
+    path: 'favoritos',
+    component: FavoritosComponent
   },
   {
     path: '404',

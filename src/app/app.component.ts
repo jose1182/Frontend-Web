@@ -93,4 +93,7 @@ export class AppComponent implements OnInit {
       autohide: true,
     });
   }
+  favoritos():void{
+  this.router.navigate(['favoritos'])
+  }
 }

@@ -1,0 +1,13 @@
+<div class="container-fluid " style="background-color: #E6E6FA	">
+    <div class="categoria-title"><h2>Servicios Favoritos </h2></div>
+  
+    <div class="row align-items-center justify-content-center" >
+      <div class="categoria-box category col-xl-3 col-md-5 col-sm-10"  *ngFor="let servicio of this.services">
+        
+            <p>{{ servicio.id }}</p>
+            <p><b>Servicio:  </b>{{ servicio.titulo }}</p>
+            <p><b>Descripción: </b>{{ servicio.descripcion }}</p>
+         
+      </div>
+    </div>
+</div>

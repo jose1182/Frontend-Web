@@ -23,7 +23,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-
 import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { BusquedaHomeComponent } from './busqueda-home/busqueda-home.component';
@@ -37,6 +36,7 @@ import { ToastComponent } from './toast/toast.component';
 import { NgbAlert, NgbAlertModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetalleConversacionComponent } from './detalle-conversacion/detalle-conversacion.component';
 import { ConversacionesComponent } from './conversaciones/conversaciones.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 
 @NgModule({
@@ -63,7 +63,8 @@ import { ConversacionesComponent } from './conversaciones/conversaciones.compone
     DetalleContratoComponent,
     ToastComponent,
     ConversacionesComponent,
-    DetalleConversacionComponent
+    DetalleConversacionComponent,
+    FavoritosComponent
   ],
   exports:[PricingComponent, ToastComponent],
   imports: [

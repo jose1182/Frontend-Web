@@ -12,7 +12,7 @@
           <a class="nav-link" routerLink="home">INICIO <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="#">BLOG</a>
+          <a class="nav-link" (click)="favoritos()">FAVORITOS</a>
           </li>
         </ul>
 
@@ -51,6 +51,7 @@
             <a class="nav-link dropdown-toggle" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons"  style="font-size:22px; vertical-align: middle;">person</i></a>
             <div class="dropdown-menu" aria-labelledby="dropdownId">
                 <a class="dropdown-item" (click)="goToPerfil()" >Perfil</a>
+                <a class="dropdown-item"[routerLink]="['/conversaciones']">Mensajes</a>
                 <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
             </div>
           </li>
