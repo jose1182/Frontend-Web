@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AccountModel } from 'src/app/model/account.model';
-import { IConversacion } from 'src/app/model/conversacion.model';
+import { Conversacion, IConversacion } from 'src/app/model/conversacion.model';
 import { MensajeModel } from 'src/app/model/mensaje.model';
 import { AccountService } from 'src/app/services/account.service';
 import { ConversacionesService } from 'src/app/services/conversaciones/conversaciones.service';
@@ -14,6 +14,7 @@ import { ConversacionesService } from 'src/app/services/conversaciones/conversac
 export class ConversacionesComponent implements OnInit {
 
   id!: number;
+  idReceptor!: number;
   conversaciones!: IConversacion[];
   mensajes!: MensajeModel[];
   accountModel!: AccountModel | undefined;
@@ -30,8 +31,8 @@ export class ConversacionesComponent implements OnInit {
     this.checkLogin();
   }
 
-  goToViewDetail(id: number | undefined): void {
-    this.router.navigate(['conversacion', id]);
+  goToViewDetail(): void {
+    this.router.navigate(['conversacion', this.accountModel?.id, this.idReceptor]);
   }
 
   checkLogin(): void {
@@ -57,6 +58,21 @@ export class ConversacionesComponent implements OnInit {
       if(conversaciones){
         this.conversaciones = conversaciones
         console.log(this.conversaciones);
+        for(let i = 0; i < this.conversaciones.length; i++) {
+          if(this.conversaciones[i].id){
+            this.getUsuarioConversacion(this.conversaciones[i].id);
+          }
+        }
+        
+      }
+    })
+  }
+
+  getUsuarioConversacion(id: number | undefined){ 
+    this.conversacionesService.getMensajesByConvId(id).subscribe(mensajes => {
+      if(mensajes != []){
+        this.mensajes = mensajes;
+        console.log(this.mensajes);
       }
     })
   }
