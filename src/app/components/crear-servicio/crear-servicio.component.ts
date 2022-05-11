@@ -14,6 +14,8 @@ import { ICategoria } from '../../model/categoria.model';
 import { Observable, Subject } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map, takeUntil } from 'rxjs/operators';
+import { ServiciosService } from '../../services/servicios/servicios.service';
+import { BusquedaServicio } from '../../model/busquedaServicio.model';
 
 @Component({
   selector: 'app-crear-servicio',
@@ -32,6 +34,12 @@ export class CrearServicioComponent implements OnInit {
   isFullRegistration = true;
   usuario!: IUsuario | null;
   private readonly destroy$ = new Subject<void>();
+  criteria: BusquedaServicio [] = [];
+  numDestacados!: any;
+  isMaxDestacados = false;
+  isEdit = true;
+  isDestacado = false;
+
   editForm = this.formBuilder.group({
     id: [],
     titulo: [null, [Validators.required, Validators.maxLength(60)]],
@@ -52,7 +60,8 @@ export class CrearServicioComponent implements OnInit {
     private categoriaService: CategoriaService,
     private router: Router,
     private accountService: AccountService,
-    private usuarioService : UsuariosService
+    private usuarioService : UsuariosService,
+    private serviciosService: ServiciosService,
   ) { }
 
   ngOnInit(): void {
@@ -62,27 +71,51 @@ export class CrearServicioComponent implements OnInit {
         let today = dayjs().startOf('day');
         servicio.fechacreacion = today;
         servicio.fechaactualizacion = today;
+        this.isEdit = false
       }
+
+      this.isDestacado = servicio.destacado;
+      console.log("sssss: ", this.isDestacado)
 
       this.accountService
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => {
+        this.id = account?.id as number;
+        console.log("accoutn is_ :" ,account);
         this.usuarioService.getUsuarioById(account?.id as number).subscribe( usuario => {
           this.usuario = usuario;
           if(this.usuario.nombre == '' || this.usuario.apellidos == ''){
             this.isFullRegistration = false
           }
-          ;
-        })
+        });
+
       });
 
       this.isEspecialista = this.accountService.hasAnyAuthority("ROLE_ESPECIALISTA");
       if(!this.isEspecialista){
         this.router.navigate(['cuenta-especialista']);
       }
+
       this.updateForm(servicio);
       this.loadCategorias();
+
+      this.criteria.push({param: "usuarioId.equals", val: this.id});
+      //get num of premiun services
+      this.serviciosService.servicios(this.criteria).subscribe(servicios => {
+        //saving all services
+        this.numDestacados = servicios.filter((servicio) => {
+          return servicio.destacado == true;
+        }).length;
+
+        console.log("count: ", this.numDestacados)
+
+        if(this.numDestacados >= 5){
+          this.isMaxDestacados = true
+        }
+      })
+
+
     })
 
 
@@ -183,12 +216,4 @@ export class CrearServicioComponent implements OnInit {
   goToPerfil():void{
     this.router.navigate(['edit-profile/edit',], {queryParams:{id: this.usuario?.id}})
   }
-/*
-  this.accountService.identify(true).subscribe( account => {
-    this.account = account
-    if(!this.checkAuthorities(this.account?.authorities)){
-      this.router.navigate(['cuenta-especialista']);
-    }
-  })
-*/
 }

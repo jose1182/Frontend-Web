@@ -46,10 +46,12 @@ export class AccountService {
 
   identify(force?: boolean): Observable<AccountModel | null>{
     if(!this.accountCache$ || force){
+      console.log("identify!!!!!")
       this.accountCache$ = this.fetch().pipe(tap((account: AccountModel)=>{
         this.authenticate(account);
       }
-      ))
+      ));
+      shareReplay();
     }
     return this.accountCache$.pipe(catchError(() => of(null)));
   }

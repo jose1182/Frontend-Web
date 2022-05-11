@@ -7,6 +7,8 @@ import { AuthJwtService } from './services/auth-jwt.service';
 import { Busqueda } from './model/busqueda.model';
 import { Router } from '@angular/router';
 import { ToastService } from './services/_services/toast.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,7 @@ export class AppComponent implements OnInit {
 
   keyword!: string | null
   location!: string | null
+  private readonly destroy$ = new Subject<void>();
 
   constructor(
     private accountService: AccountService,
@@ -33,10 +36,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.accountService.identify(true).subscribe( account => {
-      this.accountModel = account
-      console.log("Acount in app compneonte: ", this.accountModel)
-    })
+
+    this.accountService
+    .getAuthenticationState()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe(account => {
+      this.accountModel = account;
+    });
 
   }
   public getToken(){
@@ -45,6 +51,8 @@ export class AppComponent implements OnInit {
 
   logout(){
     this.accountService.logout();
+    this.accountService.authenticate(null);
+
 
   }
 

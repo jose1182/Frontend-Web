@@ -12,8 +12,10 @@
                                             <div class="account-settings">
                                                 <div class="user-profile">
                                                     <div class="user-avatar text-center" style="margin-bottom: 30px;">
-                                                        <img *ngIf="usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center"  style="margin-top:70px" [src]="'data:' + usuarioModel?.imagenContentType + ';base64,' + usuarioModel.imagen" alt="categoria image" />
-                                                        <img *ngIf="!usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center" src="../../../assets/images.png" />
+                                                      <h1><span *ngIf="isEspecialista" class="badge badge-success">Especialista</span></h1>
+                                                      <h1><span *ngIf="!isEspecialista" class="badge badge-success">User</span></h1>
+                                                        <img *ngIf="usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center"  style="margin-top:5px" [src]="'data:' + usuarioModel?.imagenContentType + ';base64,' + usuarioModel.imagen" alt="categoria image" />
+                                                        <img *ngIf="!usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center" style="margin-top:5px" src="../../../assets/images.png" />
                                                     </div>
                                                     <h5 class="user-name user-info" style="font-size: 2.5rem;">{{this.usuarioModel?.user?.login}}</h5>
                                                     <h6 class="user-email user-info">{{this.usuarioModel?.correo}}</h6>
