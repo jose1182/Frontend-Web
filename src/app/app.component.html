@@ -1,76 +1,75 @@
 <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top py-3" style="background-color: #422678">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="home"><b>NetJobs</b></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" routerLink="home"><b>NetJobs</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav">
-          <li class="nav-item">
-          <a class="nav-link" routerLink="home">INICIO <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link" href="#">BLOG</a>
-          </li>
-        </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="home">INICIO <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">BLOG</a>
+                </li>
+            </ul>
 
-        <div class="justify-content-center mx-auto">
-            <form class="form-inline justify-content-center">
+            <div class="justify-content-center mx-auto">
+                <form class="form-inline justify-content-center">
 
-               <div class="input-group mb-2 mr-sm-2 input-field">
-                 <div class="input-group-prepend">
-                   <div class="input-group-text bg-white font-weight-bold">Qué</div>
-                 </div>
-                 <input type="text" class="form-control" id="keyword"  name="keyword" placeholder="Título, descrpción"
-                 [(ngModel)]="keyword">
-               </div>
+                    <div class="input-group mb-2 mr-sm-2 input-field">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-white font-weight-bold">Qué</div>
+                        </div>
+                        <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Título, descrpción" [(ngModel)]="keyword">
+                    </div>
 
-               <div class="input-group mb-2 mr-sm-2 input-field">
-                 <div class="input-group-prepend">
-                   <div class="input-group-text bg-white font-weight-bold">Dónde</div>
-                 </div>
-                 <input type="text" class="form-control" id="location" name="location" placeholder="Madrid"
-              [(ngModel)]="location">
-               </div>
+                    <div class="input-group mb-2 mr-sm-2 input-field">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text bg-white font-weight-bold">Dónde</div>
+                        </div>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Madrid" [(ngModel)]="location">
+                    </div>
 
-               <div class="input-group mb-2 mr-sm-2 input-field">
-                <button type="submit" class="btn btn-buscar mx-2 my-sm-0" (click)="getservcios()" >Buscar servicio</button>
-              </div>
-            </form>
-        </div>
-
-
-
-        <ul class="navbar-nav  navbar-right">
-          <li class="nav-item"*ngIf="!isAuthenticated()">
-            <a class="nav-link h5 m-0">{{accountModel?.login}}</a>
-            </li>
-          <li class="nav-item dropdown"  *ngIf="!isAuthenticated()" >
-            <a class="nav-link dropdown-toggle" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons"  style="font-size:22px; vertical-align: middle;">person</i></a>
-            <div class="dropdown-menu" aria-labelledby="dropdownId">
-                <a class="dropdown-item" (click)="goToPerfil()" >Perfil</a>
-                <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+                    <div class="input-group mb-2 mr-sm-2 input-field">
+                        <button type="submit" class="btn btn-buscar mx-2 my-sm-0" (click)="getservcios()">Buscar servicio</button>
+                    </div>
+                </form>
             </div>
-          </li>
 
-        <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="registro">REGISTRATE</a>
-        <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()"  routerLink="login">LOGIN</a>
-        <a class="btn btn-publicar d-lg-inline-block mb-3 mb-md-0 ml-md-3" [routerLink]="['/crear-servicio/new']">PUBLICAR SERVICIO</a>
-        </ul>
-      </div>
-  </div>
+
+
+            <ul class="navbar-nav  navbar-right">
+                <li class="nav-item" *ngIf="!isAuthenticated()">
+                    <a class="nav-link h5 m-0">{{accountModel?.login}}</a>
+                </li>
+                <li class="nav-item dropdown" *ngIf="!isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons"  style="font-size:22px; vertical-align: middle;">person</i></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" (click)="goToPerfil()">Perfil</a>
+                        <a class="dropdown-item" [routerLink]="['/conversaciones']">Mensajes</a>
+                        <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+                    </div>
+                </li>
+
+                <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()" routerLink="registro">REGISTRATE</a>
+                <a class="btn btn-login d-lg-inline-block mb-3 mb-md-0 ml-md-3" *ngIf="isAuthenticated()" routerLink="login">LOGIN</a>
+                <a class="btn btn-publicar d-lg-inline-block mb-3 mb-md-0 ml-md-3" [routerLink]="['/crear-servicio/new']">PUBLICAR SERVICIO</a>
+            </ul>
+        </div>
+    </div>
 </nav>
 <button class="btn btn-primary" (click)="showStandard()" ngbTooltip="Will disappear in 5s">Standard toast</button>&nbsp;
 <button class="btn btn-success" (click)="showSuccess()" ngbTooltip="Will disappear in 10s">Success toast</button>&nbsp;
 <button class="btn btn-danger" (click)="showError()" ngbTooltip="Will disappear in 10s">Error toast</button>&nbsp;
 
 <ng-template #customTpl>
-  <i>This is</i> a <u>custome</u> template <b>toast message</b>
+    <i>This is</i> a <u>custome</u> template <b>toast message</b>
 </ng-template>
 
 <button class="btn btn-info" (click)="showCustomToast(customTpl)" ngbTooltip="Will disappear in 15s">Custom toast</button>&nbsp;
 
 <router-outlet></router-outlet>
-<app-toasts ></app-toasts>
+<app-toasts></app-toasts>

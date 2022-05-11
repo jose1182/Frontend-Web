@@ -1,7 +1,8 @@
 <div class="container mt-3">
     <div class="row" *ngIf="this.conversaciones">
-        <div class="col-12" *ngFor="let item of this.conversaciones" (click)="goToViewDetail()" style="cursor: pointer">
+        <div class="col-12" *ngFor="let item of this.conversaciones" (click)="goToViewDetail(1)" style="cursor: pointer">
             <h2>Conversación {{item.id}}</h2>
+            <p>usuario </p>
         </div>
     </div>
 </div>
