@@ -6,7 +6,8 @@ import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
 import { ServiciosService } from '../../services/servicios/servicios.service';
 import { IServicio } from '../../model/servicio.model';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
-import { finalize } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-perfil-propio',
   templateUrl: './perfil-propio.component.html',
@@ -23,7 +24,8 @@ export class PerfilPropioComponent implements OnInit {
   numDestacados!: any;
   maxNumDestacados = 5;
   maxdestalcanzados = false;
-
+  private readonly destroy$ = new Subject<void>();
+  isEspecialista: boolean | undefined;
   constructor(
     private accountService: AccountService,
     private userService: UsuariosService,
@@ -33,8 +35,10 @@ export class PerfilPropioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.accountService.identify(true).subscribe( account => {
       this.id = account?.id;
+      console.log("accou: ", account)
       this.accountModel = account;
 
       this.criteria.push({param: "usuarioId.equals", val: this.id})
@@ -44,8 +48,10 @@ export class PerfilPropioComponent implements OnInit {
       if (this.id){
         this.userData(this.id);
       }
-    })
 
+      this.isEspecialista =  account?.authorities.includes('ROLE_ESPECIALISTA');
+
+    })
 
   }
 

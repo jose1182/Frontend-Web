@@ -156,10 +156,15 @@
                                   <div class="col">
                                     <div class="form-outline mb-4">
                                       <div *ngIf="isEspecialista">
-                                        <label class="form-control-label" for="destacado">Destaca tu servcio</label>
-                                        <input type="checkbox" class="form-check" name="destacado" id="destacado" formControlName="destacado" style="width:35px; height: 35px" />
+                                        <label class="form-control-label" for="destacado">Destaca tu servicio {{isDestacado}}</label>
+                                        <input *ngIf="!isEdit || isEdit && isMaxDestacados && !isDestacado" type="checkbox" class="form-check" name="destacado" id="destacado"  style="width:35px; height: 35px" [disabled]="isMaxDestacados"/>
+                                        <input *ngIf="isEdit && isDestacado || isEdit && !isDestacado && !isMaxDestacados" type="checkbox" class="form-check" name="destacado" id="destacado" formControlName="destacado" style="width:35px; height: 35px" />
                                         <div *ngIf="f.destacado!.invalid && (f.destacado!.dirty || f.destacado!.touched)">
                                           <small class="form-text text-danger" *ngIf="f.destacado?.errors?.required"> Este campo es requerido. </small>
+                                        </div>
+                                        <div *ngIf="isMaxDestacados && !isDestacado">
+                                          <small class="form-text text-danger" *ngIf="isMaxDestacados"> Lo senstimos! Has alcanzado el máximo de servicios destacados.  </small>
+                                          <small class="form-text text-danger" *ngIf="isMaxDestacados"> Mejora tu cuenta para poder destacar más servcios.  </small>
                                         </div>
                                       </div>
                                   </div>
