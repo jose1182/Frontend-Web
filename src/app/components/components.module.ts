@@ -23,7 +23,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-
 import { PerfilEditarComponent } from './perfil-editar/perfil-editar.component';
 import { PricingComponent } from './pricing/pricing.component';
 import { BusquedaHomeComponent } from './busqueda-home/busqueda-home.component';
