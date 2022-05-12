@@ -37,6 +37,7 @@ import { NgbAlert, NgbAlertModule, NgbToastModule } from '@ng-bootstrap/ng-boots
 import { DetalleConversacionComponent } from './detalle-conversacion/detalle-conversacion.component';
 import { ConversacionesComponent } from './conversaciones/conversaciones.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { DeleteServiceModalComponent } from './delete-service-modal/delete-service-modal.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
     ToastComponent,
     ConversacionesComponent,
     DetalleConversacionComponent,
-    FavoritosComponent
+    FavoritosComponent,
+    DeleteServiceModalComponent
   ],
   exports:[PricingComponent, ToastComponent],
   imports: [

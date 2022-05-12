@@ -4,10 +4,12 @@ import { AccountModel } from 'src/app/model/account.model';
 import { AccountService } from 'src/app/services/account.service';
 import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
 import { ServiciosService } from '../../services/servicios/servicios.service';
-import { IServicio } from '../../model/servicio.model';
+import { IServicio, Servicio } from '../../model/servicio.model';
 import { BusquedaServicio } from '../../model/busquedaServicio.model';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { DeleteServiceModalComponent } from '../delete-service-modal/delete-service-modal.component';
 @Component({
   selector: 'app-perfil-propio',
   templateUrl: './perfil-propio.component.html',
@@ -30,6 +32,7 @@ export class PerfilPropioComponent implements OnInit {
     private accountService: AccountService,
     private userService: UsuariosService,
     private serviciosService: ServiciosService,
+    private modalService: NgbModal
   ) {
 
   }
@@ -53,6 +56,15 @@ export class PerfilPropioComponent implements OnInit {
 
     })
 
+  }
+
+  delete(servicio: IServicio):void{
+    console.log("delte-----", servicio)
+    const modalRef =  this.modalService.open(DeleteServiceModalComponent,{size: 'lg', backdrop: 'static'})
+    modalRef.componentInstance.servicio =  servicio;
+    modalRef.closed.subscribe(reason => {
+      this.listaServicios();
+    })
   }
 
   userData(id: number){

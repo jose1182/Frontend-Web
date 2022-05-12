@@ -137,6 +137,9 @@
                             <div class="row">
                               <a [routerLink]="['/crear-servicio/update', servicio.id]" class="card-link text-dark ml-1"><img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
                               <img *ngIf="servicio.destacado" class="img-icon ml-2" src="./../../../assets/star-solid.svg" >
+                              <button type="submit" (click)="delete(servicio)" class="btn btn-danger btn-sm">
+                                <span class="d-none d-md-inline">Delete</span>
+                              </button>
                             </div>
                          </div>
                         </div>
