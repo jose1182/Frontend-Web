@@ -52,6 +52,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownId">
                 <a class="dropdown-item" (click)="goToPerfil()" >Perfil</a>
                 <a class="dropdown-item"[routerLink]="['/conversaciones']">Mensajes</a>
+                <a class="dropdown-item" [routerLink]="['/contratos', accountModel?.id]" routerLinkActive="router-link-active">Contratos</a>
                 <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
             </div>
           </li>
