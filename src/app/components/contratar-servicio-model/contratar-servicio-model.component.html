@@ -1,0 +1,22 @@
+<form *ngIf="contrato" name="deleteForm" (ngSubmit)="confirmContratar()">
+  <div class="modal-header">
+    <h4 class="modal-title" data-cy="servicioDeleteDialogHeading">Confirmar contrar servcio</h4>
+
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+  </div>
+
+  <div class="modal-body">
+    <p >Este servicio ya existe como contratado</p>
+    <p >¿Quieres volver a contratarlo?</p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+      <span>Cancelar</span>
+    </button>
+
+    <button type="submit" class="btn btn-danger">
+      <span>Contratar</span>
+    </button>
+  </div>
+</form>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ContratoModel } from 'src/app/model/contrato.model';
 import { IServicio } from 'src/app/model/servicio.model';
 import { ContratosService } from 'src/app/services/contratos/contratos.service';
 import { ServiciosService } from 'src/app/services/servicios/servicios.service';
+import { IContrato } from '../../model/contrato.model';
 
 @Component({
   selector: 'app-detalle-contrato',
@@ -13,16 +13,16 @@ import { ServiciosService } from 'src/app/services/servicios/servicios.service';
 export class DetalleContratoComponent implements OnInit {
 
   id!: number;
-  contrato!: ContratoModel;
+  contrato!: IContrato;
   servicio!: IServicio;
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private contratosService: ContratosService,
     private servicioService: ServiciosService
-  ) { 
-    
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class DetalleContratoComponent implements OnInit {
           if(contrato){
             this.contrato = contrato;
             console.log(this.contrato);
-          
+
             if(contrato.servicio){
             this.servicioService.getServiceById(contrato.servicio.id).subscribe(servicio => {
               if(servicio){

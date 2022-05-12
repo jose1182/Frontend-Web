@@ -38,6 +38,7 @@ import { DetalleConversacionComponent } from './detalle-conversacion/detalle-con
 import { ConversacionesComponent } from './conversaciones/conversaciones.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { DeleteServiceModalComponent } from './delete-service-modal/delete-service-modal.component';
+import { ContratarServicioModelComponent } from './contratar-servicio-model/contratar-servicio-model.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { DeleteServiceModalComponent } from './delete-service-modal/delete-servi
     ConversacionesComponent,
     DetalleConversacionComponent,
     FavoritosComponent,
-    DeleteServiceModalComponent
+    DeleteServiceModalComponent,
+    ContratarServicioModelComponent
   ],
   exports:[PricingComponent, ToastComponent],
   imports: [

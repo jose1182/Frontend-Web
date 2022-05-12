@@ -1,9 +1,10 @@
-import { ContratoModel } from './../../model/contrato.model';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ContratosService } from 'src/app/services/contratos/contratos.service';
 import { AccountModel } from 'src/app/model/account.model';
 import { AccountService } from 'src/app/services/account.service';
+import { IContrato } from '../../model/contrato.model';
 
 @Component({
   selector: 'app-contratos',
@@ -13,7 +14,7 @@ import { AccountService } from 'src/app/services/account.service';
 export class ContratosComponent implements OnInit {
 
   id!: number;
-  contratos!: ContratoModel[];
+  contratos!: IContrato[];
   accountModel!: AccountModel | null;
 
   constructor(
@@ -27,7 +28,7 @@ export class ContratosComponent implements OnInit {
     this.checkLogin();
   }
 
-  goToViewDetail(id: number): void{
+  goToViewDetail(id: number | undefined): void{
     this.router.navigate(['contrato', id]);
   }
 
@@ -53,7 +54,7 @@ export class ContratosComponent implements OnInit {
         this.contratosService.getContratoByUserId(this.id).subscribe(contratos => {
           if(contratos){
             this.contratos = contratos;
-            console.log(this.contratos);
+            console.log("contratitos: ",this.contratos);
           }
         })
       }
