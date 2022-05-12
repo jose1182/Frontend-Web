@@ -60,4 +60,9 @@ export class ServicioService {
     return res;
   }
 
+  delete(id: number): Observable<HttpResponse<{}>> {
+    return this.http.delete(`${environment.url}servicios/${id}`, { observe: 'response' });
+  }
+
+
 }
