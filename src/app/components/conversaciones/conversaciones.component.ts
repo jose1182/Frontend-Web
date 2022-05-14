@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AccountModel } from 'src/app/model/account.model';
 import { Conversacion, IConversacion } from 'src/app/model/conversacion.model';
-import { MensajeModel } from 'src/app/model/mensaje.model';
+import { ConversacionsList, IConversacionsList } from 'src/app/model/listaConversaciones.model';
+import { IMensaje, MensajeModel } from 'src/app/model/mensaje.model';
 import { IUsuario } from 'src/app/model/usuario.model';
 import { AccountService } from 'src/app/services/account.service';
 import { ConversacionesService } from 'src/app/services/conversaciones/conversaciones.service';
@@ -19,8 +20,10 @@ export class ConversacionesComponent implements OnInit {
   idUser!: number | undefined;
   idReceptor!: number;
   conversaciones!: IConversacion[];
+  conversacion = new ConversacionsList();
   mensajes!: MensajeModel[];
-  mensajesConversacion = new Array<MensajeModel[]>(); 
+  mensajesConversacion = new Array<MensajeModel[]>();
+  conversacionsList= new Array<IConversacionsList>();
   accountModel!: AccountModel | undefined;
   usuarioReceptor!: IUsuario;
 
@@ -36,8 +39,8 @@ export class ConversacionesComponent implements OnInit {
     this.checkLogin();
   }
 
-  goToViewDetail(id: number): void {
-    this.router.navigate(['conversacion', id, 4]);
+  goToViewDetail(id: number | undefined, idUser: number | undefined): void {
+    this.router.navigate(['conversacion', id, idUser]);
   }
 
   checkLogin(): void {
@@ -78,25 +81,60 @@ export class ConversacionesComponent implements OnInit {
     this.conversacionesService.getMensajesByConvId(id).subscribe(mensajes => {
       if(mensajes != []){
         this.mensajes = mensajes;
+        //último mensaje de esta conversación
+        console.log(this.mensajes.pop());
+        let ultimoMensaje: IMensaje | undefined = this.mensajes.pop();
+        console.log(ultimoMensaje?.texto);
+        //Se obtiene el id del receptor
+        console.log(ultimoMensaje?.receptor?.id);
+
+        let usuarioReceptorMensaje: IUsuario | undefined;
+
+        if(ultimoMensaje?.receptor?.id && ultimoMensaje?.receptor?.id != this.accountModel?.id){
+          this.usuarioService.getUsuarioById(ultimoMensaje?.receptor?.id).subscribe( usuario => { 
+            if(usuario){
+              usuarioReceptorMensaje = usuario;
+              console.log('receptor: ' + JSON.stringify(usuarioReceptorMensaje.nombre));
+              console.log('conversacion: ' + ultimoMensaje?.conversacion?.id);
+              if(id!=undefined && ultimoMensaje && usuarioReceptorMensaje){
+                this.guardarInfoConversacion(id, ultimoMensaje, usuarioReceptorMensaje);
+              }
+            }
+          })  
+        } else {
+          this.usuarioService.getUsuarioById(ultimoMensaje?.emisor?.id).subscribe( usuario => { 
+            if(usuario){
+              usuarioReceptorMensaje = usuario;
+              console.log('receptor: ' + JSON.stringify(usuarioReceptorMensaje.nombre));
+              console.log('conversacion: ' + ultimoMensaje?.conversacion?.id);
+              if(id!=undefined && ultimoMensaje && usuarioReceptorMensaje){
+                this.guardarInfoConversacion(id, ultimoMensaje, usuarioReceptorMensaje);
+              }
+            }
+          })  
+        }
+              
         this.mensajesConversacion.push(this.mensajes);
+
+        for(let i = 0; i < this.mensajesConversacion.length; i++) {
+          //último mensaje de cada conversación
+          //console.log('Mensaje: ' + this.mensajesConversacion[i]);
+          //let mensaje: MensajeModel = this.mensajesConversacion[this.mensajesConversacion[i].length-1];
+          //receptor
+          //console.log('Receptor: ' + this.mensajesConversacion[i]);
+        }
       }
     })
   }
-//Se obtiene el id del usuario receptor a partir de los mensajes de esa conversación
-buscarNombre(id: number | undefined): IUsuario{
+  //Se forma el objeto conversacionList que contendrá el id de la conversación, el último mensaje y el id del usuario receptor de la misma 
+
+  guardarInfoConversacion(id: number, mensaje: IMensaje, usuario: IUsuario){
     
-    if(id != undefined){
-      console.log(this.mensajesConversacion);        this.usuarioService.getUsuarioById(id).subscribe( usuario => { 
-        if(usuario){
-          let usuarioReceptor = usuario;
-          console.log('receptor: ' + JSON.stringify(usuarioReceptor.nombre));
-          return usuarioReceptor;
-            } else {
-              return this.usuarioReceptor;
-            }
-          })
-        }         
-    return this.usuarioReceptor;
+    this.conversacion.id = id;
+    this.conversacion.mensaje = mensaje;
+    this.conversacion.usuario = usuario;
+    this.conversacionsList.push(this.conversacion);
+    console.log(this.conversacion);
   }
 
   crearConversacion(){
