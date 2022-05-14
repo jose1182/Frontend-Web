@@ -5,4 +5,12 @@
             <p>usuario </p>
         </div>
     </div>
+    <div class="row" *ngIf="this.mensajesConversacion">
+        <div class="col-12" *ngFor="let mensajes of this.mensajesConversacion" (click)="goToViewDetail(1)" style="cursor: pointer">
+            <div *ngFor="let mensaje of mensajes">
+                <h2 *ngIf="mensaje.receptor?.id">Usuario: {{this.buscarNombre(mensaje.receptor?.id)}}</h2>
+                <p>{{mensaje.fecha}}</p>
+            </div>
+        </div>
+    </div>
 </div>

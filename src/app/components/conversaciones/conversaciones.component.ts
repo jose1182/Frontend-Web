@@ -37,7 +37,7 @@ export class ConversacionesComponent implements OnInit {
   }
 
   goToViewDetail(id: number): void {
-    this.router.navigate(['conversacion', this.accountModel?.id, id]);
+    this.router.navigate(['conversacion', id, 4]);
   }
 
   checkLogin(): void {
@@ -66,10 +66,10 @@ export class ConversacionesComponent implements OnInit {
         for(let i = 0; i < this.conversaciones.length; i++) {
           if(this.conversaciones[i].id){
             this.getMensajesConversacion(this.conversaciones[i].id);
+            console.log(this.conversaciones[i].id)
           }
         }
         console.log(this.mensajesConversacion);
-        this.getUsuarioMensajes();
       }
     })
   }
@@ -83,25 +83,20 @@ export class ConversacionesComponent implements OnInit {
     })
   }
 //Se obtiene el id del usuario receptor a partir de los mensajes de esa conversación
-  getUsuarioMensajes(){
-    for(let i = 0; i < this.mensajesConversacion.length; i++) {
-      for(let j = 0; j < this.mensajesConversacion[i].length; j++) {
-        console.log(this.mensajesConversacion[i]);
-        if(this.mensajesConversacion[i][j].id){
-          let id = this.mensajesConversacion[i][j].receptor?.id;
-          if(id != this.accountModel?.id){
-              console.log('Estos son tus mensajes con el usuario ' + id);
-              this.usuarioService.getUsuarioById(id).subscribe( usuario => { 
-                if(usuario){
-                  this.usuarioReceptor = usuario;
-                  console.log('receptor: ' + JSON.stringify(this.usuarioReceptor.nombre));  
-                }
-              })
-            }    
-        }
-        i=0;
-      }
-    }
+buscarNombre(id: number | undefined): IUsuario{
+    
+    if(id != undefined){
+      console.log(this.mensajesConversacion);        this.usuarioService.getUsuarioById(id).subscribe( usuario => { 
+        if(usuario){
+          let usuarioReceptor = usuario;
+          console.log('receptor: ' + JSON.stringify(usuarioReceptor.nombre));
+          return usuarioReceptor;
+            } else {
+              return this.usuarioReceptor;
+            }
+          })
+        }         
+    return this.usuarioReceptor;
   }
 
   crearConversacion(){
