@@ -80,9 +80,11 @@ export class FavoritosComponent implements OnInit {
     }
 
     goToFavoritos(id?: number): void{
-      this.router.navigate(['favoritos', id]);
+      this.router.navigate(['/detalle/servicios', id]);
     }
   
+
+   
     isAuthenticated() : boolean {
       return this.authJwtService.loginValue() != null
     }

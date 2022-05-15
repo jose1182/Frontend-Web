@@ -1,3 +1,4 @@
+<!--
 <div class="container conversacion mt-5">
     <div class="row d-flex justify-content-around align-items-center">
         <div class="col-4">
@@ -10,7 +11,7 @@
     <div class="row" *ngIf="this.mensajes">
         <div class="col-12 mt-3" *ngFor="let mensaje of this.mensajes">
             <div class="mensaje w-100">
-                <div class="d-flex justify-content-end emisor" *ngIf="mensaje.emisor?.id == accountModel?.id" style="text-align: end;">
+                <div class="d-flex justify-content-end emisor" *ngIf="mensaje.emisor?.id == accountModel?.id" style="text-align: end; background-color: yellow;">
 
                     <p>{{mensaje.texto}}</p>&nbsp;&nbsp;&nbsp;
                     <p class="hora">{{mensaje.fecha?.format("HH:mm")}}</p>
@@ -38,3 +39,75 @@
         </div>
     </div>
 </div>
+
+-->
+<!---------------------------------------------------------------------------------------------------------------------------->
+    <div class="container-fluid" style="width:100vw;">
+
+      <div class="row d-flex justify-content-center align-items-center" >
+        <div class="main-container col-lg-12 text-center" id="shadow" >
+
+            <div class="row text-center justify-content-center align-items-center" style="background-color: #E6E6FA; margin: 0; padding-top: 50px; padding-bottom: 50px;">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-lg-6 col-xl-4">
+  
+          <div class="card" id="chat1">
+            <div
+              class="card-header d-flex justify-content-between align-items-center p-3  text-white border-bottom-0"
+              style="border-top-left-radius: 15px; border-top-right-radius: 15px; height: fit-content; ">
+              <p class="mb-0 fw-bold chat-title">Chat with {{this.emisor?.nombre}} {{this.emisor?.apellidos}}</p>
+              <div class="text-right" style="text-align: right;">
+                <img *ngIf="this.receptor?.imagenContentType" class="image-person img-fluid rounded-circle  imagen-profile" [src]="'data:' + this.receptor?.imagenContentType + ';base64,' + this.receptor.imagen" alt="categoria image" />
+              </div>
+
+            </div>
+
+            <div class="row" *ngIf="this.mensajes">
+                <div class="col-12 mt-3" *ngFor="let mensaje of this.mensajes">
+                    <div class="mensaje">
+                        <div class="d-flex justify-content-end emisor" *ngIf="mensaje.emisor?.id == accountModel?.id">
+                            <p class="mensaje">{{mensaje.texto}}</p>&nbsp;&nbsp;&nbsp;
+                            <p class="hora" style="padding-right: 10px;">{{mensaje.fecha?.format("HH:mm")}}</p>
+                        </div>
+                        <div class="d-flex justify-content-start receptor" *ngIf="mensaje.emisor?.id != accountModel?.id" style="text-align: start;">
+                            <p class="hora" style="padding-left:10px;">{{mensaje.fecha?.format("HH:mm")}}</p>
+                            <p class="mensaje">{{mensaje.texto}}</p>&nbsp;&nbsp;&nbsp;
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+
+
+            <div class="card-body" *ngIf="this.mensajes" style=" border-radius: 0 0 10px 10px; background-color: #67418C; margin-top: 10px;">
+              <div class="form-outline">
+                <form *ngIf="!success" [formGroup]="mensajeForm" (ngSubmit)="crearNuevoMensaje()">
+                    <div class="row mb-4">
+                        <div class="col-sm-9">
+                            <div class="form-outline">
+                                <input type="text" class="form-control form-control-lg text-msg" placeholder="Escribe un nuevo mensaje.." formControlName="mensaje" maxlength="254" />
+                            </div> 
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-outline">
+                                <button class="button btn  btn-lg btn-circle btn-block btn-send" type="submit" [disabled]="mensajeForm.invalid">
+                                    <img class="sent-img" src="./../../../assets/send.png">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                     
+                   
+                </form>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+            </div>
+        </div>
+      </div>
+  
+    </div>
+  
+
