@@ -1,9 +1,14 @@
 <div class="container mt-3">
     <div class="row" *ngIf="this.conversacionsList">
         <div class="col-12" *ngFor="let conversacion of this.conversacionsList">
-            <div (click)="goToViewDetail(conversacion?.id, conversacion.usuario?.id)" style="cursor: pointer">
-                <h2>Conversación {{conversacion?.id}}</h2>
-                <p>usuario {{conversacion.usuario?.nombre}}</p>
+            <div class="row" (click)="goToViewDetail(conversacion?.id, conversacion.usuario?.id)" style="cursor: pointer;">
+                <div class="col-3">
+                    <img *ngIf="conversacion.usuario?.imagenContentType" class="image-person img-fluid rounded-circle center imagen-profile" [src]="'data:' + conversacion.usuario?.imagenContentType + ';base64,' + conversacion.usuario?.imagen" alt="user image" />
+                </div>
+                <div class="col-9">
+                    <h2><b>{{conversacion.usuario?.nombre}}</b></h2>
+                    <p>{{conversacion.mensaje?.texto}} <span class="hora">{{conversacion.mensaje?.fecha?.format("HH:mm")}}</span></p>
+                </div>
             </div>
         </div>
     </div>

@@ -96,13 +96,6 @@ export class DetalleConversacionComponent implements OnInit {
             this.getReceptor();
             this.getEmisor();
           }
-          
-          //Crear nueva conversación
-          this.crearConversacion();
-          
-          //Nos lleva a dicha conversación
-          this.router.navigate(['conversacion', this.idNuevaConv, 'user', this.receptor.id]);
-          //Se genera un Nuevo mensaje AUTOMÁTICO para esta Conversación
         }
       }
     })
@@ -139,10 +132,6 @@ export class DetalleConversacionComponent implements OnInit {
       conversacion: { id: id }
     }
   }
-
-  crearConversacion(){
-    this.conversacionesService.nuevaConversacion().subscribe(); 
- } 
 
   getEmisor(): IUsuario {
     if(this.accountModel){

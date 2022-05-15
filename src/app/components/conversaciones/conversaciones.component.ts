@@ -8,6 +8,7 @@ import { IUsuario } from 'src/app/model/usuario.model';
 import { AccountService } from 'src/app/services/account.service';
 import { ConversacionesService } from 'src/app/services/conversaciones/conversaciones.service';
 import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-conversaciones',
@@ -17,10 +18,10 @@ import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
 export class ConversacionesComponent implements OnInit {
 
   id!: number;
-  idUser!: number | undefined;
+  idUser!: number;
   idReceptor!: number;
+  idConversacion!: number | undefined;
   conversaciones!: IConversacion[];
-  conversacion = new ConversacionsList();
   mensajes!: MensajeModel[];
   mensajesConversacion = new Array<MensajeModel[]>();
   conversacionsList= new Array<IConversacionsList>();
@@ -33,7 +34,9 @@ export class ConversacionesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService
-  ) {  }
+  ) {  
+    this.idConversacion = 0;
+  }
 
   ngOnInit(): void {
     this.checkLogin();
@@ -50,6 +53,15 @@ export class ConversacionesComponent implements OnInit {
         console.log("Logueado para ver las conversaciones");
         if(this.accountModel.id){
           this.getConversacionsIdList(this.accountModel.id);
+
+          //Si llega el idUser es porque queremos crear la conversación con él si no existe ya, y en tal caso redireccionar a ella
+          this.route.paramMap.subscribe((params: Params) => {
+            if(params.get('idUser')){
+              this.idUser = params.get('idUser');
+              console.log(this.idUser);
+              this.buscarConversacion(this.idUser);
+            }
+          })
 
         }
         
@@ -81,12 +93,16 @@ export class ConversacionesComponent implements OnInit {
     this.conversacionesService.getMensajesByConvId(id).subscribe(mensajes => {
       if(mensajes != []){
         this.mensajes = mensajes;
+        for (var mensaje of this.mensajes) {
+          mensaje.fecha = dayjs(mensaje.fecha);
+          //console.log(mensaje.fecha);
+        }
         //último mensaje de esta conversación
-        console.log(this.mensajes.pop());
+        //console.log(this.mensajes.length);
         let ultimoMensaje: IMensaje | undefined = this.mensajes.pop();
-        console.log(ultimoMensaje?.texto);
+        //console.log(ultimoMensaje);
         //Se obtiene el id del receptor
-        console.log(ultimoMensaje?.receptor?.id);
+        //console.log(ultimoMensaje?.receptor?.id);
 
         let usuarioReceptorMensaje: IUsuario | undefined;
 
@@ -94,8 +110,8 @@ export class ConversacionesComponent implements OnInit {
           this.usuarioService.getUsuarioById(ultimoMensaje?.receptor?.id).subscribe( usuario => { 
             if(usuario){
               usuarioReceptorMensaje = usuario;
-              console.log('receptor: ' + JSON.stringify(usuarioReceptorMensaje.nombre));
-              console.log('conversacion: ' + ultimoMensaje?.conversacion?.id);
+              //console.log('receptor: ' + JSON.stringify(usuarioReceptorMensaje.nombre));
+              //console.log('conversacion: ' + ultimoMensaje?.conversacion?.id);
               if(id!=undefined && ultimoMensaje && usuarioReceptorMensaje){
                 this.guardarInfoConversacion(id, ultimoMensaje, usuarioReceptorMensaje);
               }
@@ -115,30 +131,59 @@ export class ConversacionesComponent implements OnInit {
         }
               
         this.mensajesConversacion.push(this.mensajes);
+      }
+    })
+  }
+  //Se forma el objeto conversacionList que contendrá el id de la conversación, el último mensaje y el id del usuario receptor de la misma
+  guardarInfoConversacion(id: number, mensaje: IMensaje, usuario: IUsuario){
+    let conversacion = new ConversacionsList();
+    conversacion.id = id;
+    conversacion.mensaje = mensaje;
+    conversacion.usuario = usuario;
+    this.conversacionsList.push(conversacion);
+    console.log(conversacion);
+  }
+  
+  //Pasamos el id del usuario y tenemos que ver si ha habido interacciones anteriormente con él y en qué conversación
+  buscarConversacion(id: number){
+    this.conversacionesService.getConversacionsByUser(id).subscribe(conversaciones => {
+      if(conversaciones){
+        let conversacionesReceptor = conversaciones
+        console.log(conversacionesReceptor);
+        for(let i = 0; i < conversacionesReceptor.length; i++) {
+          for(let j = 0; j < this.conversaciones.length; j++) {     
+            if(conversacionesReceptor[i].id == this.conversaciones[j].id){              
+              console.log('Conversación encontrada');
+              console.log(conversacionesReceptor[i].id);
+              this.idConversacion = conversacionesReceptor[i].id;
+              this.router.navigate(['conversacion', this.idConversacion, id]);
+              break;
+            }
+            i=0;
+          }
+        }
+        if(this.idConversacion == 0){
+          //No existe, así se crea la conversación
+          this.crearConversacion();
 
-        for(let i = 0; i < this.mensajesConversacion.length; i++) {
-          //último mensaje de cada conversación
-          //console.log('Mensaje: ' + this.mensajesConversacion[i]);
-          //let mensaje: MensajeModel = this.mensajesConversacion[this.mensajesConversacion[i].length-1];
-          //receptor
-          //console.log('Receptor: ' + this.mensajesConversacion[i]);
+          //Vemos por qué ID va y cogemos la última creada:
+          this.conversacionesService.getConversacions().subscribe(conversaciones => {
+            if(conversaciones){
+              this.conversaciones = conversaciones;
+              console.log(this.conversaciones.length);
+              this.idConversacion = this.conversaciones.length;
+          //Y nos lleva a dicha conversación
+              this.router.navigate(['conversacion', this.idConversacion, id]);
+            }
+          })         
         }
       }
     })
   }
-  //Se forma el objeto conversacionList que contendrá el id de la conversación, el último mensaje y el id del usuario receptor de la misma 
-
-  guardarInfoConversacion(id: number, mensaje: IMensaje, usuario: IUsuario){
-    
-    this.conversacion.id = id;
-    this.conversacion.mensaje = mensaje;
-    this.conversacion.usuario = usuario;
-    this.conversacionsList.push(this.conversacion);
-    console.log(this.conversacion);
-  }
 
   crearConversacion(){
-     this.conversacionesService.nuevaConversacion().subscribe(data => {console.log(data)}, error => {console.log(error)});
+     this.conversacionesService.nuevaConversacion().subscribe();
   } 
+
 
 }

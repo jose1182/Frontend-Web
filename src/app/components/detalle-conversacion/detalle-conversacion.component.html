@@ -1,7 +1,7 @@
 <div class="container conversacion mt-5">
     <div class="row d-flex justify-content-around align-items-center">
         <div class="col-4">
-            <img *ngIf="this.receptor?.imagenContentType" class="image-person img-fluid rounded-circle center imagen-profile" [src]="'data:' + this.receptor?.imagenContentType + ';base64,' + this.receptor.imagen" alt="categoria image" />
+            <img *ngIf="this.receptor?.imagenContentType" class="image-person img-fluid rounded-circle center imagen-profile" [src]="'data:' + this.receptor?.imagenContentType + ';base64,' + this.receptor.imagen" alt="user image" />
         </div>
         <div class="col-6">
             <h2>{{this.receptor?.nombre}} {{this.receptor?.apellidos}}</h2>
