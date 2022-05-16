@@ -96,13 +96,6 @@ export class DetalleConversacionComponent implements OnInit {
             this.getReceptor();
             this.getEmisor();
           }
-          
-          //Crear nueva conversación
-          this.crearConversacion();
-          
-          //Nos lleva a dicha conversación
-          this.router.navigate(['conversacion', this.idNuevaConv, 'user', this.receptor.id]);
-          //Se genera un Nuevo mensaje AUTOMÁTICO para esta Conversación
         }
       }
     })
@@ -119,7 +112,8 @@ export class DetalleConversacionComponent implements OnInit {
     if(this.emisor && this.receptor){
       this.getEmisor();
       this.getReceptor();
-      texto == '' ? 'Hola, este mensaje es de prueba.' : texto;
+      texto === '' ? 'Hola, este mensaje es de prueba.' : this.mensajeForm.value.mensaje;
+      console.log(texto);
       this.conversacionesService.nuevoMensaje(this.construirMensaje(this.mensajeForm.value.mensaje, this.emisor, this.receptor, this.id)).subscribe(data => {
         this.refresh();
       })
@@ -128,7 +122,7 @@ export class DetalleConversacionComponent implements OnInit {
   }
 
   construirMensaje(texto: string, emisor: IUsuario, receptor: IUsuario, id: number): IMensaje {
-
+    
     return { 
       ...new MensajeModel(),
       texto: texto,
@@ -138,10 +132,6 @@ export class DetalleConversacionComponent implements OnInit {
       conversacion: { id: id }
     }
   }
-
-  crearConversacion(){
-    this.conversacionesService.nuevaConversacion().subscribe(); 
- } 
 
   getEmisor(): IUsuario {
     if(this.accountModel){

@@ -45,10 +45,10 @@
                                             <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
                                             <h6 class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">Card subtitle</h6>
                                             <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
-                                            <div class="d-flex justify-content-between">
+                                            <div class="d-flex justify-content-between" (click)="goToConversacion()">
                                                 <div>
                                                     <img class="img-icon" src="./../../../assets/envelope-solid.svg">
-                                                    <a [routerLink]="['/conversaciones']" class="card-link text-dark ml-1">Enviar mensaje</a>
+                                                    <a class="card-link text-dark ml-1">Enviar mensaje</a>
                                                 </div>
                                                 <div>
                                                     <img class="img-icon" src="./../../../assets/screwdriver-wrench-solid.svg">

@@ -20,6 +20,10 @@ export class ConversacionesService {
     return this.http.get<Conversacion[]>(`${environment.url}conversacions/usuario/?id=${id}`);
   }
 
+  public getConversacions():Observable<Conversacion[]>{
+    return this.http.get<Conversacion[]>(`${environment.url}conversacions`);
+  }
+
   public getMensajesByConvId(id: number | undefined): Observable<MensajeModel[]>{
     return this.http.get<MensajeModel[]>(`${environment.url}mensajes/conversacion?id=${id}`);
   }
