@@ -9,6 +9,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { ConversacionesService } from 'src/app/services/conversaciones/conversaciones.service';
 import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
 import dayjs from 'dayjs';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-conversaciones',
@@ -31,6 +32,7 @@ export class ConversacionesComponent implements OnInit {
   constructor(
     private conversacionesService: ConversacionesService,
     private usuarioService: UsuariosService,
+    private usuarioUpdateService: UsuarioService,
     private router: Router,
     private route: ActivatedRoute,
     private accountService: AccountService
@@ -142,6 +144,7 @@ export class ConversacionesComponent implements OnInit {
     conversacion.usuario = usuario;
     this.conversacionsList.push(conversacion);
     console.log(conversacion);
+
   }
   
   //Pasamos el id del usuario y tenemos que ver si ha habido interacciones anteriormente con él y en qué conversación
@@ -150,20 +153,14 @@ export class ConversacionesComponent implements OnInit {
       if(conversaciones){
         let conversacionesReceptor = conversaciones
         console.log(conversacionesReceptor);
+        
         for(let i = 0; i < conversacionesReceptor.length; i++) {
-          for(let j = 0; j < this.conversaciones.length; j++) {     
-            if(conversacionesReceptor[i].id == this.conversaciones[j].id){              
-              console.log('Conversación encontrada');
-              console.log(conversacionesReceptor[i].id);
-              this.idConversacion = conversacionesReceptor[i].id;
-              this.router.navigate(['conversacion', this.idConversacion, id]);
-              break;
-            }
-            i=0;
-          }
+          console.log(conversacionesReceptor[i]);
+          
         }
+        
         if(this.idConversacion == 0){
-          //No existe, así se crea la conversación
+          //No existe, así que se crea la conversación
           this.crearConversacion();
 
           //Vemos por qué ID va y cogemos la última creada:
@@ -172,6 +169,20 @@ export class ConversacionesComponent implements OnInit {
               this.conversaciones = conversaciones;
               console.log(this.conversaciones.length);
               this.idConversacion = this.conversaciones.length;
+
+              //Actualizamos la información del usuario con esta conversación:
+               //Actualizamos el usuario para que tenga esa conversación bien relacionada:
+               this.usuarioService.getUsuarioById(this.accountModel?.id).subscribe( usuario => { 
+                if(usuario){
+                  console.log('emisor: ' + JSON.stringify(usuario.nombre));
+                  this.usuarioUpdateService.update(usuario).subscribe(usuario => {
+                    console.log('Usuario actualizado');
+                  })    
+                
+                }
+              })  
+              
+
           //Y nos lleva a dicha conversación
               this.router.navigate(['conversacion', this.idConversacion, id]);
             }
