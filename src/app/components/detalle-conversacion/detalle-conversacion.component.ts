@@ -73,20 +73,16 @@ export class DetalleConversacionComponent implements OnInit {
             this.mensajes = mensajes;
             console.log(this.mensajes);
             if(this.mensajes){
-              if(this.mensajes[0].emisor?.id == this.accountModel?.id 
-                || this.mensajes[0].receptor?.id == this.accountModel?.id ){
-                  console.log('Estos son tus mensajes usuario ' + this.accountModel?.id);
-                  //Se busca el id del receptor de los mensajes y que no coincida con el usuario logueado
-                  this.getReceptor();
-                  this.getEmisor();         
-                  
-                  for (var mensaje of this.mensajes) {
-                    mensaje.fecha = dayjs(mensaje.fecha);
-                    //console.log(mensaje.fecha);
-                  }
-              } else {
-                //this.router.navigate(['conversaciones']);
+              console.log('Estos son tus mensajes usuario ' + this.accountModel?.id);
+              //Se busca el id del receptor de los mensajes y que no coincida con el usuario logueado
+              this.getReceptor();
+              this.getEmisor();         
+              
+              for (var mensaje of this.mensajes) {
+                mensaje.fecha = dayjs(mensaje.fecha);
+                //console.log(mensaje.fecha);
               }
+
             }
           } 
         })
@@ -150,7 +146,7 @@ export class DetalleConversacionComponent implements OnInit {
       this.route.paramMap.subscribe((params: Params) => {
         if(params.get('idUser')){
           this.idReceptor = params.get('idUser');
-          console.log('IDUSER: '+ this.idReceptor);
+          //console.log('IDUSER: '+ this.idReceptor);
           if(this.accountModel){
             this.usuarioService.getUsuarioById(this.idReceptor).subscribe( usuario => { 
               if(usuario){

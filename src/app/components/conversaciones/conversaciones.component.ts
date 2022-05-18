@@ -152,10 +152,17 @@ export class ConversacionesComponent implements OnInit {
     this.conversacionesService.getConversacionsByUser(id).subscribe(conversaciones => {
       if(conversaciones){
         let conversacionesReceptor = conversaciones
-        console.log(conversacionesReceptor);
-        
+        if(conversacionesReceptor == []){
+          console.log('Esto está vacío macho')
+        }
+        console.log('Conversaciones del usuario receptor: ')
         for(let i = 0; i < conversacionesReceptor.length; i++) {
           console.log(conversacionesReceptor[i]);
+          
+        }
+        console.log('Conversaciones del usuario emisor: ')
+        for(let i = 0; i < this.conversaciones.length; i++) {
+          console.log(this.conversaciones[i]);
           
         }
         

@@ -46,7 +46,7 @@ export class AccountService {
 
   identify(force?: boolean): Observable<AccountModel | null>{
     if(!this.accountCache$ || force){
-      console.log("identify!!!!!")
+      //console.log("identify!!!!!")
       this.accountCache$ = this.fetch().pipe(tap((account: AccountModel)=>{
         this.authenticate(account);
       }
@@ -61,7 +61,7 @@ export class AccountService {
   }
 
   private fetch(): Observable<AccountModel>{
-    console.log('fetch: ', environment.url + 'account')
+    //console.log('fetch: ', environment.url + 'account')
     return this.http.get<AccountModel>(environment.url + 'account')
   }
 
