@@ -12,6 +12,7 @@ import * as dayjs from 'dayjs'
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-conversaciones',
@@ -32,6 +33,7 @@ export class ConversacionesComponent implements OnInit {
   usuarioReceptor!: IUsuario;
 
   //Probando actualización usuario
+  isSaving = false;
 
   constructor(
     private conversacionesService: ConversacionesService,
@@ -193,14 +195,10 @@ export class ConversacionesComponent implements OnInit {
                       //Se actualiza mediante la función del modelo del usuario:
                       updateConversacions(usuario, conver);
                     }
-                 }
-                 console.log('emisor: ' + JSON.stringify(usuario.conversacions));
+                  }
+                  console.log('emisor: ' + JSON.stringify(usuario));
 
-
-
-                 this.usuarioUpdateService.update(usuario).subscribe(usuario => {
-                   console.log('Usuario actualizado: ');
-                 })    
+                  this.save(usuario);
                
                 }
               })  
@@ -215,11 +213,39 @@ export class ConversacionesComponent implements OnInit {
     })
   }
 
+  save(usuario: IUsuario): void {
+    this.isSaving = true;
+    if (usuario.id !== undefined) {
+      this.subscribeToSaveResponse(this.usuarioUpdateService.update(usuario));
+    }
+  }
 
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IUsuario>>): void {
+    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
+      next: () => this.onSaveSuccess(),
+      error: () => this.onSaveError(),
+    });
+  }
+
+  protected onSaveFinalize(): void {
+    this.isSaving = false;
+  }
+
+  protected onSaveSuccess(): void {
+    this.previousState();
+  }
+
+  protected onSaveError(): void {
+    //
+  }
+
+  previousState(): void {
+    window.history.back();
+  }
 
   crearConversacion(){
     console.log('Conversacion creada'); 
-    //this.conversacionesService.nuevaConversacion().subscribe();
+    this.conversacionesService.nuevaConversacion().subscribe();
   } 
 
 
