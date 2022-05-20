@@ -4,12 +4,14 @@ import { AccountModel } from 'src/app/model/account.model';
 import { Conversacion, IConversacion } from 'src/app/model/conversacion.model';
 import { ConversacionsList, IConversacionsList } from 'src/app/model/listaConversaciones.model';
 import { IMensaje, MensajeModel } from 'src/app/model/mensaje.model';
-import { IUsuario } from 'src/app/model/usuario.model';
+import { IUsuario, updateConversacions } from 'src/app/model/usuario.model';
 import { AccountService } from 'src/app/services/account.service';
 import { ConversacionesService } from 'src/app/services/conversaciones/conversaciones.service';
 import { UsuariosService } from 'src/app/services/usuario/usuarios.service';
-import dayjs from 'dayjs';
+import * as dayjs from 'dayjs'
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Observable } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-conversaciones',
@@ -28,6 +30,8 @@ export class ConversacionesComponent implements OnInit {
   conversacionsList= new Array<IConversacionsList>();
   accountModel!: AccountModel | undefined;
   usuarioReceptor!: IUsuario;
+
+  //Probando actualización usuario
 
   constructor(
     private conversacionesService: ConversacionesService,
@@ -155,7 +159,7 @@ export class ConversacionesComponent implements OnInit {
         if(conversacionesReceptor == null){
           console.log('Esto está vacío macho: ' + conversacionesReceptor)
         }
-        console.log('Conversaciones con el usuario receptor: ')
+        //console.log('Conversaciones con el usuario receptor: ')
         for(let i = 0; i < conversacionesReceptor.length; i++) {
           for(let j = 0; j < this.conversaciones.length; j++) {
             
@@ -166,7 +170,7 @@ export class ConversacionesComponent implements OnInit {
           }
           
         }
-        console.log('Conversaciones del usuario emisor: ')
+        //console.log('Conversaciones del usuario emisor: ')
         
         
         if(this.idConversacion == 0){
@@ -177,7 +181,7 @@ export class ConversacionesComponent implements OnInit {
           this.conversacionesService.getConversacions().subscribe(conversaciones => {
             if(conversaciones){
               this.conversaciones = conversaciones;
-              console.log(this.conversaciones.length);
+              //console.log(this.conversaciones.length);
               this.idConversacion = this.conversaciones.length;
 
               //Actualizamos la información del usuario para que tenga esa conversación bien relacionada:
@@ -185,25 +189,17 @@ export class ConversacionesComponent implements OnInit {
                if(usuario){
                  if(usuario.conversacions){
                    if(usuario.conversacions.length > 0){
-                      let conver: IConversacion | undefined = usuario.conversacions.pop()
-                    /*  usuario.conversacions.push(usuario.conversacions[usuario.conversacions.length-1])
-                      console.log(usuario.conversacions);
-                      if(usuario.conversacions[usuario.conversacions.length-1]){
-                        usuario.conversacions[0].id = this.idConversacion;
-                        console.log(usuario.conversacions[1]);
-                      }
-                      */
-
-                     console.log(this.conversaciones[this.conversaciones.length-1])
-                     if(this.conversaciones.pop() != undefined){
-                      //usuario.conversacions.push(this.conversaciones.pop()!=undefined ? this.conversaciones.pop());
-                      console.log(usuario.conversacions);
-                     }
+                      let conver: IConversacion = new Conversacion(this.idConversacion);
+                      //Se actualiza mediante la función del modelo del usuario:
+                      updateConversacions(usuario, conver);
                     }
                  }
                  console.log('emisor: ' + JSON.stringify(usuario.conversacions));
+
+
+
                  this.usuarioUpdateService.update(usuario).subscribe(usuario => {
-                   console.log('Usuario actualizado');
+                   console.log('Usuario actualizado: ');
                  })    
                
                 }
@@ -218,6 +214,8 @@ export class ConversacionesComponent implements OnInit {
       }
     })
   }
+
+
 
   crearConversacion(){
     console.log('Conversacion creada'); 

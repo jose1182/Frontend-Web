@@ -44,3 +44,9 @@ export class Usuario implements IUsuario {
 export function getUsuarioIdentifier(usuario: IUsuario): number | undefined {
   return usuario.id;
 }
+
+export function updateConversacions(usuario: IUsuario, conversacion: IConversacion){
+  if(usuario.conversacions){
+    usuario.conversacions.push(conversacion)
+  }
+}
