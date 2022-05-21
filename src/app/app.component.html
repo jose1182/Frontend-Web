@@ -7,7 +7,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <<<<<<< HEAD <ul class="navbar-nav">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="home">INICIO <span class="sr-only">(current)</span></a>
                 </li>
@@ -15,16 +15,6 @@
                     <a class="nav-link" (click)="favoritos()">FAVORITOS</a>
                 </li>
                 </ul>
-                =======
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="home">INICIO <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">BLOG</a>
-                    </li>
-                </ul>
-                >>>>>>> chats-arreglos
 
                 <div class="justify-content-center mx-auto">
                     <form class="form-inline justify-content-center">
@@ -72,15 +62,16 @@
         </div>
     </div>
 </nav>
+<!--
 <button class="btn btn-primary" (click)="showStandard()" ngbTooltip="Will disappear in 5s">Standard toast</button>&nbsp;
 <button class="btn btn-success" (click)="showSuccess()" ngbTooltip="Will disappear in 10s">Success toast</button>&nbsp;
 <button class="btn btn-danger" (click)="showError()" ngbTooltip="Will disappear in 10s">Error toast</button>&nbsp;
 
+
 <ng-template #customTpl>
     <i>This is</i> a <u>custome</u> template <b>toast message</b>
 </ng-template>
-
 <button class="btn btn-info" (click)="showCustomToast(customTpl)" ngbTooltip="Will disappear in 15s">Custom toast</button>&nbsp;
-
+-->
 <router-outlet></router-outlet>
 <app-toasts></app-toasts>

@@ -42,23 +42,25 @@
 
 -->
 <!---------------------------------------------------------------------------------------------------------------------------->
-    <div class="container-fluid" style="width:100vw;">
+<div  style="background-color: #E6E6FA; margin: 0; padding-top: 50px; padding-bottom: 50px; height: 100vh;" >   
+<div class="container-fluid">
 
-      <div class="row d-flex justify-content-center align-items-center" >
+      <div class="row d-flex justify-content-center align-items-center">
         <div class="main-container col-lg-12 text-center" id="shadow" >
 
-            <div class="row text-center justify-content-center align-items-center" style="background-color: #E6E6FA; margin: 0; padding-top: 50px; padding-bottom: 50px;">
+            <div class="row text-center justify-content-center align-items-center" >
                 <div class="col-xl-8 col-lg-8 col-md-8 col-lg-6 col-xl-4">
   
           <div class="card" id="chat1">
             <div
-              class="card-header d-flex justify-content-between align-items-center p-3  text-white border-bottom-0"
-              style="border-top-left-radius: 15px; border-top-right-radius: 15px; height: fit-content; ">
-              <p class="mb-0 fw-bold chat-title">Chat with {{this.emisor?.nombre}} {{this.emisor?.apellidos}}</p>
-              <div class="text-right" style="text-align: right;">
-                <img *ngIf="this.receptor?.imagenContentType" class="image-person img-fluid rounded-circle  imagen-profile" [src]="'data:' + this.receptor?.imagenContentType + ';base64,' + this.receptor.imagen" alt="categoria image" />
-              </div>
-
+              class="row card-header d-flex justify-content-between align-items-center p-3  text-white border-bottom-0"
+              style="border-top-left-radius: 15px; border-top-right-radius: 15px; height: fit-content;">
+                <div class="col-4 text-left">
+                    <img *ngIf="this.receptor?.imagenContentType" class="image-person img-fluid rounded-circle center imagen-profile" [src]="'data:' + this.receptor?.imagenContentType + ';base64,' + this.receptor.imagen" alt="user image" />
+                </div>
+                <div class="col-8 text-right">
+                    <h2>{{this.receptor?.nombre}} {{this.receptor?.apellidos}}</h2>
+                </div>
             </div>
 
             <div class="row" *ngIf="this.mensajes">
@@ -67,10 +69,12 @@
                         <div class="d-flex justify-content-end emisor" *ngIf="mensaje.emisor?.id == accountModel?.id">
                             <p class="mensaje">{{mensaje.texto}}</p>&nbsp;&nbsp;&nbsp;
                             <p class="hora" style="padding-right: 10px;">{{mensaje.fecha?.format("HH:mm")}}</p>
+                           
                         </div>
                         <div class="d-flex justify-content-start receptor" *ngIf="mensaje.emisor?.id != accountModel?.id" style="text-align: start;">
                             <p class="hora" style="padding-left:10px;">{{mensaje.fecha?.format("HH:mm")}}</p>
                             <p class="mensaje">{{mensaje.texto}}</p>&nbsp;&nbsp;&nbsp;
+                            
                         </div>
                     </div>
         
@@ -110,4 +114,4 @@
   
     </div>
   
-
+</div> 

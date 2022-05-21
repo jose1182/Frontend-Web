@@ -17,7 +17,7 @@ export class ConversacionesService {
   ) { }
 
   public getConversacionsByUser(id: number | undefined):Observable<Conversacion[]>{
-    return this.http.get<Conversacion[]>(`${environment.url}conversacions/usuario/?id=${id}`);
+    return this.http.get<Conversacion[]>(`${environment.url}conversacions/usuario?id=${id}`);
   }
 
   public getConversacions():Observable<Conversacion[]>{

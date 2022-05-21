@@ -10,15 +10,15 @@
                                     <div class="card h-100 profile-info">
                                         <div class="card-body" style="background-color: #5C3A7D;">
                                             <div class="account-settings">
-                                                <div class="user-profile">
+                                                <div class="user-profile text-center">
                                                     <div class="user-avatar text-center" style="margin-bottom: 30px;">
-                                                      <h1><span *ngIf="isEspecialista" class="badge badge-success">Especialista</span></h1>
-                                                      <h1><span *ngIf="!isEspecialista" class="badge badge-success">User</span></h1>
                                                         <img *ngIf="usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center"  style="margin-top:5px" [src]="'data:' + usuarioModel?.imagenContentType + ';base64,' + usuarioModel.imagen" alt="categoria image" />
                                                         <img *ngIf="!usuarioModel?.imagenContentType" class="image-person img-fluid rounded-circle center" style="margin-top:5px" src="../../../assets/images.png" />
                                                     </div>
                                                     <h5 class="user-name user-info" style="font-size: 2.5rem;">{{this.usuarioModel?.user?.login}}</h5>
                                                     <h6 class="user-email user-info">{{this.usuarioModel?.correo}}</h6>
+                                                    <h1><span *ngIf="isEspecialista" class="tipo badge">Especialista</span></h1>
+                                                    <h1><span *ngIf="!isEspecialista" class="tipo badge">User</span></h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,10 +135,10 @@
                             <span class="badge badge-warning mr-1 mb-2" *ngFor="let categoria of servicio.categorias" >{{categoria.nombre}}</span>
                             <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
                             <div class="row">
-                              <a [routerLink]="['/crear-servicio/update', servicio.id]" class="card-link text-dark ml-1"><img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
+                              <a [routerLink]="['/crear-servicio/update', servicio.id]" class="card-link text-dark ml-1"><img class="img-icon" src="./../../../assets/pencil-solid.svg" style="margin-top: 10px"></a>
                               <img *ngIf="servicio.destacado" class="img-icon ml-2" src="./../../../assets/star-solid.svg" >
-                              <button type="submit" (click)="delete(servicio)" class="btn btn-danger btn-sm">
-                                <span class="d-none d-md-inline">Delete</span>
+                              <button type="submit" (click)="delete(servicio)" class="btn  btn-sm ml-1 ">
+                                  <img src="./../../../assets/delete.png" style="height: 40px;">
                               </button>
                             </div>
                          </div>

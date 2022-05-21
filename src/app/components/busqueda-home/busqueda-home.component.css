@@ -23,7 +23,7 @@ h2{
 
 .cardcontainer {
   width: 300px;
-  height: 400px;
+  height: 450px;
   background-color: white;
   transition: 0.3s;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
@@ -77,15 +77,7 @@ h2{
 }
 
 .photos {
-  width: auto;
-  height: 30px;
-  background-color: #67418C;
-  color: white;
-  position: relative;
-  top: -30px;
-  padding-left: 10px;
-  padding-top: 5px;
-  font-size: 20px;
+  
 }
 
 

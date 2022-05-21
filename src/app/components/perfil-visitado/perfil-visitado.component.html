@@ -42,7 +42,14 @@
                                 <div class="row">
                                     <div class="card card-servicio m-2" style="width: 20rem;" *ngFor="let servicio of servicios">
                                         <div class="card-body pb-2">
-                                            <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
+                                            <div class="d-flex justify-content-between" (click)="goToConversacion()">
+                                                <div>
+                                                    <h3 class="card-title font-weight-bold" style="font-size: 1.5rem;"> {{servicio.titulo}} </h3>
+                                                </div>
+                                                <div>
+                                                    <img class="img-icon fav" src="./../../../assets/fav.png">
+                                                </div>
+                                            </div>
                                             <h6 class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">Card subtitle</h6>
                                             <p class="card-text" style="font-size: 1rem;">{{ servicio.descripcion }}</p>
                                             <div class="d-flex justify-content-between" (click)="goToConversacion()">
@@ -52,7 +59,7 @@
                                                 </div>
                                                 <div>
                                                     <img class="img-icon" src="./../../../assets/screwdriver-wrench-solid.svg">
-                                                    <a href="#" class="card-link text-dark ml-1">Solicitar</a>
+                                                    <a class="card-link text-dark ml-1">Solicitar</a>
                                                 </div>
                                             </div>
                                         </div>
