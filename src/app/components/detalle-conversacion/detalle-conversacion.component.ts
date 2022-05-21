@@ -109,7 +109,7 @@ export class DetalleConversacionComponent implements OnInit {
       this.getEmisor();
       this.getReceptor();
       texto === '' ? 'Hola, este mensaje es de prueba.' : this.mensajeForm.value.mensaje;
-      console.log(texto);
+      //console.log(texto);
       this.conversacionesService.nuevoMensaje(this.construirMensaje(this.mensajeForm.value.mensaje, this.emisor, this.receptor, this.id)).subscribe(data => {
         this.refresh();
       })

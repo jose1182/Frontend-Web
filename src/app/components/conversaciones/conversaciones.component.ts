@@ -13,6 +13,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize } from 'rxjs/operators';
+import { DATE_TIME_FORMAT } from 'src/app/config/input.constants';
 
 @Component({
   selector: 'app-conversaciones',
@@ -65,9 +66,9 @@ export class ConversacionesComponent implements OnInit {
           //Si llega el idUser es porque queremos crear la conversación con él si no existe ya, y en tal caso redireccionar a ella
           this.route.paramMap.subscribe((params: Params) => {
             if(params.get('idUser')){
-              this.idUser = params.get('idUser');
-              //console.log(this.idUser);
-              this.buscarConversacion(this.idUser);
+              this.idReceptor = params.get('idUser');
+              //console.log(this.idReceptor);
+              this.buscarConversacion(this.idReceptor);
             }
           })
 
@@ -115,17 +116,21 @@ export class ConversacionesComponent implements OnInit {
         let usuarioReceptorMensaje: IUsuario | undefined;
 
         if(ultimoMensaje?.receptor?.id && ultimoMensaje?.receptor?.id != this.accountModel?.id){
-          this.usuarioService.getUsuarioById(ultimoMensaje?.receptor?.id).subscribe( usuario => { 
-            if(usuario){
-              usuarioReceptorMensaje = usuario;
-              //console.log('receptor: ' + JSON.stringify(usuarioReceptorMensaje.nombre));
-              //console.log('conversacion: ' + ultimoMensaje?.conversacion?.id);
-              if(id!=undefined && ultimoMensaje && usuarioReceptorMensaje){
-                this.guardarInfoConversacion(id, ultimoMensaje, usuarioReceptorMensaje);
+          if(this.accountModel?.id != undefined){
+            this.usuarioService.getUsuarioById(ultimoMensaje?.receptor?.id).subscribe( usuario => { 
+              if(usuario){
+                usuarioReceptorMensaje = usuario;
+                //console.log('receptor: ' + JSON.stringify(usuarioReceptorMensaje.nombre));
+                //console.log('conversacion: ' + ultimoMensaje?.conversacion?.id);
+                if(id!=undefined && ultimoMensaje && usuarioReceptorMensaje){
+                  this.guardarInfoConversacion(id, ultimoMensaje, usuarioReceptorMensaje);
+                }
               }
-            }
-          })  
+            })  
+          }
+         
         } else {
+          if(this.idReceptor != undefined){
           this.usuarioService.getUsuarioById(ultimoMensaje?.emisor?.id).subscribe( usuario => { 
             if(usuario){
               usuarioReceptorMensaje = usuario;
@@ -136,6 +141,7 @@ export class ConversacionesComponent implements OnInit {
               }
             }
           })  
+        }
         }
               
         this.mensajesConversacion.push(this.mensajes);
@@ -154,7 +160,7 @@ export class ConversacionesComponent implements OnInit {
   }
   
   //Pasamos el id del usuario y tenemos que ver si ha habido interacciones anteriormente con él y en qué conversación
-  buscarConversacion(id: number){
+  public buscarConversacion(id: number){
     this.conversacionesService.getConversacionsByUser(id).subscribe(conversaciones => {
       if(conversaciones){
         let conversacionesReceptor = conversaciones
@@ -186,37 +192,63 @@ export class ConversacionesComponent implements OnInit {
               //console.log(this.conversaciones.length);
               this.idConversacion = this.conversaciones.length;
 
-              //Actualizamos la información del usuario para que tenga esa conversación bien relacionada:
-              this.usuarioService.getUsuarioById(this.accountModel?.id).subscribe( usuario => { 
-               if(usuario){
-                 if(usuario.conversacions){
-                   if(usuario.conversacions.length > 0){
-                      let conver: IConversacion = new Conversacion(this.idConversacion);
-                      //Se actualiza mediante la función del modelo del usuario:
-                      updateConversacions(usuario, conver);
-                    }
-                  }
-                  console.log('emisor: ' + JSON.stringify(usuario));
-
-                  this.save(usuario);
-               
-                }
-              })  
-              
-
+              //Actualizamos la información de los usuario para que tengan esa conversación bien relacionada:
+              //El emisor
+              if(this.accountModel?.id != undefined){
+                this.usuarioService.getUsuarioById(this.accountModel.id).subscribe( usuario => { 
+                  if(usuario){
+                    if(usuario.conversacions){
+                      if(usuario.conversacions.length > 0){
+                         let conver: IConversacion = new Conversacion(this.idConversacion);
+                         //Se actualiza mediante la función del modelo del usuario:
+                         updateConversacions(usuario, conver);
+                       }
+                     }
+                     console.log('emisor: ' + JSON.stringify(usuario.nombre));
+                     
+                     //console.log('FN: ' + dayjs(usuario.fn, DATE_TIME_FORMAT));
+                     this.save(usuario);
+                  
+                   }
+                 })  
+              }
+              //El receptor
+              if(this.idReceptor != undefined){
+                this.usuarioService.getUsuarioById(this.idReceptor).subscribe( usuario => { 
+                  if(usuario){
+                    if(usuario.conversacions){
+                      if(usuario.conversacions.length > 0){
+                         let conver: IConversacion = new Conversacion(this.idConversacion);
+                         //Se actualiza mediante la función del modelo del usuario:
+                         updateConversacions(usuario, conver);
+                       }
+                     }
+                     console.log('receptor: ' + JSON.stringify(usuario.nombre));;
+                     this.save(usuario);
+                  
+                   }
+                 })  
+              }
+             
           //Y nos lleva a dicha conversación
-              //this.router.navigate(['conversacion', this.idConversacion, id]);
+              this.router.navigate(['conversacion', this.idConversacion, id]);
             }
           })         
+        } else {
+            //Y nos lleva a dicha conversación
+            this.router.navigate(['conversacion', this.idConversacion, id]);
         }
+        
       }
     })
   }
 
   save(usuario: IUsuario): void {
-    this.isSaving = true;
+    
     if (usuario.id !== undefined) {
-      this.subscribeToSaveResponse(this.usuarioUpdateService.update(usuario));
+      this.usuarioService.update(usuario).subscribe(usuario => {
+        console.log(usuario);
+      });
     }
   }
 

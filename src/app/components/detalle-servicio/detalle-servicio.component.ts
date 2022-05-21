@@ -122,6 +122,14 @@ export class DetalleServicioComponent implements OnInit {
       servicio: this.service
     }
   }
+
+  goToConversacion() { 
+    //Manda el id de usuario para crear la conversación
+    console.log(this.id)
+    this.router.navigate(['nueva-conversacion', this.id]);
+  }
+
+
 }
 
 //https://jossef.github.io/material-design-icons-iconfont/
