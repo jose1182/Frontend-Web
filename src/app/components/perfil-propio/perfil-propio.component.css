@@ -165,7 +165,7 @@ a{
     margin: 10px;
 }
 
-.buttons button:nth-child(3) {
+.buttons button:nth-child(2) {
     border: 1px solid #5C3A7D !important;
     background-color: #5C3A7D;
     color: #fff;
@@ -176,7 +176,7 @@ a{
 
 }
 
-.buttons button:nth-child(3):hover {
+.buttons button:nth-child(2):hover {
     border: 1px solid #5C3A7D !important;
     background-color: white;
     color: #5C3A7D;
