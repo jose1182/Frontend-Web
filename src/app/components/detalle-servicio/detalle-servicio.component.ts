@@ -23,7 +23,7 @@ export class DetalleServicioComponent implements OnInit {
 
   id!: number | undefined;
   service: IServicio | null = null;
-  usuario!: IUsuario ;
+  usuario!: IUsuario;
   contratos!: IContrato[]
   private readonly destroy$ = new Subject<void>();
 
@@ -42,14 +42,20 @@ export class DetalleServicioComponent implements OnInit {
 
     this.route.paramMap.subscribe((params: Params) => {
     this.id = params.get('id');
-
-    this.accountService
-    .getAuthenticationState()
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(account => {
-      console.log("SSSSs: ", account)
-      this.usuarioService.getUsuarioById(account?.id).subscribe(usuario => {this.usuario = usuario})
-    });
+    if(this.id){
+      this.accountService
+      .getAuthenticationState()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(account => {
+        console.log("SSSSs: ", account)
+        this.usuarioService.getUsuarioById(account?.id).subscribe(usuario => {
+        if(usuario){
+          this.usuario = usuario
+          console.log(this.usuario.id)
+        }
+        })
+      });
+    }
   })
 
 
@@ -125,8 +131,11 @@ export class DetalleServicioComponent implements OnInit {
 
   goToConversacion() { 
     //Manda el id de usuario para crear la conversación
-    console.log(this.id)
-    this.router.navigate(['nueva-conversacion', this.id]);
+    if(this.service?.usuario?.id){
+      console.log(this.service.usuario.id);
+      this.router.navigate(['nueva-conversacion', this.service.usuario.id]);
+  }
+
   }
 
 
