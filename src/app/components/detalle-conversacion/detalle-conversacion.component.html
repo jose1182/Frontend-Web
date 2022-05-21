@@ -12,7 +12,6 @@
         <div class="col-12 mt-3" *ngFor="let mensaje of this.mensajes">
             <div class="mensaje w-100">
                 <div class="d-flex justify-content-end emisor" *ngIf="mensaje.emisor?.id == accountModel?.id" style="text-align: end; background-color: yellow;">
-
                     <p>{{mensaje.texto}}</p>&nbsp;&nbsp;&nbsp;
                     <p class="hora">{{mensaje.fecha?.format("HH:mm")}}</p>
                 </div>
@@ -21,17 +20,14 @@
                     <p class="hora">{{mensaje.fecha?.format("HH:mm")}}</p>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 ">
             <form *ngIf="!success" [formGroup]="mensajeForm" (ngSubmit)="crearNuevoMensaje()">
-
                 <div class="form-outline mb-4">
                     <input type="text" class="form-control form-control-lg" placeholder="Escribe un nuevo mensaje.." formControlName="mensaje" maxlength="254" />
                 </div>
-
                 <div class="col-4 pt-1 mb-4">
                     <button class="button btn btn-dark btn-lg btn-circle btn-block" type="submit" [disabled]="mensajeForm.invalid">Enviar mensaje</button>
                 </div>
@@ -39,15 +35,16 @@
         </div>
     </div>
 </div>
-
 -->
 <!---------------------------------------------------------------------------------------------------------------------------->
+<div  style="background-color: #E6E6FA; margin: 0; padding-top: 50px; padding-bottom: 50px; height: 100vh;" >   
+
 <div class="container-fluid" style="width:100vw;">
 
     <div class="row d-flex justify-content-center align-items-center">
         <div class="main-container col-lg-12 text-center" id="shadow">
 
-            <div class="row text-center justify-content-center align-items-center" style="background-color: #E6E6FA; margin: 0; padding-top: 50px; padding-bottom: 50px;">
+            <div class="row text-center justify-content-center align-items-center">
                 <div class="col-xl-8 col-lg-8 col-md-8 col-lg-6 col-xl-4">
 
                     <div class="card" id="chat1">

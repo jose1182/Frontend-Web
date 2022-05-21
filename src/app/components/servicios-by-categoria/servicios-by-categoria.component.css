@@ -34,6 +34,13 @@ a{
     transform: scale(1.25); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+.fav{
+    border: none;
+}
+
+.fav:hover{
+    transform: scale(1.25); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
 
 #shadow{
     box-shadow: -60px 20px 40px 20px rgba(0, 0, 0, 0.2);

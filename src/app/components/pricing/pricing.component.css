@@ -11,10 +11,9 @@
     position: relative;
     overflow: hidden;
     box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
-    background: rgb(255,255,255);
-    background-image: linear-gradient(white, white );
     transition: transform .2s; /* Animation */
 }
+
 
 .btn{
     border: 1px solid #67418C !important;
@@ -22,7 +21,6 @@
     color: #fff;
     height: 45px;
     font-size: 1.2rem;
-    margin: 10px;
     margin-bottom: 30px;
 }
 
@@ -30,9 +28,7 @@
     border: 1px solid #67418C !important;
     background-color: white;
     color: #67418C;
-    height: 55px;
-    font-size: 1.4rem;
-    margin-top:10px;
+    transform: scale(1.01); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 h4{
@@ -47,5 +43,10 @@ h1{
 .lead{
     font-size: 2rem;
     font-weight: normal;
+}
+
+.shadow{
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
+
 }
 

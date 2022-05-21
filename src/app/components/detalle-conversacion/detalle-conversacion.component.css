@@ -39,13 +39,13 @@
 
 .image-person{
     height: 100px;
-    margin: 10px 20px;
+    margin: 10px 5px;
 }
 
 .chat-title{
     font-size: 1.6rem;
-    margin: 10px 20px;
     padding: 10px;
+    margin: 10px 0px;
 
 }
 

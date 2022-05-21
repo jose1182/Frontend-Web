@@ -197,6 +197,10 @@ p{
 
 }
 
+.tipo{
+    background-color: #E6E6FA;
+    padding: 5px;
+}
 
 .info-title{
     font-size: 1.7rem;
