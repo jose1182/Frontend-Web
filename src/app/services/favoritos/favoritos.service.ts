@@ -15,4 +15,9 @@ export class FavoritosService {
   favoritosPorId(id: number | undefined):Observable<Favoritos[]>{
     return this.http.get<Favoritos[]>(`${environment.url}favoritos/usuario?id=${id}`);
   }
+
+  borrarFavorito(id: number | undefined):Observable<any>{
+    return this.http.delete<any>(`${environment.url}favoritos/${id}`);
+  }
+
 }

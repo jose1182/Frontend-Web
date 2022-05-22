@@ -8,6 +8,7 @@ import { AccountModel } from 'src/app/model/account.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FavoritosService } from 'src/app/services/favoritos/favoritos.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-favoritos',
@@ -28,7 +29,8 @@ export class FavoritosComponent implements OnInit {
     private router : Router,
     private route : ActivatedRoute,
     private authJwtService: AuthJwtService,
-    private serviceService: ServiciosService) {
+    private serviceService: ServiciosService,
+    private location: Location) {
 
   }
 
@@ -83,7 +85,29 @@ export class FavoritosComponent implements OnInit {
       this.router.navigate(['/detalle/servicios', id]);
     }
   
+    eliminarFav(id?: number): void{
+      //Saco su posición de fav en el array de favoritos y mando eliminar el que tiene ese ID(hay que sumar 1 siempre):
+      let idEliminar;
+      
+      if(this.favoritos){
+        for(let i = 0; i < this.favoritos.length; i++){
+          if(id == this.favoritos[i].servicio.id){
+            idEliminar = this.favoritos[i].id;
+            console.log('Hay que borrar el favorito número: ' + idEliminar);
+          }
 
+          this.favoritosService.borrarFavorito(idEliminar).subscribe(
+            data => 
+          {
+             console.log('Borrado');
+             this.refresh();
+          }
+          );
+          
+        }
+      }
+      
+    }
    
     isAuthenticated() : boolean {
       return this.authJwtService.loginValue() != null
@@ -94,6 +118,13 @@ export class FavoritosComponent implements OnInit {
       this.accountModel = null
       this.router.navigate(['/home'])
   
+    }
+
+    refresh(): void {
+      this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
+      //console.log(decodeURI(this.location.path()));
+      this.router.navigate([decodeURI(this.location.path())]);
+      });
     }
 
 }
