@@ -91,7 +91,8 @@
                                     <div class="card-body" style="margin-left: 20px;">
                                         <div class="row gutters">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                <h6 class=" info-title" style="margin-top: 20px; font-size: 2.3rem; line-height: normal;">Detalles del servicio <img class="fav" src="./../../../assets/fav.png" (click)="this.addFavorito()" style="height: 40px;"></h6>
+                                                <h6 class=" info-title" style="margin-top: 20px; font-size: 2.3rem; line-height: normal;">Detalles del servicio <img class="fav" *ngIf="this.esFavorito" src="./../../../assets/favorito.png" (click)="this.elegirAccionFav()" style="height: 40px;"><img class="fav" *ngIf="!this.esFavorito" src="./../../../assets/no-fav.png"
+                                                        (click)="this.elegirAccionFav()" style="height: 40px;"></h6>
                                             </div>
 
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

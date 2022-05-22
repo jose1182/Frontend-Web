@@ -16,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AccountModel } from 'src/app/model/account.model';
 import { FavoritosService } from 'src/app/services/favoritos/favoritos.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalle-servicio',
@@ -31,6 +32,7 @@ export class DetalleServicioComponent implements OnInit {
   contratos!: IContrato[];
   accountModel!: AccountModel;
   favorito!: IFavorito;
+  esFavorito: boolean = false;
   private readonly destroy$ = new Subject<void>();
 
   constructor(
@@ -42,40 +44,50 @@ export class DetalleServicioComponent implements OnInit {
     private favoritosService: FavoritosService,
     private modalService : NgbModal,
     private toastService : ToastService,
-    private accountService : AccountService
+    private accountService : AccountService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
 
-    this.route.paramMap.subscribe((params: Params) => {
-    this.id = params.get('id');
-    if(this.id){
-      this.accountService
-      .getAuthenticationState()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(account => {
-        console.log("Account: ", account)
-        this.usuarioService.getUsuarioById(account?.id).subscribe(usuario => {
-        if(usuario){
-          this.usuario = usuario
-          console.log(this.usuario.id)
-        }
-        })
-      });
-    }
-  })
-
-
-
-  //Get Servicxe By Id from URL
-  this.getServiceById()
-
+      this.checkLogin();
+      
+      //Get Servicxe By Id from URL
+      this.getServiceById()
 
   }
+
+  checkLogin(): void {
+    this.route.paramMap.subscribe((params: Params) => {
+      this.id = params.get('id');
+      if(this.id){
+        this.accountService
+        .getAuthenticationState()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(account => {
+          //console.log("Account: ", account)
+          this.usuarioService.getUsuarioById(account?.id).subscribe(usuario => {
+          if(usuario){
+            this.usuario = usuario
+            //console.log(this.usuario.id)
+          }
+          })
+        });
+      }
+    })
+  
+  }
+
 
   getServiceById() : void {
     this.serviceService.getServiceById(this.id).subscribe( (service) => {
       this.service = service
+      if(this.service){
+        //console.log(this.service)
+        if(this.service.id){
+          this.comprobarFavorito(this.service.id);
+        }
+      }
     },(error) => {
         console.log("error: ", error)
     })
@@ -145,27 +157,41 @@ export class DetalleServicioComponent implements OnInit {
 
   }
   
+  elegirAccionFav(){
+    if(this.service?.id){
+      this.comprobarFavorito(this.service.id);
+      console.log('Es o no favorito: ' + this.esFavorito);
+      if(this.esFavorito){
+        this.eliminarFav(this.service.id);
+      } else {
+        this.addFavorito();
+      }
+    } 
+  }
+
   addFavorito(){
     //Añadimos el servicio a la lista de favoritos del usuario que hay logueado
-    console.log('Servicio: ' + this.id);
+    //console.log('Servicio: ' + this.id);
     this.accountService.identify(true).subscribe( account => {
       if(account){
         this.accountModel = account
 
         if(this.accountModel){
-          console.log(this.accountModel);
+          //console.log(this.accountModel);
           
           this.usuarioService.getUsuarioById(this.accountModel?.id).subscribe( usuario => { 
             
             if(usuario){
               this.usuarioLogin = usuario;
               if(this.usuarioLogin){      
-                console.log('usuario: ' + JSON.stringify(this.usuarioLogin.nombre));
+                //console.log('usuario: ' + JSON.stringify(this.usuarioLogin.nombre));
                     
                 //Se llama al servicio de favoritos para hacer el post con los datos del nuevo favorito:
                 if(this.service && this.usuarioLogin){
-                  console.log(this.service);
+                  //console.log(this.service);
                   this.favoritosService.nuevoFavorito(this.construirFavorito(this.usuarioLogin, this.service)).subscribe();
+                  this.esFavorito = true;
+                  this.refresh();
                 }
 
               }
@@ -187,6 +213,103 @@ export class DetalleServicioComponent implements OnInit {
       servicio: servicio
     }
   }
+
+  eliminarFav(id?: number): void{
+    //Saco su posición de fav en el array de favoritos y mando eliminar el que tiene ese ID(hay que sumar 1 siempre):
+    let idEliminar;
+
+    let listaFavoritos: IFavorito[] = []
+    let idUser;
+    //Se obtiene la lista de favoritos del usuario logueado
+
+    //Primero el id del usuario logueado
+    this.accountService.identify(true).subscribe( account => {
+      if(account){
+        this.accountModel = account
+
+        if(this.accountModel.id){
+          //console.log(this.accountModel);
+          idUser = this.accountModel.id;
+
+          //Mediante el ID del usurio llegamos hasta sus favoritos
+          this.favoritosService.favoritosPorId(idUser).subscribe(favoritos => {
+            if(favoritos.length > 0) {
+              listaFavoritos = favoritos;
+              
+              if(listaFavoritos){
+                //console.log(listaFavoritos);
+                for(let i = 0; i < listaFavoritos.length; i++){
+                  //console.log(listaFavoritos[i].servicio)
+                  if(listaFavoritos[i].servicio){
+                    //console.log('ID del servicio: ' + listaFavoritos[i].servicio?.id)
+                    if(id == listaFavoritos[i].servicio?.id){
+                      idEliminar = listaFavoritos[i].id;
+                      console.log('Hay que borrar el favorito número: ' + idEliminar);
+                      this.favoritosService.borrarFavorito(idEliminar).subscribe(
+                        data => 
+                        {
+                          console.log('Borrado');
+                          this.esFavorito = false;
+                          this.refresh();
+                        }
+                      );
+                      break;   
+                    }         
+                  }
+                }
+              }
+            }
+          })
+        }
+      }
+    })    
+
+  
+    
+  }
+
+  comprobarFavorito(idServ: number) {
+    //console.log('servicio: ' + idServ);
+    let listaFavoritos: IFavorito[] = []
+    let idUser;
+    //Se obtiene la lista de favoritos del usuario logueado
+
+    //Primero el id del usuario logueado
+    this.accountService.identify(true).subscribe( account => {
+      if(account){
+        this.accountModel = account
+
+        if(this.accountModel.id){
+          //console.log(this.accountModel);
+          idUser = this.accountModel.id;
+
+          //Mediante el ID del usurio llegamos hasta sus favoritos
+          this.favoritosService.favoritosPorId(idUser).subscribe(favoritos => {
+            if(favoritos.length > 0) {
+              listaFavoritos = favoritos;
+              
+              //Una vez tenemos la lista de fav podemos recorrerla y comparar con el que se intenta agregar:
+              for(let i = 0; i < listaFavoritos.length; i++) {
+                //console.log(listaFavoritos[i].servicio?.id);
+                if(idServ == listaFavoritos[i].servicio?.id){
+                  this.esFavorito = true;
+                }
+              }
+            }
+          })
+        }
+      }
+    })    
+  }
+
+  refresh(): void {
+    this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
+    //console.log(decodeURI(this.location.path()));
+    this.router.navigate([decodeURI(this.location.path())]);
+    });
+  }
+
+
 }
 
 //https://jossef.github.io/material-design-icons-iconfont/

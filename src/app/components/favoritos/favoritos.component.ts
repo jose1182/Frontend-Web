@@ -37,15 +37,16 @@ export class FavoritosComponent implements OnInit {
   ngOnInit(): void {
    this.checkLogin();
   }
+
   servicioFavorito(id: number | undefined): void {
     this.serviceService.getServiceById(id).subscribe( (service) => {
       if(service){
         this.services.push(service)
-        console.log("lll:" + service)
+        //console.log("lll:" + service)
     //get user information from service.usuario.id
     //this.usuarioService.getUsuarioById(this.service.usuario?.id).subscribe(usuario => {this.usuario = usuario})
       }
-      console.log("paco", this.services)
+      console.log("Servicios favoritos: ", this.services)
     })
   }
 
@@ -75,7 +76,7 @@ export class FavoritosComponent implements OnInit {
 
             if(this.favoritos[i].servicio?.id){
               this.servicioFavorito(this.favoritos[i].servicio?.id);  
-              console.log(this.favoritos[i].servicio?.id);
+              //console.log(this.favoritos[i].servicio?.id);
             }
           }
         }
