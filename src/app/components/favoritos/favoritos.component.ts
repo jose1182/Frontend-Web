@@ -1,7 +1,7 @@
 import { IServicio } from './../../model/servicio.model';
 import { Servicio } from './../../model/servicio.model';
 import { ServiciosService } from './../../services/servicios/servicios.service';
-import { Favoritos } from './../../model/favoritos.model';
+import { IFavorito } from './../../model/favoritos.model';
 import { AccountService } from 'src/app/services/account.service';
 import { AuthJwtService } from './../../services/auth-jwt.service';
 import { AccountModel } from 'src/app/model/account.model';
@@ -17,7 +17,7 @@ import { Location } from '@angular/common';
 })
 export class FavoritosComponent implements OnInit {
   accountModel!: AccountModel | null;
-  favoritos : Favoritos[] | undefined;
+  favoritos : IFavorito[] | undefined;
   id! : number | undefined;
   service!: IServicio;
   services: Servicio[] = [];
@@ -64,6 +64,7 @@ export class FavoritosComponent implements OnInit {
       }
     })
   }
+  
     getFavoritos(id : number): void {
       this.favoritosService.favoritosPorId(id).subscribe( favoritos => {
         this.favoritos = favoritos;
@@ -72,9 +73,9 @@ export class FavoritosComponent implements OnInit {
 
           for(let i = 0; i < this.favoritos.length; i++) {
 
-            if(this.favoritos[i].servicio){
-              this.servicioFavorito(this.favoritos[i].servicio.id);  
-              console.log(this.favoritos[i].servicio.id);
+            if(this.favoritos[i].servicio?.id){
+              this.servicioFavorito(this.favoritos[i].servicio?.id);  
+              console.log(this.favoritos[i].servicio?.id);
             }
           }
         }
@@ -91,19 +92,18 @@ export class FavoritosComponent implements OnInit {
       
       if(this.favoritos){
         for(let i = 0; i < this.favoritos.length; i++){
-          if(id == this.favoritos[i].servicio.id){
+          if(id == this.favoritos[i].servicio?.id){
             idEliminar = this.favoritos[i].id;
             console.log('Hay que borrar el favorito número: ' + idEliminar);
-          }
-
-          this.favoritosService.borrarFavorito(idEliminar).subscribe(
-            data => 
-          {
-             console.log('Borrado');
-             this.refresh();
-          }
-          );
-          
+            this.favoritosService.borrarFavorito(idEliminar).subscribe(
+              data => 
+              {
+                console.log('Borrado');
+                this.refresh();
+              }
+            );
+            break;   
+          }         
         }
       }
       

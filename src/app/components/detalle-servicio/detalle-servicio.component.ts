@@ -1,3 +1,4 @@
+import { Favoritos, IFavorito } from 'src/app/model/favoritos.model';
 import { ContratosService } from 'src/app/services/contratos/contratos.service';
 import { UsuariosService } from './../../services/usuario/usuarios.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +14,8 @@ import { ToastService } from '../../services/_services/toast.service';
 import { AccountService } from '../../services/account.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { AccountModel } from 'src/app/model/account.model';
+import { FavoritosService } from 'src/app/services/favoritos/favoritos.service';
 
 @Component({
   selector: 'app-detalle-servicio',
@@ -24,7 +27,10 @@ export class DetalleServicioComponent implements OnInit {
   id!: number | undefined;
   service: IServicio | null = null;
   usuario!: IUsuario;
-  contratos!: IContrato[]
+  usuarioLogin!: IUsuario;
+  contratos!: IContrato[];
+  accountModel!: AccountModel;
+  favorito!: IFavorito;
   private readonly destroy$ = new Subject<void>();
 
   constructor(
@@ -33,6 +39,7 @@ export class DetalleServicioComponent implements OnInit {
     private usuarioService: UsuariosService,
     private router: Router,
     private contratosService: ContratosService,
+    private favoritosService: FavoritosService,
     private modalService : NgbModal,
     private toastService : ToastService,
     private accountService : AccountService
@@ -47,7 +54,7 @@ export class DetalleServicioComponent implements OnInit {
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => {
-        console.log("SSSSs: ", account)
+        console.log("Account: ", account)
         this.usuarioService.getUsuarioById(account?.id).subscribe(usuario => {
         if(usuario){
           this.usuario = usuario
@@ -134,11 +141,52 @@ export class DetalleServicioComponent implements OnInit {
     if(this.service?.usuario?.id){
       console.log(this.service.usuario.id);
       this.router.navigate(['nueva-conversacion', this.service.usuario.id]);
-  }
+    }
 
   }
+  
+  addFavorito(){
+    //Añadimos el servicio a la lista de favoritos del usuario que hay logueado
+    console.log('Servicio: ' + this.id);
+    this.accountService.identify(true).subscribe( account => {
+      if(account){
+        this.accountModel = account
 
+        if(this.accountModel){
+          console.log(this.accountModel);
+          
+          this.usuarioService.getUsuarioById(this.accountModel?.id).subscribe( usuario => { 
+            
+            if(usuario){
+              this.usuarioLogin = usuario;
+              if(this.usuarioLogin){      
+                console.log('usuario: ' + JSON.stringify(this.usuarioLogin.nombre));
+                    
+                //Se llama al servicio de favoritos para hacer el post con los datos del nuevo favorito:
+                if(this.service && this.usuarioLogin){
+                  console.log(this.service);
+                  this.favoritosService.nuevoFavorito(this.construirFavorito(this.usuarioLogin, this.service)).subscribe();
+                }
 
+              }
+            }
+          })
+        }
+
+      } else {
+        console.log('No has iniciado sesión para poder añadir a favoritos');
+      }
+    })    
+  }
+
+  construirFavorito(usuario: IUsuario, servicio: IServicio): IFavorito {
+    
+    return { 
+      ...new Favoritos(),
+      usuario: usuario,
+      servicio: servicio
+    }
+  }
 }
 
 //https://jossef.github.io/material-design-icons-iconfont/

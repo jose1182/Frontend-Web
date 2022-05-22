@@ -1,14 +1,16 @@
 import { IUsuario } from './usuario.model';
-import { Servicio } from './servicio.model';
-export class Favoritos {
+import { IServicio, Servicio } from './servicio.model';
 
-    public id! : number;
-    public usuario!: IUsuario;
-    public servicio!: Servicio;
+export interface IFavorito {
+  id?: number;
+  usuario?: IUsuario;
+  servicio?: IServicio;
+}
+export class Favoritos implements IFavorito {
 
-    constructor(id: number, usuario: IUsuario, servicio: Servicio){
-      this.id = id;
-      this.usuario = usuario;
-      this.servicio = servicio;
-    }
+  constructor(
+    public id? : number,
+    public usuario?: IUsuario,
+    public servicio?: Servicio){}
+
   }
