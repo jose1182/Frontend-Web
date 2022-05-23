@@ -1,66 +1,62 @@
 <div style="background-color: #E6E6FA; padding: 50px; margin-top: 20px;" class="container">
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Elige tu plan</h1>
-  <p class="lead">Mejora tu suscripción para poder publicar servicios y destacados</p>
-</div>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Elige tu plan</h1>
+        <p class="lead">Mejora tu suscripción para poder publicar servicios y destacados</p>
+    </div>
 
-<div class="container">
-    <div class="row text-center">
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <div *ngIf="!account" class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Gratis</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Contactar con 5 especilistas</li>
-              <li>Visualizar todos los servicios</li>
-              <li>Soporte por correo</li>
-              <li>Acceso al centro de ayuda</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block" [routerLink]="['/registro']" routerLinkActive="router-link-active" >Registráte gratis</button>
-          </div>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div *ngIf="!account" class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Gratis</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Contactar con 5 especialistas</li>
+                            <li>Visualizar todos los servicios</li>
+                            <li>Soporte por correo</li>
+                            <li>Acceso al centro de ayuda</li>
+                        </ul>
+                        <button type="button" class="btn btn-lg btn-block" [routerLink]="['/registro']" routerLinkActive="router-link-active">Registráte gratis</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Especialista</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">$4.99 <small class="text-muted">/ mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Publicación 10 servicios</li>
+                            <li>Destacar 10 servicios</li>
+                            <li>Soporte preferente por correo</li>
+                            <li>Acceso al centro de ayuda</li>
+                        </ul>
+                        <button type="button" class="btn btn-lg btn-block" [routerLink]="['/payment-credit-card']" routerLinkActive="router-link-active">Empezar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">Premium</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">$8.99 <small class="text-muted">/ mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Publicación sin límites</li>
+                            <li>Destacar hasta 50 servicios</li>
+                            <li>Soporte preferente por correo</li>
+                            <li>Acceso al centro de ayuda</li>
+                        </ul>
+                        <button type="button" class="btn btn-lg btn-block">Contactanos</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Especilista</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$4.99 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Publicaicón 10 servicios</li>
-              <li>Destacar 10 servicios</li>
-              <li>Soporte preferente por correo</li>
-              <li>Acceso al centro de ayuda</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block" [routerLink]="['/payment-credit-card']" routerLinkActive="router-link-active" >Empezar</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Premium</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$8.99 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>Publicaicón sin límites</li>
-              <li>Destacar hasta 50 servicios</li>
-              <li>Soporte preferente por correo</li>
-              <li>Acceso al centro de ayuda</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block">Contactanos</button>
-          </div>
-        </div>
-      </div>
-  </div>
-
-
-
-  
