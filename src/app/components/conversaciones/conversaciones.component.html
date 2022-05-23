@@ -1,37 +1,41 @@
-<div class="container-fluid" >
-    <div class="row d-flex justify-content-center align-items-center" >
-      <div class="main-container col-lg-12" id="shadow" style="height: 100vh;">
-        <div class="row"  style="align-items: center;">
-          <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" style="cursor:pointer; padding-bottom: 50px;" *ngFor="let conversacion of this.conversacionsList" >
-            <div class="card card-contrato" >
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="this.conversacionsList" >
-                  <div class="row justify-content-center"   >  
-                      
-                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12" style="text-align: center;">
-                        <img *ngIf="conversacion.usuario?.imagenContentType" class="image-person img-fluid rounded-circle center imagen-profile" [src]="'data:' + conversacion.usuario?.imagenContentType + ';base64,' + conversacion.usuario?.imagen" alt="user image" />
-                    </div>
-  
-                      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 align-self-center">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>{{conversacion.usuario?.nombre}}</b></h5>
-                            <p class="card-text">{{conversacion.mensaje?.texto}} <span class="hora">{{conversacion.mensaje?.fecha?.format("HH:mm")}}</span></p>                 
-                            <div class="d-flex justify-content-center align-items-center">
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="main-container col-lg-12" id="shadow" style="height: 100vh;">
+            <div class="row" style="align-items: center;" *ngIf="this.conversacionsList.length > 0">
+                <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" style="cursor:pointer; padding-bottom: 50px;" *ngFor="let conversacion of this.conversacionsList">
+                    <div class="card card-contrato">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="this.conversacionsList">
+                            <div class="row justify-content-center">
+
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12" style="text-align: center;">
+                                    <img *ngIf="conversacion.usuario?.imagenContentType" class="image-person img-fluid rounded-circle center imagen-profile" [src]="'data:' + conversacion.usuario?.imagenContentType + ';base64,' + conversacion.usuario?.imagen" alt="user image" />
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 align-self-center">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>{{conversacion.usuario?.nombre}}</b></h5>
+                                        <p class="card-text">{{conversacion.mensaje?.texto}} <span class="hora">{{conversacion.mensaje?.fecha?.format("HH:mm")}}</span></p>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 align-self-center" style="text-align: center;">
+                                    <div class="btn-group">
+                                        <button type="button" (click)="goToViewDetail(conversacion?.id, conversacion.usuario?.id)" class="btn btn-sm btn-secondary">Abrir el chat</button>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
-                      </div>   
-                      
-                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 align-self-center" style="text-align: center;">
-                        <div class="btn-group">
-                            <button type="button" (click)="goToViewDetail(conversacion?.id, conversacion.usuario?.id)" class="btn btn-sm btn-secondary">Abrir el chat</button>
-                        </div>
-                      </div>
-                  </div>
+                    </div>
                 </div>
             </div>
-         </div>
+            <div class="row" style="align-items: center;" *ngIf="this.conversacionsList.length == 0">
+                <div class="col-12">
+                    <h2>Aún no tienes ninguna conversación</h2>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  
-  
+</div>

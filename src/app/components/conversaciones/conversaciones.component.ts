@@ -131,7 +131,7 @@ export class ConversacionesComponent implements OnInit {
          
         } else {
           if(this.idReceptor != undefined){
-          this.usuarioService.getUsuarioById(ultimoMensaje?.emisor?.id).subscribe( usuario => { 
+          this.usuarioService.getUsuarioById(this.idReceptor).subscribe( usuario => { 
             if(usuario){
               usuarioReceptorMensaje = usuario;
               console.log('receptor: ' + JSON.stringify(usuarioReceptorMensaje.nombre));
@@ -164,23 +164,25 @@ export class ConversacionesComponent implements OnInit {
     this.conversacionesService.getConversacionsByUser(id).subscribe(conversaciones => {
       if(conversaciones){
         let conversacionesReceptor = conversaciones
+        console.log(conversacionesReceptor);
         if(conversacionesReceptor == null){
           console.log('Esto está vacío macho: ' + conversacionesReceptor)
         }
-        //console.log('Conversaciones con el usuario receptor: ')
+        console.log('Conversaciones con el usuario receptor: ')
         for(let i = 0; i < conversacionesReceptor.length; i++) {
           for(let j = 0; j < this.conversaciones.length; j++) {
             
             if(this.conversaciones[j].id==conversacionesReceptor[i].id){
               this.idConversacion = this.conversaciones[j].id;
               console.log('Conversación en común:' + this.conversaciones[j].id);
+              break;
             }
           }
           
         }
         //console.log('Conversaciones del usuario emisor: ')
         
-        
+        console.log(this.idConversacion);
         if(this.idConversacion == 0){
           //No existe, así que se crea la conversación
           this.crearConversacion();
@@ -190,13 +192,17 @@ export class ConversacionesComponent implements OnInit {
             if(conversaciones){
               this.conversaciones = conversaciones;
               //console.log(this.conversaciones.length);
-              //console.log(this.conversaciones[this.conversaciones.length-1].id);
-              if(this.conversaciones[this.conversaciones.length-1].id){
-                this.idConversacion = this.conversaciones[this.conversaciones.length-1].id;
-                if(this.idConversacion){
-                  this.idConversacion ++;
-                  console.log(this.idConversacion);
+              console.log(this.conversaciones[this.conversaciones.length-1].id);
+              if(this.conversaciones.length > 0 ){
+                if(this.conversaciones[this.conversaciones.length-1].id){
+                  this.idConversacion = this.conversaciones[this.conversaciones.length-1].id;
+                  if(this.idConversacion){
+                    this.idConversacion++;
+                    console.log(this.idConversacion);
+                  }
                 }
+              } else {
+                console.log('Pues aun no hay conversaciones')
               }
               //Actualizamos la información de los usuario para que tengan esa conversación bien relacionada:
               //El emisor
@@ -204,12 +210,12 @@ export class ConversacionesComponent implements OnInit {
                 this.usuarioService.getUsuarioById(this.accountModel.id).subscribe( usuario => { 
                   if(usuario){
                     if(usuario.conversacions){
-                      if(usuario.conversacions.length > 0){
+                      console.log(usuario.conversacions);
                          let conver: IConversacion = new Conversacion(this.idConversacion);
                          //Se actualiza mediante la función del modelo del usuario:
+                         console.log(conver);
                          updateConversacions(usuario, conver);
                        }
-                     }
                      console.log('emisor: ' + JSON.stringify(usuario.nombre));
                      
                      //console.log('FN: ' + dayjs(usuario.fn, DATE_TIME_FORMAT));
@@ -223,11 +229,9 @@ export class ConversacionesComponent implements OnInit {
                 this.usuarioService.getUsuarioById(this.idReceptor).subscribe( usuario => { 
                   if(usuario){
                     if(usuario.conversacions){
-                      if(usuario.conversacions.length > 0){
-                         let conver: IConversacion = new Conversacion(this.idConversacion);
-                         //Se actualiza mediante la función del modelo del usuario:
-                         updateConversacions(usuario, conver);
-                       }
+                      let conver: IConversacion = new Conversacion(this.idConversacion);
+                      //Se actualiza mediante la función del modelo del usuario:
+                      updateConversacions(usuario, conver);                    
                      }
                      console.log('receptor: ' + JSON.stringify(usuario.nombre));;
                      this.save(usuario);
@@ -256,29 +260,6 @@ export class ConversacionesComponent implements OnInit {
         console.log(usuario);
       });
     }
-  }
-
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IUsuario>>): void {
-    result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      next: () => this.onSaveSuccess(),
-      error: () => this.onSaveError(),
-    });
-  }
-
-  protected onSaveFinalize(): void {
-    this.isSaving = false;
-  }
-
-  protected onSaveSuccess(): void {
-    this.previousState();
-  }
-
-  protected onSaveError(): void {
-    //
-  }
-
-  previousState(): void {
-    window.history.back();
   }
 
   crearConversacion(){
