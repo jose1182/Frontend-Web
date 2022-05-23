@@ -190,8 +190,14 @@ export class ConversacionesComponent implements OnInit {
             if(conversaciones){
               this.conversaciones = conversaciones;
               //console.log(this.conversaciones.length);
-              this.idConversacion = this.conversaciones.length;
-
+              //console.log(this.conversaciones[this.conversaciones.length-1].id);
+              if(this.conversaciones[this.conversaciones.length-1].id){
+                this.idConversacion = this.conversaciones[this.conversaciones.length-1].id;
+                if(this.idConversacion){
+                  this.idConversacion ++;
+                  console.log(this.idConversacion);
+                }
+              }
               //Actualizamos la información de los usuario para que tengan esa conversación bien relacionada:
               //El emisor
               if(this.accountModel?.id != undefined){
