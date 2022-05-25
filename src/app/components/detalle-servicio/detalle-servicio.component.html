@@ -76,9 +76,9 @@
                                             <div class="user-profile">
                                                 <div class="user-avatar text-center">
                                                     <img class="image-person img-fluid rounded-circle center" src="./../../../assets/photo.jfif" alt="Maxwell Admin">
-                                                    <p class="user-name user-info user-info-name pointer" (click)="goDetailPerfil(usuario?.id)" style="cursor:pointer">{{ usuario?.nombre }}</p>
+                                                    <p class="user-name user-info user-info-name pointer" (click)="goDetailPerfil(usuario?.id)" style="cursor:pointer">{{ this.usuario?.nombre }}</p>
                                                     <br>
-                                                    <p class="user-name user-info" style="cursor:pointer">{{ usuario?.profesion }}</p>
+                                                    <p class="user-name user-info" style="cursor:pointer">{{ this.usuario?.profesion }}</p>
                                                 </div>
 
                                             </div>

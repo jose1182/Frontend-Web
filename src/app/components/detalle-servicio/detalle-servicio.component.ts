@@ -68,25 +68,32 @@ export class DetalleServicioComponent implements OnInit {
           //console.log("Account: ", account)
           this.usuarioService.getUsuarioById(account?.id).subscribe(usuario => {
           if(usuario){
-            this.usuario = usuario
+            this.usuarioLogin = usuario
             //console.log(this.usuario.id)
           }
           })
         });
       }
     })
-  
   }
-
 
   getServiceById() : void {
     this.serviceService.getServiceById(this.id).subscribe( (service) => {
       this.service = service
       if(this.service){
-        //console.log(this.service)
+        console.log(this.service)
         if(this.service.id){
           this.comprobarFavorito(this.service.id);
-        }
+          if(this.service.usuario){
+            //console.log(this.service.usuario.id);
+            this.usuarioService.getUsuarioById(this.service.usuario.id).subscribe( usuario => {
+              if(usuario){
+                this.usuario = usuario;
+                console.log(usuario);
+              }
+            })
+          }
+        }        
       }
     },(error) => {
         console.log("error: ", error)
@@ -143,16 +150,16 @@ export class DetalleServicioComponent implements OnInit {
       id: undefined,
       preciofinal: 10,
       fecha: dayjs().startOf('day'),
-      usuario: this.usuario,
+      usuario: this.usuarioLogin,
       servicio: this.service
     }
   }
 
   goToConversacion() { 
     //Manda el id de usuario para crear la conversación
-    if(this.service?.usuario?.id){
-      console.log(this.service.usuario.id);
-      this.router.navigate(['nueva-conversacion', this.service.usuario.id]);
+    if(this.usuario?.id){
+      console.log(this.usuario.id);
+      this.router.navigate(['nueva-conversacion', this.usuario.id]);
     }
 
   }
