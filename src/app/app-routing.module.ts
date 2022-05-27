@@ -22,6 +22,7 @@ import { DetalleContratoComponent } from './components/detalle-contrato/detalle-
 import { ConversacionesComponent } from './components/conversaciones/conversaciones.component';
 import { DetalleConversacionComponent } from './components/detalle-conversacion/detalle-conversacion.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
+import { AuthguardGuard } from './guards/authguard.guard';
 
 
 const routes: Routes = [
@@ -68,6 +69,7 @@ const routes: Routes = [
   {
     path: 'crear-servicio/update/:id',
     component: CrearServicioComponent,
+    canActivate: [AuthguardGuard],
     resolve:{
       servicio: ServicioRoutingResolveService
     }
@@ -78,7 +80,8 @@ const routes: Routes = [
   },
   {
     path:'perfil-editar',
-    component: PerfilEditarComponent
+    component: PerfilEditarComponent,
+    canActivate: [AuthguardGuard]
   },
   {
     path:'perfil-visitado/:id',
@@ -102,27 +105,33 @@ const routes: Routes = [
   },
   {
     path: 'contratos/:id',
-    component: ContratosComponent
+    component: ContratosComponent,
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'contrato/:id',
-    component: DetalleContratoComponent
+    component: DetalleContratoComponent,
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'conversaciones',
-    component: ConversacionesComponent
+    component: ConversacionesComponent,
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'nueva-conversacion/:idUser',
-    component: ConversacionesComponent
+    component: ConversacionesComponent,
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'conversacion/:id/:idUser',
-    component: DetalleConversacionComponent
+    component: DetalleConversacionComponent,
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'favoritos',
-    component: FavoritosComponent
+    component: FavoritosComponent,
+    canActivate: [AuthguardGuard]
   },
   {
     path: '404',

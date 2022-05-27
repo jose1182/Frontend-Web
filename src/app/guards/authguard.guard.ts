@@ -21,7 +21,7 @@ export class AuthguardGuard implements CanActivate {
     let isAuthenticated = loginValue?.id_token
 
     if(isAuthenticated == null){
-      this.route.navigate(['/login'], {queryParams: {returnUrl: state.url}})
+      this.route.navigate(['/login'])
       return false
     }
 

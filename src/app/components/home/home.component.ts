@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
 
   }
   goToViewDetail(id?: number): void{
-    this.router.navigate(['lista/servicios', id]);
+    this.router.navigate(['detalle/servicios', id]);
   }
 
   isAuthenticated() : boolean {

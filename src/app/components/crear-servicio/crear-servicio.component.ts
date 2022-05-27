@@ -82,7 +82,7 @@ export class CrearServicioComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => {
         this.id = account?.id as number;
-        console.log("accoutn is_ :" ,account);
+        console.log("account is_ :" ,account);
         this.usuarioService.getUsuarioById(account?.id as number).subscribe( usuario => {
           this.usuario = usuario;
           if(this.usuario.nombre == '' || this.usuario.apellidos == ''){

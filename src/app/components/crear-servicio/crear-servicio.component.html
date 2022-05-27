@@ -1,179 +1,158 @@
 <script src="https://kit.fontawesome.com/ec98b7bfbc.js" crossorigin="anonymous"></script>
 
-<div class="container-fluid" >
-  <div class="row d-flex justify-content-center align-items-center" >
-    <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="main-container col-lg-12" id="shadow" style="height: 100vh; ">
 
-      <div *ngIf="!isFullRegistration" class="row justify-content-center mx-1 my-5">
-          <ngb-alert type="danger">Antes de continuar creando tu servcio es necesario confirmar algunos datos.
-            <a [routerLink]="['/edit-profile/edit/', usuario?.id]" class="card-link text-dark ml-1 font-weight-bold">Editar mi perifl <img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
-          </ngb-alert>
-      </div>
-      <div *ngIf="isFullRegistration" class="row" style="align-items: center;">
-            <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5" >
-                  <div class="card">
-                      <div class="card h-100 profile-info" >
-                        <div class="card-body"  >
-                              <form name="editForm" (ngSubmit)="save()" [formGroup]="editForm">
-                                  <h2 id="jhi-usuario-heading" style="font-size: 2.7rem; margin-top: 20px;">Crear nuevo servicio</h2>
+            <div *ngIf="!isFullRegistration" class="row justify-content-center mx-1 my-5">
+                <ngb-alert type="danger">Antes de continuar creando tu servcio es necesario confirmar algunos datos.
+                    <a [routerLink]="['/edit-profile/edit/', usuario?.id]" class="card-link text-dark ml-1 font-weight-bold">Editar mi perifl <img class="img-icon" src="./../../../assets/pencil-solid.svg"></a>
+                </ngb-alert>
+            </div>
+            <div *ngIf="isFullRegistration" class="row" style="align-items: center;">
+                <div class="col-lg-11 col-sm-8 col-xs-8 container mt-5">
+                    <div class="card">
+                        <div class="card h-100 profile-info">
+                            <div class="card-body">
+                                <form name="editForm" (ngSubmit)="save()" [formGroup]="editForm">
+                                    <h2 id="jhi-usuario-heading" style="font-size: 2.7rem; margin-top: 20px;">Crear nuevo servicio</h2>
 
-                                  <!-- 2 column grid layout with text inputs for the first and last names -->
-                                  <div class="row mb-4">
-                                    <div class="col">
-                                      <div class="form-outline">
-                                        <div  [hidden]="editForm.get('id')!.value == null">
-                                          <label class="form-control-label" for="field_id">ID</label>
-                                          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-                                        </div>
+                                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <div [hidden]="editForm.get('id')!.value == null">
+                                                    <label class="form-control-label" for="field_id">ID</label>
+                                                    <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+                                                </div>
 
-                                          <label class="form-control-label" for="titulo">Título</label>
-                                          <input type="text" class="form-control" name="titulo" id="titulo" formControlName="titulo">
-                                          <div *ngIf="f.titulo.invalid && (f.titulo!.dirty || f.titulo!.touched)">
-                                            <small class="form-text text-danger" *ngIf="f.titulo.errors?.required"> Este campo es requerido. </small>
-                                            <small class="form-text text-danger" *ngIf="f.titulo.errors?.maxlength">
+                                                <label class="form-control-label" for="titulo">Título</label>
+                                                <input type="text" class="form-control" name="titulo" id="titulo" formControlName="titulo">
+                                                <div *ngIf="f.titulo.invalid && (f.titulo!.dirty || f.titulo!.touched)">
+                                                    <small class="form-text text-danger" *ngIf="f.titulo.errors?.required"> Este campo es requerido. </small>
+                                                    <small class="form-text text-danger" *ngIf="f.titulo.errors?.maxlength">
                                               Este campo no puede tener más de 60 caracteres.
                                             </small>
-                                          </div>
-                                      </div>
-                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                    <div class="col">
-                                      <div class="form-outline">
-                                        <label class="form-control-label" for="disponibilidad">Disponibilidad</label>
-                                        <select class="form-control" name="disponibilidad" id="disponibilidad" formControlName="disponibilidad">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-control-label" for="disponibilidad">Disponibilidad</label>
+                                                <select class="form-control" name="disponibilidad" id="disponibilidad" formControlName="disponibilidad">
                                           <option [ngValue]="null"></option>
                                           <option *ngFor="let disponibilidad of disponibilidadValues" [value]="disponibilidad">{{disponibilidad}}</option>
                                         </select>
-                                      </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
 
-                                  <!-- Text input -->
-                                  <div class="form-outline mb-4">
-                                    <label class="form-control-label" for="field_descripcion">Descripcion</label>
-                                    <input type="text" class="form-control" name="descripcion" id="descripcion" formControlName="descripcion"/>
-                                    <div *ngIf="f.descripcion.invalid && (f.descripcion.dirty || f.descripcion.touched)">
-                                      <small class="form-text text-danger" *ngIf="f.descripcion?.errors?.required"> Este campo es requerido. </small>
+                                    <!-- Text input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-control-label" for="field_descripcion">Descripcion</label>
+                                        <input type="text" class="form-control" name="descripcion" id="descripcion" formControlName="descripcion" />
+                                        <div *ngIf="f.descripcion.invalid && (f.descripcion.dirty || f.descripcion.touched)">
+                                            <small class="form-text text-danger" *ngIf="f.descripcion?.errors?.required"> Este campo es requerido. </small>
+                                        </div>
                                     </div>
-                                  </div>
 
-                                <div class="row mb-4">
-                                  <div class="col">
-                                    <div class="form-outline">
-                                      <label class="form-control-label" for="preciohora">Precio hora servicio</label>
-                                        <input type="number" class="form-control" name="preciohora" id="preciohora" formControlName="preciohora">
-                                         <div *ngIf="f.preciohora.invalid && (f.preciohora.dirty || f.preciohora.touched)">
-                                          <small class="form-text text-danger" *ngIf="f.preciohora?.errors?.required"> Este campo es requerido. </small>
-                                          <small class="form-text text-danger" *ngIf="f.preciohora?.errors?.min"> Este campo no puede tener mínimo un valor de 0. </small>
-                                          <small class="form-text text-danger" [hidden]="!f.preciohora?.errors?.number">Este camp debe ser un número.</small>
-                                      </div>
-                                    </div>
-                                  </div>
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-control-label" for="preciohora">Precio hora servicio</label>
+                                                <input type="number" class="form-control" name="preciohora" id="preciohora" formControlName="preciohora">
+                                                <div *ngIf="f.preciohora.invalid && (f.preciohora.dirty || f.preciohora.touched)">
+                                                    <small class="form-text text-danger" *ngIf="f.preciohora?.errors?.required"> Este campo es requerido. </small>
+                                                    <small class="form-text text-danger" *ngIf="f.preciohora?.errors?.min"> Este campo no puede tener mínimo un valor de 0. </small>
+                                                    <small class="form-text text-danger" [hidden]="!f.preciohora?.errors?.number">Este camp debe ser un número.</small>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                  <div class="col">
-                                    <div class="form-outline">
-                                      <label class="form-control-label" for="preciotraslado">Precio traslado servicio</label>
-                                                                    <input type="number" class="form-control" name="preciotraslado" id="preciotraslado" formControlName="preciotraslado"
-                                                                    />
-                                                                    <div
-                                                                      *ngIf="
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-control-label" for="preciotraslado">Precio traslado servicio</label>
+                                                <input type="number" class="form-control" name="preciotraslado" id="preciotraslado" formControlName="preciotraslado" />
+                                                <div *ngIf="
                                                                         f.preciotraslado!.invalid && (f.preciotraslado!.dirty || f.preciotraslado!.touched)
-                                                                      "
-                                                                    >
-                                                                      <small class="form-text text-danger" *ngIf="f.preciotraslado?.errors?.required"> Este campo es requerido. </small>
-                                                                      <small class="form-text text-danger" *ngIf="f.preciotraslado?.errors?.min">
+                                                                      ">
+                                                    <small class="form-text text-danger" *ngIf="f.preciotraslado?.errors?.required"> Este campo es requerido. </small>
+                                                    <small class="form-text text-danger" *ngIf="f.preciotraslado?.errors?.min">
                                                                         Este campo no puede tener mínimo un valor de 0.
                                                                       </small>
-                                                                      <small class="form-text text-danger" [hidden]="!f.preciotraslado?.errors?.number">
+                                                    <small class="form-text text-danger" [hidden]="!f.preciotraslado?.errors?.number">
                                                                         Este camp debe ser un número.
                                                                       </small>
-                                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
-                                </div>
 
 
-                                <div class="row mb-4">
-                                  <div class="col">
-                                    <div class="form-outline">
-                                      <label class="form-control-label" for="field_fechacreacion">Fecha creación</label>
-                                                                    <div class="d-flex">
-                                                                      <input
-                                                                        id="fechacreacion"
-                                                                        type="datetime-local"
-                                                                        class="form-control"
-                                                                        name="fechacreacion"
-                                                                        formControlName="fechacreacion"
-                                                                        placeholder="YYYY-MM-DD HH:mm"
-                                                                      />
-                                                                    </div>
-                                                                    <div
-                                                                      *ngIf="
+                                    <div class="row mb-4">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-control-label" for="field_fechacreacion">Fecha creación</label>
+                                                <div class="d-flex">
+                                                    <input id="fechacreacion" type="datetime-local" class="form-control" name="fechacreacion" formControlName="fechacreacion" placeholder="YYYY-MM-DD HH:mm" />
+                                                </div>
+                                                <div *ngIf="
                                                                         f.fechacreacion!.invalid && (f.fechacreacion!.dirty || f.fechacreacion!.touched)
-                                                                      "
-                                                                    >
-                                                                      <small class="form-text text-danger" *ngIf="f.fechacreacion?.errors?.required"> Este campo es requerido. </small>
-                                                                      <small class="form-text text-danger" [hidden]="!f.fechacreacion?.errors?.ZonedDateTimelocal">
+                                                                      ">
+                                                    <small class="form-text text-danger" *ngIf="f.fechacreacion?.errors?.required"> Este campo es requerido. </small>
+                                                    <small class="form-text text-danger" [hidden]="!f.fechacreacion?.errors?.ZonedDateTimelocal">
                                                                         Este campo deberia ser una fecha y hora.
                                                                       </small>
-                                                                    </div>
-                                    </div>
-                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                  <div class="col">
-                                    <div class="form-outline">
-                                      <label class="form-control-label" for="fechaactualizacion">Fecha actualizacion</label>
-                                                                    <div class="d-flex">
-                                                                      <input
-                                                                        id="fechaactualizacion"
-                                                                        type="datetime-local"
-                                                                        class="form-control"
-                                                                        name="fechaactualizacion"
-                                                                        formControlName="fechaactualizacion"
-                                                                        placeholder="YYYY-MM-DD HH:mm"
-                                                                      />
-                                                                    </div>
-                                                                    <div
-                                                                      *ngIf="
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label class="form-control-label" for="fechaactualizacion">Fecha actualizacion</label>
+                                                <div class="d-flex">
+                                                    <input id="fechaactualizacion" type="datetime-local" class="form-control" name="fechaactualizacion" formControlName="fechaactualizacion" placeholder="YYYY-MM-DD HH:mm" />
+                                                </div>
+                                                <div *ngIf="
                                                                         f.fechaactualizacion!.invalid &&
                                                                         (f.fechaactualizacion!.dirty || f.fechaactualizacion!.touched)
-                                                                      "
-                                                                    >
-                                                                      <small class="form-text text-danger" *ngIf="f.fechaactualizacion?.errors?.required">
+                                                                      ">
+                                                    <small class="form-text text-danger" *ngIf="f.fechaactualizacion?.errors?.required">
                                                                         Este campo es requerido.
                                                                       </small>
-                                                                      <small class="form-text text-danger" [hidden]="!f.fechaactualizacion?.errors?.ZonedDateTimelocal">
+                                                    <small class="form-text text-danger" [hidden]="!f.fechaactualizacion?.errors?.ZonedDateTimelocal">
                                                                         Este campo deberia ser una fecha y hora.
                                                                       </small>
-                                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
-                                </div>
 
 
-                                <div class="row mb-4">
+                                    <div class="row mb-4">
 
-                                  <div class="col">
-                                    <div class="form-outline mb-4">
-                                      <div *ngIf="isEspecialista">
-                                        <label class="form-control-label" for="destacado">Destaca tu servicio {{isDestacado}}</label>
-                                        <input *ngIf="!isEdit || isEdit && isMaxDestacados && !isDestacado" type="checkbox" class="form-check" name="destacado" id="destacado"  style="width:35px; height: 35px" [disabled]="isMaxDestacados"/>
-                                        <input *ngIf="isEdit && isDestacado || isEdit && !isDestacado && !isMaxDestacados" type="checkbox" class="form-check" name="destacado" id="destacado" formControlName="destacado" style="width:35px; height: 35px" />
-                                        <div *ngIf="f.destacado!.invalid && (f.destacado!.dirty || f.destacado!.touched)">
-                                          <small class="form-text text-danger" *ngIf="f.destacado?.errors?.required"> Este campo es requerido. </small>
+                                        <div class="col">
+                                            <div class="form-outline mb-4">
+                                                <div *ngIf="isEspecialista">
+                                                    <label class="form-control-label" for="destacado">Destaca tu servicio</label>
+                                                    <input *ngIf="!isEdit || isEdit && isMaxDestacados && !isDestacado" type="checkbox" class="form-check" name="destacado" id="destacado" style="width:35px; height: 35px" [disabled]="isMaxDestacados" />
+                                                    <input *ngIf="isEdit && isDestacado || isEdit && !isDestacado && !isMaxDestacados" type="checkbox" class="form-check" name="destacado" id="destacado" formControlName="destacado" style="width:35px; height: 35px" />
+                                                    <div *ngIf="f.destacado!.invalid && (f.destacado!.dirty || f.destacado!.touched)">
+                                                        <small class="form-text text-danger" *ngIf="f.destacado?.errors?.required"> Este campo es requerido. </small>
+                                                    </div>
+                                                    <div *ngIf="isMaxDestacados && !isDestacado">
+                                                        <small class="form-text text-danger" *ngIf="isMaxDestacados"> Lo senstimos! Has alcanzado el máximo de servicios destacados.  </small>
+                                                        <small class="form-text text-danger" *ngIf="isMaxDestacados"> Mejora tu cuenta para poder destacar más servcios.  </small>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div *ngIf="isMaxDestacados && !isDestacado">
-                                          <small class="form-text text-danger" *ngIf="isMaxDestacados"> Lo senstimos! Has alcanzado el máximo de servicios destacados.  </small>
-                                          <small class="form-text text-danger" *ngIf="isMaxDestacados"> Mejora tu cuenta para poder destacar más servcios.  </small>
-                                        </div>
-                                      </div>
-                                  </div>
-                                  </div>
 
-                                  <div class="col">
-                                    <div class="form-outline">
-                                        <label for="ategorias">Categoria</label>
-                                        <select class="form-control" id="categorias" multiple name="categorias" formControlName="categorias">
+                                        <div class="col">
+                                            <div class="form-outline">
+                                                <label for="ategorias">Categoria</label>
+                                                <select class="form-control" id="categorias" multiple name="categorias" formControlName="categorias">
                                           <option
                                             [ngValue]="getSelectedCategoria(categoriaOption, f.categorias!.value)"
                                             *ngFor="let categoriaOption of categoriasCollection; trackBy: trackCategoriaById"
@@ -181,50 +160,36 @@
                                             {{ categoriaOption.nombre }}
                                           </option>
                                         </select>
-                                  </div>
-                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
+                                    </div>
 
-                                  <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                      <div class="buttons text-right">
-                                       <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn" (click)="previousState()">
+                                    <div class="row gutters">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="buttons text-right">
+                                                <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn" (click)="previousState()">
                                         <span>Cancelar</span>
                                        </button>
 
-                                       <button
-                                         type="submit"
-                                         id="save-entity"
-                                         [disabled]="editForm.invalid || isSaving"
-                                         class="btn button-guardar">
+                                                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn button-guardar">
                                          <span>Guardar</span>
                                        </button>
 
-                                      </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
-                              </form>
+                                </form>
+
+                            </div>
 
                         </div>
-
-                      </div>
-                  </div>
+                    </div>
 
                 </div>
 
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
-
-
-
-
-
-
-
-
-

@@ -106,7 +106,7 @@ export class DetalleServicioComponent implements OnInit {
 
 
   contratar():void{
-
+    if(this.usuarioLogin){
     this.contratosService.getContratoByServiceId(this.createContracto())
       .subscribe({
         next: contratos => {
@@ -123,6 +123,9 @@ export class DetalleServicioComponent implements OnInit {
             }
            }
       })
+    } else {
+      this.router.navigate(['login']);
+    }
 
   }
 
@@ -160,6 +163,8 @@ export class DetalleServicioComponent implements OnInit {
     if(this.usuario?.id){
       console.log(this.usuario.id);
       this.router.navigate(['nueva-conversacion', this.usuario.id]);
+    } else {
+      this.router.navigate(['login']);
     }
 
   }

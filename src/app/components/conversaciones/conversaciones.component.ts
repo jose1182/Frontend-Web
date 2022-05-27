@@ -69,6 +69,13 @@ export class ConversacionesComponent implements OnInit {
               this.idReceptor = params.get('idUser');
               //console.log(this.idReceptor);
               this.buscarConversacion(this.idReceptor);
+            } else {
+              if(this.accountModel){
+                if(this.accountModel.id){
+                  this.buscarConversacion(this.accountModel.id);
+                }
+              }
+              
             }
           })
 
@@ -111,7 +118,7 @@ export class ConversacionesComponent implements OnInit {
         let ultimoMensaje: IMensaje | undefined = this.mensajes.pop();
         //console.log(ultimoMensaje);
         //Se obtiene el id del receptor
-        //console.log(ultimoMensaje?.receptor?.id);
+        console.log(ultimoMensaje?.receptor?.id);
 
         let usuarioReceptorMensaje: IUsuario | undefined;
 
@@ -145,6 +152,7 @@ export class ConversacionesComponent implements OnInit {
         }
               
         this.mensajesConversacion.push(this.mensajes);
+        //console.log(this.mensajes)
       }
     })
   }
